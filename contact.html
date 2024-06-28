@@ -63,6 +63,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
        <h1 class="w3-text-teal">Contacts</h1>      
        <p>Here there are contacts you can contact, please contact one of them for further information about this project</p>
 
+       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
   <table class="w3-table-all">
     <thead>
       <tr class="w3-orange w3-text-white">
@@ -123,7 +125,7 @@ GitHub has a mascot called Octocat, a cat with five tentacles and a human-like f
       <h4>Footer</h4>
       <p>>  Silahkan hubungi pemilik website untuk info lebih lanjut.</p>
       <p>>  Sekedar info, bahwa pemilik website ini belum memiliki akun ig.</p>
-      <p>>  Juga akun fb, telegram udeh di hapus ama keluarga.</p>
+      <p>>  Juga akun fb, telegram udeh di hapus.</p>
       <p>>  Apalagi ML...</p>
       <p>>  Harap Maklum yah...</p>
     </div>
@@ -137,6 +139,31 @@ GitHub has a mascot called Octocat, a cat with five tentacles and a human-like f
 </div>
 
 <script>
+
+//searching names
+
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 
