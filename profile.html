@@ -15,6 +15,39 @@ section {
   scroll-margin-top: 90px;
 }
 
+.coming-soon {
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.6s ease, color 0.6s ease;
+}
+
+/* pas diklik */
+.coming-soon.active {
+  color: #2563eb; /* biru */
+  transform: scale(1.5);
+  animation: floatRandom 3s ease-in-out infinite;
+}
+
+/* animasi melayang random-ish */
+@keyframes floatRandom {
+  0% {
+    transform: translate(0, 0) scale(1.5);
+  }
+  25% {
+    transform: translate(20px, -15px) scale(1.5);
+  }
+  50% {
+    transform: translate(-15px, -30px) scale(1.5);
+  }
+  75% {
+    transform: translate(25px, 10px) scale(1.5);
+  }
+  100% {
+    transform: translate(0, 0) scale(1.5);
+  }
+}
+
+
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -228,7 +261,7 @@ section h2 {
 <!-- GALLERY -->
 <section id="gallery">
   <h2>Gallery</h2>
-  <p>Coming soon...</p>
+  <p id="comingSoon" class="coming-soon">Coming soon...</p>
 </section>
 
 <!-- CONTACT -->
@@ -264,6 +297,14 @@ function scrollToTop() {
   });
 }
 
+</script>
+
+<script>
+const comingSoon = document.getElementById("comingSoon");
+
+comingSoon.addEventListener("click", () => {
+  comingSoon.classList.toggle("active");
+});
 </script>
 
 </body>
