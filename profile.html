@@ -47,7 +47,31 @@ section {
   }
 }
 
+/* pas diklik */
+.coming-soons:hover {
+  color: #2563eb; /* biru */
+  transform: scale(1.5);
+  animation: floatRandoms 3s ease-in-out infinite;
+}
 
+/* animasi melayang random-ish */
+@keyframes floatRandoms {
+  0% {
+    transform: translate(0, 0) scale(1.5);
+  }
+  25% {
+    transform: translate(0, -15px) scale(3.5);
+  }
+  50% {
+    transform: translate(0, -30px) scale(4.5);
+  }
+  75% {
+    transform: translate(0, 20px) scale(1.5);
+  }
+  100% {
+    transform: translate(0, 0) scale(1.5);
+  }
+} 
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -247,13 +271,13 @@ section h2 {
 <section id="experience">
   <h2>Experience</h2>
 
-  <div class="experience">
-    <h3>Ngafal Quran</h3>
+  <div class="experience coming-soons">
+    <h3 class="">Ngafal Quran</h3>
     <p>2022 - 2025</p>
   </div>
 
-  <div class="experience">
-    <h3>Sekolah SMA</h3>
+  <div class="experience coming-soons">
+    <h3 class="">Sekolah SMA</h3>
     <p>2025 - Sekarang</p>
   </div>
 </section>
