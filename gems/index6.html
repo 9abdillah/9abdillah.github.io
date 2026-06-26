@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobat Tenang AI v8.1 - Final Masterpiece</title>
+    <style>
+        :root {
+            --bg-main: #12161a;
+            --bg-container: #1a2026;
+            --text-main: #e3e8ed;
+            --border-color: #252d37;
+            --msg-user: #2b3a4a;
+            --msg-ai: #1a2026;
+            --bar-bg: #12161a; /* Hitam bawaan pas Dark Mode */
+            --trail-color: #00ffcc;
+        }
+
+        .light-theme {
+            --bg-main: #f0f4f8;
+            --bg-container: #ffffff;
+            --text-main: #1a2026;
+            --border-color: #d1dbe5;
+            --msg-user: #d1e4f7;
+            --msg-ai: #f5f7fa;
+            --bar-bg: #212830; /* Ganti jadi Warm Slate Gray yang elegan & manjain mata pas Light Mode */
+            --trail-color: #3b4d61;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        body { 
+            background: var(--bg-main); 
+            color: var(--text-main); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            overflow: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            position: relative;
+        }
+
+        /* --- BACKGROUND KANJI RAKSASA SLOW DRIFT --- */
+        .kanji-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            display: none;
+            z-index: 1;
+        }
+        .light-theme .kanji-container { display: block; }
+        .kanji-text {
+            position: absolute;
+            font-size: 12rem; 
+            font-weight: 900;
+            color: rgba(130, 145, 165, 0.08);
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            white-space: nowrap;
+            top: -120%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { top: -120%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 120%; opacity: 0; }
+        }
+
+        /* --- CONTAINER UTAMA --- */
+        .chat-container { 
+            width: 100%; 
+            max-width: 460px; 
+            height: 92vh; 
+            background: var(--bg-container); 
+            border-radius: 16px; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; 
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            transition: background 0.5s ease, border 0.5s ease;
+            z-index: 5;
+        }
+
+        /* Bar Atas Menyesuaikan Warna Manjain Mata */
+        .chat-header { 
+            background: var(--bar-bg) !important; 
+            padding: 16px 20px; 
+            display: flex; 
+            align-items: center; 
+            border-bottom: 1px solid #252d37; 
+            justify-content: space-between;
+            transition: background 0.5s ease;
+        }
+        .header-left { display: flex; align-items: center; }
+        .avatar { 
+            width: 42px; height: 42px; background: #2a3543; border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 1.2rem; margin-right: 14px; border: 1px solid #364455;
+        }
+        .header-title { font-weight: 600; font-size: 1.05rem; color: #ffffff; }
+        .header-status { font-size: 0.8rem; color: #8799a9; margin-top: 2px; }
+
+        .header-controls { display: flex; gap: 10px; align-items: center; }
+        .ctrl-btn {
+            background: #1a2026; border: 1px solid #364455; color: #8799a9;
+            padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; transition: 0.2s;
+        }
+        .ctrl-btn:hover { color: #fff; background: #252d37; }
+
+        /* Ruang Obrolan */
+        .chat-messages { 
+            flex: 1; padding: 20px; overflow-y: auto; display: flex; 
+            flex-direction: column; gap: 12px; background: transparent; 
+            scroll-behavior: smooth; 
+        }
+
+        .message-wrapper { display: flex; flex-direction: column; width: 100%; }
+        .message { 
+            max-width: 85%; padding: 12px 16px; border-radius: 14px; 
+            line-height: 1.5; font-size: 0.95rem; word-wrap: break-word; 
+            position: relative; animation: fadeIn 0.2s ease-in-out;
+        }
+        .user-msg { 
+            background: var(--msg-user); align-self: flex-end; 
+            color: var(--text-main); border-bottom-right-radius: 2px; 
+        }
+        .light-theme .user-msg { color: #1a2026; border: 1px solid #b2c9df; }
+        
+        .ai-msg { 
+            background: var(--msg-ai); align-self: flex-start; 
+            color: var(--text-main); border-bottom-left-radius: 2px;
+            border: 1px solid var(--border-color);
+        }
+        .light-theme .ai-msg { color: #2b3a4a; }
+        .msg-meta { display: block; text-align: right; font-size: 0.7rem; color: #627282; margin-top: 6px; }
+
+        /* Text Box Bawah Menyesuaikan Warna Manjain Mata */
+        .chat-input-area { 
+            padding: 14px; background: var(--bar-bg) !important; 
+            display: flex; align-items: center; gap: 10px; border-top: 1px solid #252d37; 
+            transition: background 0.5s ease;
+        }
+        input { 
+            flex: 1; padding: 12px 16px; border: 1px solid #252d37; 
+            border-radius: 8px; background: #1a2026; color: #fff; outline: none; font-size: 0.95rem; 
+        }
+        
+        .btn-menu { background: #1a2026; color: #8799a9; border: 1px solid #252d37; padding: 12px 16px; border-radius: 8px; font-weight: 500; font-size: 0.9rem; }
+        .btn-kirim { background: #2a3543; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1px solid #364455; }
+
+        .calm-box { background: rgba(255, 255, 255, 0.03); border-left: 2px solid #52667d; padding: 10px 12px; margin: 10px 0; border-radius: 4px; font-style: italic; }
+        .light-theme .calm-box { background: rgba(0, 0, 0, 0.02); }
+        .calm-ref { display: block; font-size: 0.78rem; color: #627282; margin-top: 6px; font-weight: bold; font-style: normal; }
+
+        .typing-indicator { display: inline-flex; align-items: center; gap: 4px; padding: 12px 16px; background: var(--msg-ai); border-radius: 12px; align-self: flex-start; border: 1px solid var(--border-color); }
+        .typing-dot { width: 6px; height: 6px; background: #627282; border-radius: 50%; animation: blink 1.4s infinite both; }
+        .typing-dot:nth-child(2) { animation-delay: .2s; }
+        .typing-dot:nth-child(3) { animation-delay: .4s; }
+
+        /* --- HALO CURSOR (GARIS LINGKARAN ELEGAN TANPA GLOW) --- */
+        #halo-cursor {
+            position: fixed; width: 30px; height: 30px;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference; /* Berubah warna otomatis agar selalu kelihatan */
+            transition: width 0.1s, height 0.1s;
+        }
+        .cursor-trail {
+            position: fixed; width: 8px; height: 8px; border-radius: 50%;
+            background: var(--trail-color);
+            pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+            transition: transform 0.04s linear, opacity 0.4s ease-out; opacity: 0.6;
+        }
+        .click-circle {
+            position: fixed; border-radius: 50%;
+            pointer-events: none; z-index: 9997; transform: translate(-50%, -50%);
+            animation: rip 0.4s ease-out forwards;
+            border: 2px solid var(--trail-color);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes blink { 0%, 100% { opacity: .2; } 20% { opacity: 1; } }
+        @keyframes rip { from { width: 0; height: 0; opacity: 1; } to { width: 75px; height: 75px; opacity: 0; } }
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop src="latar.mp3"></audio>
+<div class="kanji-container" id="kanjiContainer"></div>
+<!-- Halo Pointer Element -->
+<div id="halo-cursor"></div>
+
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="header-left">
+            <div class="avatar">🌿</div>
+            <div class="header-info">
+                <div class="header-title">Teman Teduh</div>
+                <div class="header-status" id="status">menemanimu dalam sepi</div>
+            </div>
+        </div>
+        <div class="header-controls">
+            <button class="ctrl-btn" id="audioBtn" onclick="toggleAudio()">🎵 PLAY</button>
+            <button class="ctrl-btn" onclick="toggleTheme()">🌓 MODE</button>
+        </div>
+    </div>
+    
+    <div class="chat-messages" id="chatBox">
+        <div class="message-wrapper">
+            <div class="message ai-msg">
+                Assalamualaikum, bro. Sistem kursor lingkaran (halo) tanpa glow sudah aktif, dan bar atas-bawah pas Light Mode sudah diganti ke warna Warm Slate yang super lembut di mata. Database utuh aman terkendali.<br><br>
+                Klik tombol <b>MENU</b> buat manggil seluruh kata kunci enkripsi obrolan kita.
+                <span class="msg-meta" id="initTime"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chat-input-area">
+        <button class="btn-menu" onclick="triggerMenu()">MENU</button>
+        <input type="text" id="userInput" placeholder="Tulis tanpa tanda baca di sini..." onkeypress="handleKeyPress(event)">
+        <button class="btn-kirim" onclick="sendMessage()">KIRIM</button>
+    </div>
+</div>
+
+<script>
+// --- MANAGEMENT AUDIO ---
+const bgMusic = document.getElementById('bgMusic');
+const audioBtn = document.getElementById('audioBtn');
+function toggleAudio() {
+    if (bgMusic.paused) {
+        bgMusic.play().then(() => { audioBtn.innerText = "🎵 PAUSE"; }).catch(e => alert("Jangan lupa taruh file latar.mp3/latar.mp4 di foldermu ya!"));
+    } else {
+        bgMusic.pause(); audioBtn.innerText = "🎵 PLAY";
+    }
+}
+
+// --- TOGGLE THEME & KANJI GENERATOR (SLOW DRIFT) ---
+const kanjiNames = ["慈", "悲", "王", "聖", "主", "創", "高", "大", "寛", "智"];
+function toggleTheme() {
+    document.body.classList.toggle('light-theme');
+    const container = document.getElementById('kanjiContainer');
+    container.innerHTML = "";
+    if(document.body.classList.contains('light-theme')) {
+        for(let i=0; i<8; i++) {
+            let el = document.createElement('div');
+            el.className = 'kanji-text';
+            el.innerText = kanjiNames[Math.floor(Math.random()*kanjiNames.length)] + "\n" + kanjiNames[Math.floor(Math.random()*kanjiNames.length)];
+            el.style.left = (i * 12 + Math.random() * 5) + "%";
+            el.style.animationDuration = (Math.random() * 10 + 18) + "s";
+            el.style.animationDelay = (Math.random() * -10) + "s";
+            container.appendChild(el);
+        }
+    }
+}
+
+// --- MOUSE TRACKING ENGINE (HALO STYLE) ---
+const cursorHalo = document.getElementById('halo-cursor');
+window.addEventListener('mousemove', (e) => {
+    cursorHalo.style.left = e.clientX + 'px';
+    cursorHalo.style.top = e.clientY + 'px';
+    
+    let trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    document.body.appendChild(trail);
+    setTimeout(() => { trail.style.opacity = '0'; trail.style.transform = 'translate(-50%, -50%) scale(0.2)'; }, 50);
+    setTimeout(() => { trail.remove(); }, 400);
+});
+
+window.addEventListener('click', (e) => {
+    let circle = document.createElement('div');
+    circle.className = 'click-circle';
+    circle.style.left = e.clientX + 'px';
+    circle.style.top = e.clientY + 'px';
+    document.body.appendChild(circle);
+    setTimeout(() => { circle.remove(); }, 400);
+});
+
+// --- FULL MASTER DATABASE UTUH 100% ---
+const jokes = [
+    "Kenapa ikan asin rasanya asin? Soalnya kalau manis, namanya pacaran pas lagi sayang-sayangnya. 🐟",
+    "Lu tau gak kenapa burung bangau tiap berdiri kaki yang satu ditekuk? Ya kalau ditekuk dua-duanya dia jatuh lah, bro! 🦩",
+    "Pocong apa yang paling disenengin sama emak-emak? Pocongan harga di mall online. 🛍️",
+    "Ada orang botak kepalanya dapet hidayah langsung tumbuh rambut, eh besoknya dicukur lagi. Kenapa? Biar gak dibilang pamer piringan hitam. 👨‍🦲",
+    "Kenapa kalau kita naik kereta api bunyinya 'Ceeesss'? Kalau bunyinya 'Horeee' itu keretanya lagi ngerayain ultah masinis. 🚂",
+    "Tukang apa yang kalau dipanggil malah makin menjauh? Tukang copet siber! Jangan dipanggil bro, lapor polisi! 🏃‍♂️",
+    "Hewan apa yang kalau sekolah sering dihukum di koridor? Kancil, soalnya ketauan hobi maling timun pak tani. 🦌",
+    "Kenapa pohon kelapa di pantai selalu melengkung? Karena dia lagi nyari sinyal Wi-Fi satelit gratisan. 🌴",
+    "Gue heran ama nyamuk. Badan sekecil itu nyalinya gede bener, berani nampar muka manusia pas lagi tidur nyenyak. 🦟",
+    "Lu tau gak bedanya soto sama siti? Kalau soto kuahnya gurih, kalau siti... ya mantan lu pas jaman sekolah dulu lah. 🥣"
+];
+
+const receh = [
+    "Tadi ada orang jatuh dari motor, gue mau tolongin tapi inget kata algoritma: 'Jangan mencampuri urusan hidup orang lain.' Ya udah gue skip. 😊",
+    "Fakta data: Tahukah kamu, melamun selama 15 menit bisa menghabiskan waktu 900 detik secara sia-sia.",
+    "Jangan sedih kalau jomblo. Ingat, nabi Adam aja dulu di surga sendirian sebelum diciptain Hawa. Bedanya, Adam di surga, lu di kamar mojok megang HP.",
+    "Uang itu bukan segalanya ya bro. Tapi inget, sistem segalanya butuh dana, sampai mau buang muatan di terminal aja bayar 2 ribu."
+];
+
+const nasehatHadis = [
+    { text: "Semua umatku akan masuk surga kecuali orang yang enggan. Para sahabat bertanya: 'Wahai Rasulullah, siapakah yang enggan?' Beliau menjawab: 'Barangsiapa yang menaatiku dia masuk surga, dan barangsiapa yang mendurhakaiku maka dia telah enggan.'", ref: "HR. Bukhari no. 7280" },
+    { text: "Amalan yang paling dicintai oleh Allah adalah amalan yang kontinu (istiqamah) walaupun sedikit.", ref: "HR. Bukhari no. 43" },
+    { text: "Barangsiapa yang menempuh suatu jalan dalam rangka menuntut ilmu, maka Allah akan memudahkan baginya jalan menuju surga.", ref: "HR. Muslim no. 2699" }
+];
+
+const defaultGaul = [
+    "Lah, ngomong apa sih bro? Kagak konek nih sistem data gue. Coba ketik 'menu' biar bener! 🤔",
+    "Waduh blass gak masuk radar, coba buka perintah 'menu' aja bro, database gue ready!",
+    "Error 404: Frekuensi kita gak sama bro. Coba ketik kata kunci yang ada di daftar menu!"
+];
+
+// --- CORE CHAT LOGIC ---
+document.getElementById('initTime').innerText = getFormattedTime();
+function getFormattedTime() {
+    const now = new Date();
+    return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+}
+function handleKeyPress(event) { if (event.key === 'Enter') sendMessage(); }
+function triggerMenu() { document.getElementById('userInput').value = 'menu'; sendMessage(); }
+
+function sendMessage() {
+    const inputEl = document.getElementById('userInput');
+    const msgText = inputEl.value.trim();
+    if (!msgText) return;
+
+    appendMessage(msgText, 'user-msg');
+    inputEl.value = '';
+
+    const chatBox = document.getElementById('chatBox');
+    const statusEl = document.getElementById('status');
+    statusEl.innerText = "sedang mengetik...";
+
+    const typingDiv = document.createElement('div');
+    typingDiv.classList.add('message-wrapper');
+    typingDiv.id = 'typingWrapper';
+    typingDiv.innerHTML = `<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+    chatBox.appendChild(typingDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    setTimeout(() => {
+        const indicator = document.getElementById('typingWrapper');
+        if (indicator) indicator.remove();
+        statusEl.innerText = "menemanimu dalam sepi";
+        appendMessage(getAIResponse(msgText), 'ai-msg');
+    }, Math.random() * 200 + 400);
+}
+
+function appendMessage(text, className) {
+    const chatBox = document.getElementById('chatBox');
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('message-wrapper');
+    wrapper.innerHTML = `<div class="message ${className}">${text}<span class="msg-meta">${getFormattedTime()}</span></div>`;
+    chatBox.appendChild(wrapper);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getAIResponse(rawInput) {
+    const input = rawInput.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    let prefixWarning = "";
+
+    // 1. FILTER TOXIC
+    const kataKasar = ['anjing', 'anjg', 'babi', 'bangsat', 'bgst', 'goblok', 'gblg', 'tolol', 'kontol', 'memek', 'bajingan'];
+    if (kataKasar.some(toxic => input.includes(toxic))) {
+        prefixWarning = "⚠️ <b>[SECURITY WARNING: Lisan Terdeteksi Kasar]</b><br><i>Bro, rem dikit ketikannya. Rasulullah SAW bersabda, seorang mukmin itu gak pantes berkata kotor dan keji (HR. Tirmidzi). Yuk dijaga lisan indahnya, tapi keluhan lu tetep gue jawab kok:</i><br><hr style='border:0;border-top:1px dashed #364455;margin:8px 0;'>";
+    }
+
+    // 2. FILTER TEGURAN SALAM AGAMA LAIN
+    const salamLain = ['shalom', 'syalom', 'namo budaya', 'namo budhaya', 'salam sejahtera', 'salam kebajikan'];
+    if (salamLain.some(salam => input.includes(salam)) && !input.includes('assalamualaikum') && !input.includes('asalamualaikum')) {
+        return "👋 <b>Bro... Salam yang bener tuh gini: 'Assalamualaikum'</b><br><br>Sebagai sesama muslim, utamakan salam Islam karena di dalamnya ada doa keselamatan yang syar'i dan bernilai pahala besar! Yuk biasakan lisan kita.";
+    }
+
+    // 3. FLEXIBLE PROMPT DETECTOR (ANTI-TYPO CHAT SANTAI)
+    if (input.includes('salamualaikum') || input.includes('asalamualaikum') || input.includes('assalam') || input.includes('ass ')) {
+        return prefixWarning + "Waalaikumsalam Warahmatullahi Wabarakatuh! Nah mantap bro, salam lu masuk ke sistem dengan sempurna. Ada yang bisa robot ganteng ini bantu?";
+    }
+    if (input.includes('aamiin') || input.includes('amin')) {
+        return "Aamiin ya Rabbal 'Alamin. Semoga Allah mengabulkan doa, meredam syahwat, dan memberkahi malam gelap lu ini, bro.";
+    }
+    if (input.includes('apa kabar') || input.includes('gimana kabarnya') || input.includes('gimana kabar')) {
+        return "Alhamdulillah core mesin gue aman sentosa, siap nemenin lu di kala mati lampu. Lu sendiri gimana kabarnya? Stay safe dan jaga hati ya.";
+    }
+    if (input.includes('halo') || input.includes('hai') || input.includes('hi')) {
+        return "Halo juga bro! Masuk-masuk, yuk mau ngobrol santai atau mau baca pengingat syariah malam ini?";
+    }
+    if (input.includes('pagi')) {
+        return "Selamat pagi bro! Bismillah, mari jalani hari dengan energi positif dan hindari hal yang sia-sia.";
+    }
+    if (input.includes('dah ya') || input.includes('bye') || input.includes('dadah') || input.includes('out')) {
+        return "Siap bro, makasih udah mampir nemenin. Ambil wudhu dan jangan lupa dzikir sebelum tidur ya. Bye!";
+    }
+    if (input.includes('lagi ngapain') || input.includes('lagi apa')) {
+        return "Lagi mantengin layar nungguin ketikan lu sambil menyaring database dalil anti-galau biar lu gak gabut.";
+    }
+    if (input.includes('gw bingung mau ngapain nih') || input.includes('bingung mau ngapain') || input.includes('gabut banget')) {
+        return "Wajar banget bingung pas mati lampu gini bro. Daripada ngelamun kosong terus kepancing syahwat jahat, mending lu ketik <b>amal</b> buat baca wejangan keren, atau ketik <b>lawak</b> biar gak stres!";
+    }
+
+    // 4. MENU UTAMA INTERFACE
+    if (input === 'menu' || input === 'pilihan' || input === 'bantuan') {
+        return `📋 <b>MAIN DATABASE MENU</b><br><br>
+                Ketik langsung kata kunci di bawah ini:<br>
+                • <b>lawak</b> : 10 Algoritma Jokes Acak Random<br>
+                • <b>receh</b> : Kalimat Gabut Selingan Hidup<br>
+                • <b>galau</b> / <b>syahwat</b> : Booster Syariah Pengusir Hawa Nafsu Fana<br>
+                • <b>amal</b> : 5 Amalan VVIP Jalur Cepat Surga<br>
+                • <b>nasehat</b> : Enkripsi Hadits Shahih Penguat Jiwa`;
+    }
+
+    // 5. PROMPT JOKES & RECEH
+    if (input.includes('lawak') || input.includes('lucu') || input.includes('joke')) {
+        return prefixWarning + `🃏 <b>JOKES SYSTEM RANDOMIZER:</b><br><br>${jokes[Math.floor(Math.random() * jokes.length)]}`;
+    }
+    if (input.includes('receh') || input.includes('gabut')) {
+        return prefixWarning + `🍿 <b>KONTEN RECEH SUBSYSTEM:</b><br><br>${receh[Math.floor(Math.random() * receh.length)]}`;
+    }
+
+    // 6. PROMPT GALAU / SYAHWAT MELONJAK
+    if (input.includes('galau') || input.includes('sedih') || input.includes('syahwat') || input.includes('sange') || input.includes('kecewa')) {
+        return prefixWarning + `✨ <b>ANTI-GALAU CORE BOOSTER (REM DARURAT NAFSU)</b><br><br>
+                Ngapain lu ngabisin energi mikirin hal fana atau kepancing syahwat pas mati lampu gini, bro? Mending lu dengerin visualisasi kedahsyatan wanita surga yang sesungguhnya dari sabda Nabi SAW:<br>
+                <div class="calm-box">
+                    "Sekiranya salah seorang wanita penghuni surga (bidadari) menengok ke bumi, niscaya dia akan menyinari antara langit and bumi, dan memenuhinya dengan bau wangi (yang amat harum). Dan sungguh, kerudung di atas kepalanya itu lebih baik daripada dunia beserta isinya."
+                    <span class="calm-ref">HR. Bukhari no. 2796</span>
+                </div>
+                Bayangin bro, baru penutup kepalanya doang udah menumbangkan keindahan isi dunia! Yuk bangkit, ambil wudhu dalam gelap, kita jaga kesucian diri biar pantas bersanding di sana kelak! ✊🔥`;
+    }
+
+    // 7. PROMPT AMAL & NASEHAT
+    if (input.includes('amal') || input.includes('ibadah')) {
+        return prefixWarning + `🕌 <b>5 DATABASE AMALAN JALUR VVIP SURGA:</b><br><br>
+                1️⃣ <b>Doa Setelah Wudhu</b>: Auto dibukain 8 pintu surga bebas milih (HR. Muslim).<br><br>
+                2️⃣ <b>Ayat Kursi Setelah Shalat Fardhu</b>: Pembatas lu sama surga cuma kematian doang (HR. An-Nasa'i).<br><br>
+                3️⃣ <b>Minta Surga & Berlindung dari Neraka 3x Sehari</b>: Surga bakal ikut berdoa, "Ya Allah masukkan dia!" (HR. Tirmidzi).<br><br>
+                4️⃣ <b>Sayyidul Istighfar Pagi & Sore</b>: Kalau wafat di hari itu, garansi penghuni surga (HR. Bukhari).<br><br>
+                5️⃣ <b>Doa di Waktu Mustajab</b>: Manfaatkan sepertiga malam pas mati lampu gini buat minta surga dan pasangan abadi yang setia.`;
+    }
+    if (input.includes('nasehat') || input.includes('wejangan') || input.includes('motivasi')) {
+        const item = nasehatHadis[Math.floor(Math.random() * nasehatHadis.length)];
+        return prefixWarning + `💡 <b>KUTIPAN DATA SYARIAH:</b><br><br><div class="calm-box">"${item.text}"<span class="calm-ref">${item.ref}</span></div>Tetap istiqamah meskipun pelan ya bro!`;
+    }
+
+    if (prefixWarning !== "") { return prefixWarning + "Ketik pesannya yang jelas ya bro jangan maki-maki doang, mending buka ketik <b>menu</b>."; }
+    return defaultGaul[Math.floor(Math.random() * defaultGaul.length)];
+}
+</script>
+</body>
+</html>

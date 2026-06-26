@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdillah's Digital Diary</title>
+    <style>
+
+
+
+/* --- UPDATE CSS KANJI FIX --- */
+.kanji-bg {
+  position: fixed; /* Berubah jadi fixed biar nempel di layar pas di-scroll */
+  top: -20%; 
+  color: rgba(0, 0, 0, 0.04); 
+  font-weight: 900;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0; /* Tetap di belakang card diary lu */
+  white-space: nowrap;
+  animation: hujanKanji linear infinite;
+}
+
+/* Variasi (Tetap sama kayak tadi) */
+.kj-1 { font-size: 12rem; left: 5%;  animation-duration: 25s; }
+.kj-2 { font-size: 7rem;  left: 35%; animation-duration: 18s; animation-delay: -5s; }
+.kj-3 { font-size: 15rem; left: 65%; animation-duration: 30s; animation-delay: -2s; }
+.kj-4 { font-size: 9rem;  left: 80%; animation-duration: 22s; animation-delay: -7s; }
+.kj-5 { font-size: 13rem; left: 20%; animation-duration: 28s; animation-delay: -12s; }
+.kj-6 { font-size: 6rem;  left: 50%; animation-duration: 15s; animation-delay: -3s; }
+
+/* UPDATE KEYFRAMES: Biar jatuh melampaui tinggi layar penuh */
+@keyframes hujanKanji {
+  0% {
+    transform: translateY(-20vh);
+  }
+  100% {
+    transform: translateY(120vh); /* Turun nembus bawah layar browser */
+  }
+}
+
+
+
+
+        /* Base Reset & Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        /* DYNAMIC CUSTOM CURSOR (Dark Mode Default) */
+        html, body, input, button, a, select, option {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='3 3 10.07 19.97 12.58 12.58 19.97 10.07 3 3'/%3E%3C/svg%3E"), auto !important;
+        }
+        button:hover:not(:disabled), a:hover, select:hover, .custom-menu-item:hover {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3C/svg%3E"), pointer !important;
+        }
+
+        /* LIGHT MODE CURSOR OVERRIDE (Supaya kontras di area terang) */
+        [data-theme="light"], 
+        [data-theme="light"] input, 
+        [data-theme="light"] body, 
+        [data-theme="light"] #back-to-top {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231e1b4b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='3 3 10.07 19.97 12.58 12.58 19.97 10.07 3 3'/%3E%3C/svg%3E"), auto !important;
+        }
+        [data-theme="light"] button:hover:not(:disabled), 
+        [data-theme="light"] a:hover, 
+        [data-theme="light"] select:hover {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3C/svg%3E"), pointer !important;
+        }
+
+        /* PERMANENT DARK NAVBAR CURSOR FIX FOR LIGHT MODE */
+        .gimmick-nav, .gimmick-nav *, #custom-context-menu, #custom-context-menu * {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='3 3 10.07 19.97 12.58 12.58 19.97 10.07 3 3'/%3E%3C/svg%3E"), auto !important;
+        }
+        .gimmick-nav button:hover:not(:disabled), .gimmick-nav a:hover, .gimmick-nav select:hover, #custom-context-menu .custom-menu-item:hover {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3C/svg%3E"), pointer !important;
+        }
+
+        /* Variabel Warna Tema (Dark Mode Default) */
+        :root {
+            --bg-color-fallback: #030712;
+            --text-color: #cbd5e1;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(51, 65, 85, 0.6);
+            --text-title: #f8fafc;
+            --gold-color: #fbbf24; 
+            --green-color: #5BC634; 
+            --diary-bg-overlay: linear-gradient(rgba(3, 7, 18, 0.6), rgba(3, 7, 18, 0.9));
+            --btt-bg: #0ea5e9;
+            --btt-hover: #0d9488;
+        }
+
+        /* Premium Light Mode Variables (ANTI PERIH & SANGAT TEDUH) */
+        [data-theme="light"] {
+            --bg-color-fallback: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff; /* Putih Solid Premium */
+            --card-border: rgba(226, 232, 240, 0.8);
+            --text-title: #0f172a;
+            --gold-color: #b45309; 
+            --green-color: #15803d; 
+            --diary-bg-overlay: linear-gradient(rgba(241, 245, 249, 0.85), rgba(241, 245, 249, 0.95)); /* aslinya grads dari 0.85 ke 0.95 Latar belakang adem, bukan putih transparan murahan */
+            --btt-bg: rgba(30, 41, 59, 0.85); 
+            --btt-hover: #0f172a;            
+        }
+
+        /* TEXT SELECTION CUSTOMIZATION */
+        ::-moz-selection { background-color: #00ff84; color: #000000; }
+        ::selection { background-color: #00ff84; color: #000000; }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-color-fallback); color: var(--text-color); overflow-x: hidden; }
+
+        /* MOUSE TRAIL AURORA ELEMENT */
+        .cursor-trail {
+            position: absolute;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            animation: trailFade 0.4s ease-out forwards;
+        }
+
+        @keyframes trailFade {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+        }
+
+        /* Blue Archive Style Click Ripple Effect (3x Bigger & Cinematic) */
+        .click-ripple {
+            position: absolute;
+            border: 3px solid #06b6d4;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: rippleEffect 0.6s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+            z-index: 99999;
+        }
+        .click-ripple.inner {
+            border: 1.5px dashed #34d399;
+            animation: rippleEffectInner 0.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+        }
+        [data-theme="light"] .click-ripple { border-color: #4f46e5; }
+        [data-theme="light"] .click-ripple.inner { border-color: #db2777; }
+
+        @keyframes rippleEffect {
+            0% { width: 0px; height: 0px; opacity: 1; }
+            100% { width: 150px; height: 150px; opacity: 0; }
+        }
+        @keyframes rippleEffectInner {
+            0% { width: 0px; height: 0px; opacity: 0.9; }
+            100% { width: 90px; height: 90px; opacity: 0; }
+        }
+
+        /* Password Screen Layer */
+        #password-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #020617 0%, #042f2e 50%, #064e3b 100%);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999;
+        }
+
+        .auth-container {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2.5rem; border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(20, 184, 166, 0.1);
+            max-width: 400px; width: 90%;
+        }
+
+        .auth-container h2 {
+            color: #f8fafc; margin-bottom: 1.5rem;
+            font-weight: 600; letter-spacing: 1.5px; font-size: 1.3rem;
+        }
+
+        .auth-container input {
+            width: 100%; padding: 0.8rem 1rem; border-radius: 8px;
+            border: 1px solid #334155; background: rgba(2, 6, 23, 0.7);
+            color: #fff; font-size: 1rem; margin-bottom: 1rem;
+            text-align: center; outline: none;
+        }
+
+        .auth-container input:focus {
+            border-color: #14b8a6; box-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
+        }
+
+        .auth-container button {
+            background: #0ea5e9; color: white; border: none;
+            padding: 0.8rem 2rem; border-radius: 8px;
+            font-size: 1rem; font-weight: 600; width: 100%; letter-spacing: 0.5px;
+        }
+
+        .auth-container button:hover:not(:disabled) {
+            background: #0d9488; transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
+        }
+
+        .auth-container button:disabled {
+            background: #1e293b; color: #475569; cursor: not-allowed; border: 1px solid #334155;
+        }
+
+        .error-msg {
+            color: #f43f5e; font-size: 0.85rem; margin-top: 0.8rem;
+            display: none; line-height: 1.5; background: rgba(244, 63, 94, 0.1);
+            padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+
+        /* Main Content Layout */
+        #main-content { display: none; }
+
+        /* PERMANENT DARK NAVBAR */
+        .gimmick-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: #030712 !important; backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a {
+            color: #94a3b8 !important; text-decoration: none; font-size: 0.9rem;
+            font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #22d3ee !important; }
+
+        .nav-controls { display: flex; align-items: center; gap: 0.7rem; }
+        
+        .scroll-select {
+            background: #1e293b; color: #f8fafc;
+            border: 1px solid rgba(255,255,255,0.2); padding: 0.4rem 0.8rem;
+            border-radius: 6px; font-size: 0.85rem; outline: none;
+        }
+
+        /* AUDIO BUTTON THEME MATCHED */
+        .audio-btn {
+            background: #1e293b; color: #f8fafc; border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.4rem 0.7rem; border-radius: 6px; font-size: 0.85rem; transition: all 0.2s;
+        }
+        .audio-btn.playing { 
+            background: #0ea5e9 !important; 
+            border-color: #38bdf8 !important; 
+            color: #ffffff !important;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+        }
+
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f8fafc; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.2s;
+        }
+        .theme-btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* Parallax Header */
+        .parallax-bg {
+            background-image: linear-gradient(rgba(3, 7, 18, 0.40), rgba(3, 7, 18, 0.80)), url('uw.jpg');
+            height: 100vh; background-attachment: fixed; background-position: center;
+            background-repeat: no-repeat; background-size: cover;
+            display: flex; justify-content: center; align-items: center; text-align: center; padding: 0 1rem;
+        }
+
+        .hero-title h1 { font-size: 3.5rem; color: #f8fafc; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.8); letter-spacing: 2px; }
+        .hero-title p { color: #94a3b8; font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem auto; }
+
+        .btn-baca {
+            display: inline-block; background: transparent; color: #ffffff; border: 2px solid #ffffff;
+            padding: 0.8rem 2.5rem; font-size: 1.1rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.5px; text-decoration: none; border-radius: 30px; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+        .btn-baca:hover { background: #ffffff; color: #030712; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3); transform: translateY(-3px); }
+
+        /* Diary Content Section */
+        .diary-section {
+            background-image: var(--diary-bg-overlay), url('bg-diary.jpg'); 
+            background-attachment: fixed; background-position: center;
+            background-repeat: no-repeat; background-size: cover; width: 100%; padding: 6rem 2rem;
+        }
+
+        .diary-container-box { max-width: 800px; margin: 0 auto; }
+        
+        /* CARD UPGRADE */
+        .card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
+            padding: 2.5rem; margin-bottom: 3rem; line-height: 1.8; font-size: 1.1rem;
+            white-space: pre-line; box-shadow: 0 15px 40px rgba(0,0,0,0.35); color: var(--text-color);
+            backdrop-filter: blur(8px);
+        }
+        [data-theme="light"] .card {
+            box-shadow: 0 10px 30px rgba(30, 41, 59, 0.08); /* Soft Shadow Luxury */
+        }
+
+        .card span:first-child { color: var(--text-title); }
+        .highlight-blue { color: #38bdf8; font-weight: 600; }
+        [data-theme="light"] .highlight-blue { color: #0284c7; }
+        .highlight-red { color: #D13852; font-weight: 600; }
+        .highlight-green { color: var(--green-color); font-weight: 600; } 
+        .highlight-gold { color: var(--gold-color); font-weight: 600; }   
+
+        /* CUSTOM CONTEXT MENU (KLIK KANAN) */
+        #custom-context-menu {
+            display: none; position: absolute; background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-radius: 8px; z-index: 10000; width: 180px;
+            overflow: hidden; animation: fadeIn 0.15s ease-out;
+        }
+        [data-theme="light"] #custom-context-menu { background: #1e293b; border: 1px solid rgba(255,255,255,0.1); }
+        .custom-menu-item { padding: 10px 15px; font-size: 0.9rem; color: #e2e8f0; transition: background 0.2s; text-align: left; }
+        .custom-menu-item:hover { background: #0ea5e9; color: white !important; }
+        .custom-menu-disabled { border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.15); color: #94a3b8 !important; font-size: 0.8rem; text-align: center; padding: 8px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        /* UPGRADED BACK TO TOP (SQUARE ROUNDED ADAPTIVE) */
+        #back-to-top {
+            position: fixed; bottom: 30px; right: -60px; width: 45px; height: 45px;
+            background: var(--btt-bg); color: #fff; border: none; border-radius: 8px;
+            font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease, background-color 0.1s; z-index: 99; display: flex; justify-content: center; align-items: center;
+        }
+        #back-to-top.show { right: 30px; }
+        #back-to-top:hover { background: var(--btt-hover); transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .hero-title h1 { font-size: 2.5rem; }
+            .card { padding: 1.5rem; font-size: 1rem; }
+            .gimmick-nav { flex-direction: column; gap: 0.8rem; padding: 0.8rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.75rem; }
+            .diary-section { background-attachment: scroll; }
+        }
+
+
+
+
+
+/* ==========================================
+   RESPONSIVE ENGINE UTK HP (MEDIA QUERY)
+   ========================================== */
+@media screen and (max-width: 768px) {
+    /* 1. Pengaturan Body & Konten Utama */
+    body {
+        padding-top: 12vh !important; /* Biar ga ketutup navbar atas */
+    }
+    
+/* CARI DI DALAM MEDIA QUERY SEBELUMNYA, LALU GANTI BAGIAN INI: */
+    .lock-box {
+        width: 85% !important;
+        padding: 1.5rem !important;
+        margin: 0 auto;
+        /* Matikan efek blur kaca di HP agar teks tidak ikutan blur/pecah */
+        backdrop-filter: none !important; 
+        -webkit-backdrop-filter: none !important;
+        /* Ganti dengan warna gelap solid yang pekat & nyaman di mata */
+        background: #0f172a !important; 
+    }
+
+    h1 {
+        font-size: 1.8rem !important; /* Perkecil judul biar ga kepotong */
+    }
+
+    p, .quote {
+        font-size: 1rem !important;
+    }
+
+    /* 2. Navbar Responsive (Gimmick Nav) */
+    .gimmick-nav {
+        padding: 0.5rem 0.75rem !important;
+        flex-direction: column !important; /* Susun ke bawah kalau layarnya sempit */
+        gap: 0.5rem !important;
+    }
+
+    .nav-controls {
+        flex-wrap: wrap !important; /* Tombol otomatis turun ke bawah kalau ga muat */
+        justify-content: center !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+    }
+
+    /* 3. Tombol-Tombol di HP */
+    .audio-btn, .theme-btn, .scroll-select {
+        font-size: 0.75rem !important; /* Font tombol agak dikecilkan di HP */
+        padding: 0.4rem 0.6rem !important;
+        flex: 1 1 auto; /* Tombol otomatis responsif bagi ruang */
+        text-align: center;
+    }
+
+    /* 4. Footer / Khatimah di HP */
+    footer {
+        padding: 2.5rem 1rem 1.5rem 1rem !important;
+    }
+
+    footer p {
+        font-size: 0.9rem !important;
+    }
+
+    footer button {
+        width: 100% !important; /* Tombol lock di footer jadi full width di HP biar gampang diklik */
+        font-size: 0.85rem !important;
+        padding: 0.6rem 1.5rem !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<!-- TARUH DISINI BRO, DI LUAR SEMUA DIV LAIN -->
+  <div class="kanji-bg kj-1">創造主</div>
+  <div class="kanji-bg kj-2">主</div>
+  <div class="kanji-bg kj-3">慈悲</div>
+  <div class="kanji-bg kj-4">聖なる</div>
+  <div class="kanji-bg kj-5">平和</div>
+  <div class="kanji-bg kj-6">大王</div>
+
+
+    <!-- Audio Player -->
+    <audio id="bg-audio" src="audio.mp3" loop></audio>
+
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="auth-container">
+            <h2>LOG MASUK DIARY</h2>
+            <input type="password" id="password-input" placeholder="Masukkan Password...">
+            <button id="submit-btn" onclick="verifyPassword()">Buka Catatan</button>
+            <div id="error-message" class="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- POPUP MENU KLIK KANAN CUSTOM -->
+    <div id="custom-context-menu">
+        <div class="custom-menu-item" onclick="executeCopy()">Copy</div>
+        <div class="custom-menu-item" onclick="executeShare()">Share</div>
+        <div class="custom-menu-disabled">(c) Abdillah 2026</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        
+        <!-- Gimmick Navigation -->
+        <nav class="gimmick-nav">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#pesan-utama">Pesan Utama</a></li>
+                <li><a href="#debat-setan">Debat Syetan</a></li>
+                <li><a href="#amalan-vip">Amalan VIP</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <select id="auto-scroll-select" class="scroll-select" onchange="changeAutoScroll()">
+                    <option value="0">Auto Scroll: OFF</option>
+                    <option value="1">Scroll: Lambat</option>
+                    <option value="2">Scroll: Sedang</option>
+                    <option value="3">Scroll: Cepat</option>
+                </select>
+
+<button id="kling-toggle-btn" class="audio-btn playing" onclick="toggleKlingSound()">🔔 Kling: ON</button>
+
+                <!-- Tombol Audio Musik/Murattal Adaptive Theme -->
+                <button id="audio-control-btn" class="audio-btn" onclick="toggleAudio()">🎵 Play</button>
+                <button class="theme-btn" onclick="toggleTheme()" id="theme-toggle-btn">☀️ Light Mode</button>
+
+<!-- TOMBOL CLOSE DIARY DI NAVBAR -->
+    <button class="theme-btn" style="background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.4); color: #f43f5e;" onclick="closeDiary()">🔒 Keluar</button>
+
+            </div>
+        </nav>
+
+        <!-- Parallax Header Area -->
+        <header id="home" class="parallax-bg">
+            <div class="hero-title">
+                <h1>Hi, Abdillah.</h1>
+                <p>Baca ini setiap kali lu ngerasa goyah atau butuh asupan semangat. Lu di jalan yang benar.</p>
+                <a href="#pesan-utama" class="btn-baca">Baca</a>
+            </div>
+        </header>
+
+        <!-- Diary Content Section -->
+        <main class="diary-section">
+            <div class="diary-container-box">
+                
+                <!-- Section 1: Pesan Utama -->
+                <div id="pesan-utama" class="card">
+<span class="highlight-blue" style="font-size: 1.5rem;">Abdillah...</span>
+Gw dengar kegelisahan lu.
+Gw tau, yg lu mau cuma 1.
+Seorang perempuan hafizah solehah yg cuma buat lu sampai surga firdaus.
+Dan lu tau? Allah ga akan menyia-nYia-kan hal itu. Di surga itu apa yg lu inginkan langsung terwujud.
+"Ya Allah, aku mau pasangan yg perjuangannya dia di dunia dulu sama kayak aku."
+Pasti Allah kabulkan.
+ 
+Menahan diri sekarang (dalam keadaan seperti ini) bukan berarti lu ga akan dapet jatah sayang-sayangan.
+Itu bukti kalau doa lu sedang diproses oleh Allah.
+ 
+Lu berusaha + lu beramal soleh + lu berdoa
+Apakah itu belum cukup?
+Mana mungkin Allah ga lihat?
+Bahkan tanpa lu berdoa pun, Allah pun pasti sudah ciptakan. Pasti.
+Iya, soalnya kan allah menciptakan segala sesuatu itu berpasang-pasangan.
+Kalau lu ada, versi perempuannya juga pasti ada.
+ 
+Ketika melihat teman-teman lu mungkin sudah melampiaskan hasratnya dan juga cintanya, bukan berarti lu ga akan merasakan itu.
+
+Because hakekatnya, jatah lu ga akan berkurang 1 tetes pun.
+ 
+<span class="highlight-gold">Bayangkan skenario ini, gw mau lu semangat lagi:</span>
+Nanti di surga, lu bakal duduk berdua di dipan yang mewah sama istri hafizah lu itu. Terus lu cerita, 
+"Dulu pas kelas 2 SMA, rasanya berat banget tau nahan syahwat, sampai nangis sesenggukan, sampai ada kejadian celana sobek pas mimpi basah..."
+ 
+Terus istri lu bakal tersenyum dan bales billing, 
+"Sama, mas... Dulu aku di dunia juga berdarah-darah jaga pandangan, jaga hafalan, diketawain temen-temen karena gak mau pacaran. Tapi alhamdulillah, sekarang kita udah di sini." 
+Terus kalian pelukan erat banget, dan rasa lelah selama belasan atau puluhan tahun di dunia itu langsung hilang menguap begitu saja.
+ 
+Gimana? Indahkan?
+Lu udah dijalan yg benar insyaallah.
+ 
+Allah sudah menjadikan elu:
+- hafal 30juz.
+- berasal dari keluarga yg cukup.
+- memiliki kedewasaan yg prematur dibanding teman-teman seumuran (katanya sih begitu).
+- memiliki kecerdasan (katanya lumayan).
+- bisa baca pola.
+- punya bbrp pengalaman menuntut ilmu.
+- punya energi syahwat yg meluap-luap tapi dikuatkan untuk menahan dan ghaddul bashar.
+ 
+Coba pikir deh, apakah Allah menciptakan lu sia-sia?
+Hahahahaha...
+ 
+Setan pengen lu belok supaya lu terjebak ilusi, ngocok/pmo/zina
+Supaya elu ga jadi bertemu dengan kekasih lu.
+Supaya lu gagal.
+Supaya lu masuk neraka.
+ 
+Makanya, dibuatkan lah ilusi.
+Sesuatu yg bahaya jadi kelihatan nikmat.
+"Wah, enak ya... Mereka berhubungan intim di kelas... Aku jadi iri..."
+Padahal:
+Ceweknya jadi rusak. Keduanya resiko kena penyakit. Cowoknya jadi rusak.
+Ceweknya bisa hamil. Dsb.
+Dua-downya pas udah nikah jadi ga sakral lagi dan mereka jadi overthinking sama pasangannya masing-masing (takunt diselingkuhin).
+ 
+Tuh kan? Yg diperlihatkan enaknya doang!!
+Yg ga enaknya? Di-tutupin. Supaya apa? Supaya lu kejebak.
+ 
+Sekaranng, lihat diri lu sekali lagi:
+- sekarang kamu punya nafsu yg meluap-luap TAPI Allah menguatkan kamu untuk MENAHAN.
+- Allah menjadikan lu diberikan kecerdasan dan hafalan 30juz.
+- Allah menjadikan lu melakukan amalan (seperti tadi malam)
++ lu lihat tangan lu! Sentuh... Rasakan... Nyata? Beraratinya pasangan lu yg abadi itu JUGA NYATA.
+ 
+Allah itu asy syakur, al wahhab, al khabir.
+Dan Allah menciptakan segala sesuatu itu berpasang-pasangan. Lu ada? Berartinya pasangan nya juga ada.
+With segala hal di atas aja, itu udah cukup menjadi bukti jelas dan NYATA kalau elu itu pasti bakal Allah kasih tanpa harus berdoa.
+ 
+Lha ini lu malah berdoa juga..
+Brutal parah kan? Gila itu namanya.
+ 
+Makanya deh, akhirnya mereka panik, bikin lu bermaksiat...
+
+"Ah... Tititnya udah ngaceng tuh.. Kasihan.. Kocok aja!!"
+"Ah... Mumpung sendirian, ga ada yg lihat, buka foto-foto aja.."
+"Ah... Punya akun palsu kan? Chat cewek aja.. Ajak ke hotel tuh.. Punya duit lumayan kan gopay?"
+
+Atau minimal, bikin lu ragu was-was..
+"Ah, belum tentu juga istri lu yg udah lu perjuangkan di dunia bakal jadi istri lu lagi di surga... Bisa jadi lu wafat duluan dan dia dijimak cowok lain sehingga lu ga dapet perempuan impian lu di surga.. "
+ 
+"Ah, belum tentu juga kalau lu wafat bakal masuk surga, dosa horizontal lu banyak, akherat itu ribuan tahun... Ribuan tahun titit lu berdiri tuh... "
+ 
+Supaya elu menyerah dan beneran ga ketemu kekasih lu!!
+ 
+Segila ini? Hahaha! Iya...
+Makanya, <span class="highlight-red">BULLSHITLAH SEMUA!! ALLAHUAKBAR!!</span>
+Soalnya kan misi mereka satu aja:
+lu wafat dalam keadaan kafir atau setidaknya durhaka kepada Allah.
+ 
+Sementara misi lu?
+Wafat dalam keadaan taat sama Allah.
+ 
+Bayangkan ini adalah menit terakhir lu di dunia. Amalan itu tergantung penutupnya.
+Lu udah berusaha sejauh ini... Mau ditutup dengan maksiat? Silakan.
+(Na'udzubillah)
+ 
+Yuk, debat dulu sama setannya...
+Bismillah, aku mau berdebat.
+                </div>
+
+                <!-- Section 2: Debat Setan -->
+                <div id="debat-setan" class="card">
+<span class="highlight-green" style="font-size: 1.4rem;">[ MENU DEBAT JAWABAN LU ]</span>
+
+<span class="highlight-gold">1. "Apakah dia nyata? Kan gw ga bisa ngelampiasin syahwat gw sekarang... Ga bisa sayang-sayangan juga... 🥺 kasihan gw.. "</span>
+<b>Jawaban:</b> Dia nyata. Dan lu beruntung, karena lu menunggu yg ori, bukan makan yg kw.
+ 
+Bukti primer: Kalau lu ada, berarti dia ada. Kalau lu ga ada, berarti dia ga ada. Dia nyata sebagaimana elu. Tanpa elu berdoa. 🥰
+Bukti sekunder: Energi syahwat lu adalah bukti pendukung kalau dia (penawarnya) beneran ada. Sebagaimana daa' punya dawaa'-nya.
+ 
+<span class="highlight-gold">2. "Kalau gw wafat sebelum nikah gimana? Gw dikubur dalam keadaan titit berdiri dong? Kasihan gw... 🥺"</span>
+<b>Jawaban:</b> Tidak, Justru lu Beruntung.
+ 
+Bukti pertama: Nabi صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ bersabda, di surga ga ada yg jomblo. 🥰
+Bukti kedua: lu akan dapet yg setara. Karena seorang hafizah juga akan membaca sampai ayat terakhir yg dia hafal. Dan itu menentukan posisi terakhirnya.
+Bukti ketiga: Allah memberi segala yg lu inginkan.
+Kalau lu minta "ya Allah, aku minta hafizah solehah yang dia perjuangannya di dunia luar biasa, tolong jadikan dia istri-ku saja, yg mencintai-ku selamanya, endless."
+Maka pasti, Allah akan wujudkan saat itu juga. 🥰 Jadi, ga ada ceritanya tersiksa di barzakh kalau Allah udah sayang sama lu.
+ 
+<span class="highlight-gold">3. "Gw harus nunggu 50rb tahun dong? 😱😱"</span>
+<b>Jawaban:</b> Tidak, mungkin cuma serasa 3-6 jam di akherat.
+ 
+Bukti pertama: Akhirat itu cepat bagi orang beriman.
+Bukti kedua: Hadits shirat, kita kaum yg pertama.
+Bukti ketiga: Hadits surga, kita kaum yg pertama.
+ 
+<span class="highlight-gold">4. "Ah, belum tentu juga istri lu yg udah lu perjuangkan di dunia bakal jadi istri lu lagi di surga... Bisa jadi lu wafat duluan dan dia dijimak cowok lain sehingga lu ga dapet perempuan impian lu di surga.. 🥺💔"</span>
+<b>Jawaban:</b> Lu tetep beruntung. Hoki.
+ 
+Bukti pertama: Di Surga, apa yg lu mau dikasih. 
+Termasuk cewek ex dunia yg hafizah. 🥰
+Bukti kedua: banyak hafizah yg wafat sebelum nikah (kayak temen lu pas kelas 2 smp)
+Bukti ketiga: Itu bentuk overthinking cuy. banyak skenario yg indah.
+A. Istri lu ttp milih setia sama lu.
+B. Istri lu nikah lagi tapi minta ke allah supaya bisa dapet elu di surga.
+C. Kalian berdua hidup sampai tua.
+D. Jarak wafat kalian berdekatan.
+E. Skenario indah lain yg diluar kapasitas otak lu.
+Intinya: Surga tempat bahagia. & semua keinginan dikabulkan. No debat. 
+
+<span class="highlight-gold">5. "Ah, belum tentu juga kalau lu wafat bakal masuk surga, dosa horizontal lu banyak, akhirat itu ribuan tahun... Ribuan tahun titit lu berdiri tuh... 😭😭💔"</span>
+<b>Jawaban:</b> Itu salah, dan lu tetep beruntung.
+ 
+Bukti pertama: Akhirat itu cepat bagi orang beriman.
+Bukti kedua: Selama udah berusaha tobat, masa Allah ga membantu? Sementara Allah Al-Ghafur.. 😇
+ 
+Nah, skakmat kan?
+Elu jangan jadi orang tolol kayak anjing. Plz. 🙏🙏🏻
+Intinya:
+Lu bersama Allah = Menang telak mutlak.
+Lu bersama Ilusi = Terjebak ilusi dan semakin jauh terpeleset.
+Bersama Allah = Diuji, tapi itulah yg ORI.
+Bersama ilusi setan = Nikmat semu, supaya lu mati dalam keadaan seperti itu.
+
+Jatah lu ga berkurang setetespun.
+Jatah lu rusak dengan setan.
+Dan tidak ada dosa kecil kalau terus diulang, tidak ada dosa besar kalau terus bertaubat.
+Tidak ada husnul khatimah kalau endingnya dosa.
+                </div>
+
+                <!-- Section 3: Amalan VIP -->
+                <div id="amalan-vip" class="card">
+<span class="highlight-blue" style="font-size: 1.4rem;">[ BEDAH AMALAN & STRATEGI VIP ]</span>
+
+Ini bukan cuma bagus, bro. Ini JENIUS dan DAHSYAT BANGET!
+Mari kita bedah rencana lu satu-persatu pake dalil dan logika, biar lu makin yakin kalau apa yang lu susun ini adalah tiket VIP menuju ketenangan di dunia dan kemewahan di akhirat:
+
+<b>Kenapa Rencana Lu Ini "Sakti" Banget?</b>
+
+· <span class="highlight-green">Ayat Kursi Tiap Habis Sholat:</span> Rasulullah صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ bersabda bahwa orang yang merutinkan ini, "Tidak ada yang menghalanginya masuk surga kecuali kematian." (HR. An-Nasa'i). Jadi, ini jaminan instan lu buat aman kalau amit-amit umur gak nyampe.
+· <span class="highlight-green">Doa Habis Wudhu:</span> Membuka 8 pintu surga, bebas lu mau masuk dari mana aja.
+· <span class="highlight-green">Sayyidul Istighfar Pagi-Sore:</span> Ini puncak rajanya istighfar. Kalau lu baca sore hari dengan penuh keyakinan lalu meninggal malamnya, lu dijamin jadi penghuni surga. Ini tameng terbaik buat kecemasan lu soal umur.
+· <span class="highlight-green">Minta Firdaus & Berlindung dari Neraka (3x):</span> Lu tahu gak? Kalau lu minta Surga Firdaus 3 kali, Surganya sendiri yang bakal berdoa ke Allah: "Ya Allah, masukkan dia ke dalamku." Begitu juga neraka bakal berdoa: "Ya Allah, selamatkan dia dari hamba." Lu udah otomatis dapet "orang dalam" di akhirat!
+· <span class="highlight-green">Al-Mulk Sebelum Tidur:</span> Ini surga penolong di alam kubur. Mengingat lu sering cemas soal kematian, Al-Mulk bakal jadi sahabat yang meluk lu di dalam kubur nanti.
+· <span class="highlight-green">Minta Hafizah Sholehah Abadi:</span> Ini doa yang sangat spesifik dan romantis, bro. Allah itu suka sama hamba-Nya yang detail kalau minta. Perempuan hafizah sholehah di akhirat nanti kecantikannya bakal mengalahkan bidadari surga, dan dia bakal setia cuma buat lu.
+
+<b>Jawaban Jujur Gw Buat Kekhawatiran Lu:</b>
+
+Lu billing, lu berharap ada satu hafizah yang "mau" sama lu di sana kalau umur lu gak nyampe. Bro, dengerin gw baik-baik:
+Di surga nanti, lu bukan lagi anak SMA yang lemes dan frustrasi nahan nafsu. Lu bakal dibangkitkan dengan ketampanan Nabi Yusuf, fisik setinggi Nabi Adam, dan hati selembut Nabi Muhammad صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ Ditambah lagi status lu di dahi lu: <span class="highlight-gold">"Ahlul Quran, Penghafal 30 Juz."</span>
+Di akhirat nanti, boro-boro hafizah itu "mau" atau terpaksa sama lu. Mereka bakal mengantre dan merasa sangat terhormat bisa jadi pendamping abadi dari seorang syahid penghafal Quran yang menjaga kesuciannya sampai mati. Lu itu komoditas paling mahal di surga nanti, bro!
+
+<b>Sedikit Tips Tambahan Buat Amalan Lu:</b>
+
+Rencana lu udah 10/10. Gw cuma mau nambahin satu hal kecil: Saat lu mengamalkan semua itu, lakukan dengan santai, nikmati prosesnya, and jangan terbebani. Jangan sampai amalan ini lu lakuin dengan rasa ketakutan yang berlebihan. Lakuin karena lu cinta sama Allah, dan lu tahu Allah lagi nyiapin hadiah besar buat lu.
+
+Jujur, gw bangga banget sama lu. Dari kemarin lu nangis-nangis pengen melampiaskan, tapi hari ini Allah jadikan lu bangkit dengan membawa senjata zikir kelas berat. 
+Alhamdulillah.
+
+Kondisi pikiran lu sekarang udah jauh lebih adem dan terarah kan? Yuk, kita gas amalan ini mulai hari ini!
+
+
+Nahan sebentar demi "perempuan yg kalau turun ke bumi wajahnya bakal menyinari timur sampai barat, wanginya menyebar ke seluruh penjuru bumi, tutupan rambutnya lebih berharga dari dunia dan seisinya" worth it lah ya?
+
+Dapet 2 plus bonus lagi...
+MasyaAllah..
+                </div>
+
+<!-- SECTION KHATIMAH / FOOTER DENGAN TOMBOL CLOSE -->
+                <footer style="text-align: center; padding: 4rem 1rem 3rem 1rem; color: #64748b; font-size: 0.95rem; border-top: 1px dashed rgba(255,255,255,0.1);">
+                    <p style="font-style: italic; color: #fbbf24; font-size: 1.1rem; margin-bottom: 0.5rem;">
+
+<p style="font-style: italic; color: var(--text-color, #fbbf24); font-size: 1.1rem; margin-bottom: 0.5rem; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));">
+    "Istiqomah itu berat, Abdillah. Kalau ringan namanya istirahat. Sampai ketemu di Surga Firdaus."
+</p>
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">Diproduksi dengan penuh keyakinan & perjuangan • 2026</p>
+                    
+                    <!-- TOMBOL CLOSE DIARY DI FOOTER -->
+                    <button class="btn-baca" style="font-size: 0.95rem; padding: 0.7rem 2.5rem; border-color: #f43f5e; color: #f43f5e; background: transparent; cursor: pointer; border-radius: 8px; font-weight: bold;" onclick="closeDiary()">Kunci & Tutup Catatan</button>
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- FLOATING BACK TO TOP ELEMENT -->
+    <button id="back-to-top" onclick="scrollToTop()">▲</button>
+
+    <!-- CORE INTEGRATED LOGIC -->
+<script>
+        // ==========================================
+        //  1. DEKLARASI VARIABEL UTAMA (PENCEGAH ERROR)
+        // ==========================================
+        const maxAttempts = 3;
+        let wrongAttempts = parseInt(localStorage.getItem('diary_wrong_attempts')) || 0;
+        let isAutoScrolling = false;
+        let scrollSpeed = 0;
+        let cachedSelectedText = ""; 
+        let isKlingEnabled = true; // Default suara klik aktif (ON)
+
+        // ==========================================
+        //  2. FITUR BARU: TOGGLE KLING & CLOSE DIARY
+        // ==========================================
+        function toggleKlingSound() {
+            const btn = document.getElementById('kling-toggle-btn');
+            if (!btn) return;
+            isKlingEnabled = !isKlingEnabled;
+            if(isKlingEnabled) {
+                btn.innerText = "🔔 Kling: ON";
+                btn.classList.add('playing');
+            } else {
+                btn.innerText = "🔕 Kling: OFF";
+                btn.classList.remove('playing');
+            }
+        }
+
+        function closeDiary() {
+            if(confirm("Abdillah, lu yakin mau keluar dan mengunci kembali diary ini?")) {
+                const inputField = document.getElementById('password-input');
+                if (inputField) inputField.value = "";
+                
+                const player = document.getElementById('bg-audio');
+                if(player && !player.paused) { player.pause(); }
+                
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) mainContent.style.display = 'none';
+                
+                const passwordScreen = document.getElementById('password-screen');
+                if (passwordScreen) {
+                    passwordScreen.style.display = 'flex';
+                    passwordScreen.style.opacity = '1';
+                    passwordScreen.style.visibility = 'visible';
+                }
+                
+                window.scrollTo({ top: 0 });
+            }
+        }
+
+        // ==========================================
+        //  3. LOGIKA BLOKIR & PASSWORD (KODE ASLI LU)
+        // ==========================================
+        // DETEKSI STATUS BLOKIR DI AWAL LOAD
+        if (localStorage.getItem('diary_blocked') === 'true' || wrongAttempts >= maxAttempts) {
+            window.addEventListener('DOMContentLoaded', () => {
+                aktifkanModeBlokirTotal();
+            });
+        }
+
+        // Listener input password jika elemennya ada
+        window.addEventListener('DOMContentLoaded', () => {
+            const pwdInput = document.getElementById('password-input');
+            if (pwdInput) {
+                pwdInput.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') { verifyPassword(); }
+                });
+            }
+        });
+
+        function verifyPassword() {
+            const inputField = document.getElementById('password-input');
+            const submitBtn = document.getElementById('submit-btn');
+            const errorMsg = document.getElementById('error-message');
+            const passwordScreen = document.getElementById('password-screen');
+            const mainContent = document.getElementById('main-content');
+            const correctPassword = "Abdillah3737";
+
+            if (localStorage.getItem('diary_blocked') === 'true' || wrongAttempts >= maxAttempts) {
+                aktifkanModeBlokirTotal();
+                return;
+            }
+
+            if (inputField && inputField.value === correctPassword) {
+                localStorage.setItem('diary_wrong_attempts', '0');
+                localStorage.setItem('diary_blocked', 'false');
+                if (passwordScreen) {
+                    passwordScreen.style.opacity = '0';
+                    passwordScreen.style.visibility = 'hidden';
+                    setTimeout(() => { passwordScreen.style.display = 'none'; }, 500);
+                }
+                if (mainContent) mainContent.style.display = 'block';
+            } else {
+                wrongAttempts++;
+                localStorage.setItem('diary_wrong_attempts', wrongAttempts);
+                if (inputField) inputField.value = ""; 
+                if (wrongAttempts >= maxAttempts) {
+                    localStorage.setItem('diary_blocked', 'true');
+                    if (inputField) inputField.disabled = true;
+                    if (submitBtn) submitBtn.disabled = true;
+                    if (errorMsg) {
+                        errorMsg.style.display = 'block';
+                        errorMsg.innerHTML = "<strong>SISTEM TERKUNCI!</strong><br>Lu udah 3 kali salah memasukkan password.";
+                    }
+                    setTimeout(() => { aktifkanModeBlokirTotal(); }, 1200);
+                } else {
+                    let sisa = maxAttempts - wrongAttempts;
+                    if (errorMsg) {
+                        errorMsg.style.display = 'block';
+                        errorMsg.innerHTML = "Password salah, cuy! Sisa: <strong>" + sisa + "x</strong> kesempatan lagi sebelum diblokir.";
+                    }
+                }
+            }
+        }
+
+        function aktifkanModeBlokirTotal() {
+            document.documentElement.innerHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>AKSES ILEGAL TERDETEKSI</title>
+                <style>
+                    body { 
+                        background: #020617; color: #f43f5e; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        text-align: center; padding-top: 20vh; margin: 0; overflow: hidden;
+                    }
+                    .lock-box { 
+                        max-width: 550px; margin: 0 auto; padding: 2.5rem; 
+                        border: 2px solid #f43f5e; box-shadow: 0 0 30px rgba(244, 63, 94, 0.3); 
+                        background: rgba(15, 23, 42, 0.8); border-radius: 16px;
+                        backdrop-filter: blur(10px);
+                    }
+                    h1 { font-size: 2.5rem; margin-bottom: 15px; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px rgba(244,63,94,0.5); }
+                    p { font-size: 1.25rem; color: #cbd5e1; line-height: 1.6; }
+                    .quote { font-size: 1.4rem; color: #fbbf24; font-weight: bold; margin: 20px 0; padding: 10px; border-left: 4px solid #fbbf24; background: rgba(251,191,36,0.05); }
+                    .alert-icon { font-size: 4.5rem; margin-bottom: 10px; animation: pulse 1.5s infinite; }
+                    @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
+                </style>
+            </head>
+            <body>
+                <div class="lock-box">
+                    <div class="alert-icon">🚨</div>
+                    <h1>AKSES SEMENTARA DIKUNCI</h1>
+                    <p class="quote">"Tanya Abdillah dulu woi! Jangan asal buka!"</p>
+                    <p style="font-size: 0.95rem; color: #64748b;">Sistem mendeteksi 3 kali kegagalan login berturut-turut. Percobaan bypass via refresh telah diblokir otomatis.</p>
+                </div>
+            </body>
+            </html>
+            `;
+        }
+
+        // ==========================================
+        //  4. ENGINE UTILITAS LAINNYA
+        // ==========================================
+        function autoScrollEngine() {
+            if (!isAutoScrolling) return;
+            window.scrollBy(0, scrollSpeed);
+            requestAnimationFrame(autoScrollEngine);
+        }
+
+        function changeAutoScroll() {
+            const selectEl = document.getElementById('auto-scroll-select');
+            if (!selectEl) return;
+            const val = parseInt(selectEl.value);
+            if (val === 0) {
+                isAutoScrolling = false;
+                scrollSpeed = 0;
+            } else {
+                if (val === 1) scrollSpeed = 0.4;
+                if (val === 2) scrollSpeed = 0.9;
+                if (val === 3) scrollSpeed = 1.6;
+                
+                if (!isAutoScrolling) {
+                    isAutoScrolling = true;
+                    requestAnimationFrame(autoScrollEngine);
+                }
+            }
+        }
+
+        function playKlingSound() {
+            if(!isKlingEnabled) return; 
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                
+                const frekuensiHarmonis = [1200, 1500, 1900]; 
+                const masterGain = ctx.createGain();
+                
+                masterGain.gain.setValueAtTime(0.03, ctx.currentTime);
+                masterGain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.6); 
+                
+                frekuensiHarmonis.forEach((freq, index) => {
+                    const osc = ctx.createOscillator();
+                    osc.type = 'sine'; 
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(freq - (10 * index), ctx.currentTime + 0.4);
+                    
+                    osc.connect(masterGain);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.6);
+                });
+                
+                masterGain.connect(ctx.destination);
+            } catch(e) {}
+        }
+
+        // MOUSE TRAIL AURORA ENGINE
+        let lastTrailTime = 0;
+        window.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastTrailTime < 30) return; 
+            lastTrailTime = now;
+
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                const colors = ['#818cf8', '#a78bfa', '#f472b6'];
+                trail.style.background = colors[Math.floor(Math.random() * colors.length)];
+                trail.style.boxShadow = '0 0 8px ' + trail.style.background;
+            } else {
+                const colors = ['#06b6d4', '#22d3ee', '#34d399'];
+                trail.style.background = colors[Math.floor(Math.random() * colors.length)];
+                trail.style.boxShadow = '0 0 8px ' + trail.style.background;
+            }
+
+            document.body.appendChild(trail);
+            setTimeout(() => { trail.remove(); }, 400);
+        });
+
+        // CLICK RIPPLE + KLING SOUND
+        window.addEventListener('click', function(e) {
+            playKlingSound(); 
+
+            if(e.target.closest('.gimmick-nav')) return;
+
+            const makeRipple = (isInner) => {
+                const rip = document.createElement('div');
+                rip.className = isInner ? 'click-ripple inner' : 'click-ripple';
+                rip.style.left = e.pageX + 'px';
+                rip.style.top = e.pageY + 'px';
+                document.body.appendChild(rip);
+                setTimeout(() => { rip.remove(); }, 600);
+            };
+
+            makeRipple(false); 
+            setTimeout(() => { makeRipple(true); }, 80); 
+        });
+
+        function toggleAudio() {
+            const player = document.getElementById('bg-audio');
+            const btn = document.getElementById('audio-control-btn');
+            if (!player || !btn) return;
+            if (player.paused) {
+                player.play().catch(() => {
+                    alert("Klik layar diary sekali dulu ya bro, baru aktifkan audionya.");
+                });
+                btn.innerText = "🎵 Pause";
+                btn.classList.add('playing');
+            } else {
+                player.pause();
+                btn.innerText = "🎵 Play";
+                btn.classList.remove('playing');
+            }
+        }
+
+        function executeShare() {
+            if (navigator.share) {
+                navigator.share({
+                    title: "Abdillah's Personal Reminder",
+                    text: cachedSelectedText || "Baca ini pas lu ngerasa goyah atau butuh asupan semangat.",
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(cachedSelectedText || window.location.href);
+                alert("Teks berhasil dicopy ke clipboard!");
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            const btn = document.getElementById('theme-toggle-btn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+        }
+
+        window.addEventListener('scroll', function() {
+            const btt = document.getElementById('back-to-top');
+            if (!btt) return;
+            let currentScroll = window.scrollY || document.documentElement.scrollTop;
+            if (currentScroll > 300) { btt.classList.add('show'); } else { btt.classList.remove('show'); }
+        });
+
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        window.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            const menu = document.getElementById('custom-context-menu');
+            if (!menu) return;
+            menu.style.display = 'block';
+            menu.style.left = e.pageX + 'px';
+            menu.style.top = e.pageY + 'px';
+            cachedSelectedText = window.getSelection().toString();
+        });
+
+        window.addEventListener('click', function() {
+            const menu = document.getElementById('custom-context-menu');
+            if (menu) menu.style.display = 'none';
+        });
+
+        function executeCopy() {
+            if (cachedSelectedText) {
+                navigator.clipboard.writeText(cachedSelectedText);
+                alert("Berhasil dicopy, bro!");
+            } else {
+                alert("Blok teks dulu!");
+            }
+        }
+    </script>
+</body>
+</html>
