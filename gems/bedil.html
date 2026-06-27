@@ -91,6 +91,12 @@
             }
         }
 
+        .text-tombol {
+            display: none;
+        }
+
+
+
         /* Bar Atas Menyesuaikan Warna Manjain Mata */
         .chat-header { 
             background: var(--bar-bg) !important; 
@@ -120,7 +126,7 @@
     background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(255, 255, 255, 0.1); 
     color: #8799a9;
-    padding: 6px 12px; 
+    padding: 8px 12px; 
     border-radius: 20px; 
     font-size: 0.75rem; 
     font-weight: bold; 
@@ -315,7 +321,7 @@ input {
             <circle cx="6" cy="18" r="3"></circle>
             <circle cx="18" cy="16" r="3"></circle>
         </svg>
-        <span id="audioText">PLAY</span>
+        <span class="text-tombol" id="audioText">PLAY</span>
     </button>
     
     <button class="btn-toggle" onclick="toggleTheme()">
@@ -323,7 +329,7 @@ input {
             <circle cx="12" cy="12" r="5"></circle>
             <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
         </svg>
-        <span>MODE</span>
+        <span class="text-tombol">MODE</span>
     </button>
 </div>
 
