@@ -372,6 +372,20 @@ input {
 </div>
 
 <script>
+
+// --- FIX MENDELEP LAYAR HP ANDROID/XIAOMI ---
+function resetHeight() {
+    // Menghitung 1% dari tinggi jendela aktif yang sebenarnya
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Jalankan fungsi pas pertama kali dibuka
+resetHeight();
+
+// Jalankan ulang fungsi pas layar berubah ukuran (misal keyboard muncul atau HP diputer)
+window.addEventListener('resize', resetHeight);
+
 // --- MANAGEMENT AUDIO ---
 const bgMusic = document.getElementById('bgMusic');
 const audioBtn = document.getElementById('audioBtn');
