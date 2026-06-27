@@ -68,18 +68,17 @@
             95% { opacity: 1; }
             100% { top: 120%; opacity: 0; }
         }
-
-        /* --- CONTAINER UTAMA RESPONSIF (CARD DESKTOP / FULL MOBILE) --- */
-        .chat-container { 
-            width: 100%; 
-            height: 100vh; 
-            background: var(--bg-container); 
-            display: flex; 
-            flex-direction: column; 
-            overflow: hidden; 
-            transition: background 0.5s ease, border 0.5s ease;
-            z-index: 5;
-        }
+     .chat-container { 
+    width: 100%; 
+    /* Ganti height: 100vh jadi pake variabel dinamis ini */
+    height: calc(var(--vh, 1vh) * 100); 
+    background: var(--bg-container); 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    transition: background 0.5s ease, border 0.5s ease;
+    z-index: 5;
+}
 
         @media (min-width: 768px) {
             .chat-container {
