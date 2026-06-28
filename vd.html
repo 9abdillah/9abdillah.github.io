@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensiklopedi Kenikmatan Surga</title>
+    <style>
+        /* --- ANIME CELESTIAL PALETTE (NO PURPLE) --- */
+        :root {
+            --bg-color: #f1f5f9; 
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #0f172a; 
+            --text-secondary: #475569;
+            --accent-sunset: #ff6b4a; /* Sunset Orange Glow */
+            --accent-sunset-rgb: 255, 107, 74;
+            --toggle-bg: #e2e8f0;
+            --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+            --effect-color: rgba(255, 107, 74, 0.25);
+            --cursor-color: rgba(255, 107, 74, 0.12);
+            --backdrop-blur: blur(16px);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #070d19; 
+            --card-bg: rgba(13, 25, 44, 0.8); 
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-sunset: #ffa085; 
+            --accent-sunset-rgb: 255, 160, 133;
+            --toggle-bg: #1e293b;
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            --effect-color: rgba(255, 160, 133, 0.3);
+            --cursor-color: rgba(255, 160, 133, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: linear-gradient(180deg, var(--bg-color) 0%, rgba(255, 107, 74, 0.03) 100%);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            transition: var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        [data-theme="dark"] body {
+            background-image: linear-gradient(180deg, #070d19 0%, #111f38 100%);
+        }
+
+        /* --- CUSTOM CURSOR HALO --- */
+        #custom-cursor {
+            width: 44px;
+            height: 44px;
+            border: 2px var(--accent-sunset);
+            background-color: var(--cursor-color);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.15s, height 0.15s, background-color var(--transition), border-color var(--transition);
+        }
+
+        /* --- CONTROLS HEADER (FIXED) --- */
+        .controls-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: var(--toggle-bg);
+            border: 2px solid transparent;
+            padding: 10px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            backdrop-filter: var(--backdrop-blur);
+        }
+
+        .control-btn:hover, .control-btn.active {
+            border-color: var(--accent-sunset);
+            box-shadow: 0 0 15px rgba(var(--accent-sunset-rgb), 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- CONTAINER UTAMA --- */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            padding: 60px 50px;
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+            transition: var(--transition);
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-title h1 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p {
+            color: var(--accent-sunset);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- KONTEN / ARTIKEL --- */
+        .section-block {
+            margin-bottom: 45px;
+            border-bottom: 1px solid rgba(var(--accent-sunset-rgb), 0.1);
+            padding-bottom: 35px;
+        }
+
+        .section-block:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-sunset);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.85rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 1.05rem;
+            line-height: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        /* Kutipan Hadits/Ayat */
+        .quote-box {
+            background: rgba(var(--accent-sunset-rgb), 0.04);
+            border-left: 4px solid var(--accent-sunset);
+            padding: 20px;
+            border-radius: 4px 12px 12px 4px;
+            margin: 20px 0;
+        }
+
+        .quote-box .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            line-height: 2.8rem;
+            direction: rtl;
+            text-align: right;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .quote-box .latin-translation {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6rem;
+        }
+
+        /* --- CLICK RIPPLE EFFECT --- */
+        .ripple {
+            position: fixed;
+            border: 2px solid var(--accent-sunset);
+            background: var(--effect-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: ripple-animation 0.7s cubic-bezier(0.1, 0.8, 0.4, 1) forwards;
+            z-index: 9998;
+        }
+
+        @keyframes ripple-animation {
+            0% { width: 0px; height: 0px; opacity: 1; }
+            100% { width: 380px; height: 380px; opacity: 0; }
+        }
+
+        /* --- RESPONSIVE LAYOUT (HP < 600px) --- */
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            #custom-cursor { display: none !important; }
+            
+            .controls-container {
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                width: 90%;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 40px 20px;
+                border-radius: 20px;
+                margin-top: 10px;
+                margin-bottom: 60px;
+            }
+
+            .header-title h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.2rem; }
+            p, li { font-size: 0.98rem; line-height: 1.7rem; }
+            .quote-box .arabic { font-size: 1.35rem; line-height: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+
+    <!-- Audio Elemen -->
+    <audio id="bgAudio" src="latar.mp3" loop></audio>
+
+    <!-- Kontrol Atas -->
+    <div class="controls-container">
+        <button class="control-btn" id="audioToggle">
+            <span id="audio-icon">▶️</span> <span id="audio-text">Musik: Off</span>
+        </button>
+        <button class="control-btn" id="themeToggle">
+            <span id="theme-icon">🌙</span> <span id="theme-text">Dark</span>
+        </button>
+    </div>
+
+    <!-- Konten Utama -->
+    <main class="container">
+        <div class="header-title">
+            <h1>Satu Kamar di Surga</h1>
+            <p>Rincian Hubungan & Wanita Penghuni Surga</p>
+        </div>
+
+        <!-- SEKSI 1 -->
+        <div class="section-block">
+            <h2>✨ 1. Dua Jenis Pendamping di Surga</h2>
+            <p>Setiap laki-laki yang berhasil menginjakkan kakinya di surga akan diberikan dua jenis pendamping wanita yang kebaikannya tak tertandingi:</p>
+            <ul>
+                <li><strong>Bidadari Asli Surga (Huurun 'In):</strong> Makhluk suci yang diciptakan langsung di dalam surga, tidak pernah mengalami kehidupan dunia, dan tidak pernah disentuh oleh siapapun sebelum suaminya.</li>
+                <li><strong>Wanita Eks-Dunia (Ratu Surga):</strong> Para wanita shalihah eks-dunia yang masuk surga. Kedudukan mereka jauh lebih tinggi dan jauh lebih cantik daripada bidadari karena perjuangan ibadah mereka selama hidup di dunia.</li>
+            </ul>
+        </div>
+
+        <!-- SEKSI 2 -->
+        <div class="section-block">
+            <h2>🔥 2. Fisik & Sifat Seksual Pendamping Surga</h2>
+            <p>Allah mendesain para pendamping di surga agar benar-benar memuaskan dan memanjakan pandangan serta hasrat para penghuninya:</p>
+            <div class="quote-box">
+                <div class="arabic">إِنَّآ أَنشَأْنَٰهُنَّ إِنشَآءً فَجَعَلْنَٰهُنَّ أَبْكَارًا عُرُبًا أَتْرَابًا</div>
+                <div class="latin-translation">"Kami menciptakan mereka (bidadari) secara langsung, dan Kami jadikan mereka gadis-gadis perawan, yang penuh cinta (bergairah) lagi sebaya umurnya." (QS. Al-Waqi'ah: 35-37)</div>
+            </div>
+            <ul>
+                <li><strong>Selalu Perawan (Abkaran):</strong> Setiap kali selesai berhubungan intim (jimak), tubuh mereka seketika kembali merapat dan menjadi gadis perawan yang suci tanpa rasa sakit.</li>
+                <li><strong>Penuh Gairah & Romantis ('Uruban):</strong> Mereka adalah wanita-wanita yang sangat manja, sangat mencintai suaminya, memiliki hasrat yang tinggi, dan pandai memberikan pelayanan terbaik tanpa pernah menolak.</li>
+                <li><strong>Suci dari Segala Kotoran:</strong> Tidak ada haid, tidak ada nifas, tidak ada buang air, tidak ada ludah, dan tidak ada keringat yang bau. Keringat mereka beraroma minyak kasturi yang sangat harum.</li>
+            </ul>
+        </div>
+
+        <!-- SEKSI 3 -->
+        <div class="section-block">
+            <h2>orgasm 3. Hakikat Jimak (Hubungan Badan) di Surga</h2>
+            <p>Hubungan badan di surga bukan sekadar bayangan atau kiasan, melainkan aktivitas fisik yang nyata, penuh kelezatan, dan bersih dari segala kekurangan duniawi:</p>
+            <ul>
+                <li><strong>Kekuatan 100 Pria:</strong> Rasulullah ﷺ menegaskan bahwa setiap laki-laki di surga diberikan kekuatan fisik, stamina, dan gairah setara dengan 100 orang laki-laki di dunia dalam hal makan, minum, dan berjimak (HR. Tirmidzi).</li>
+                <li><strong>Tanpa Rasa Lelah atau Bosan:</strong> Di dunia, jimak dibatasi oleh ejakulasi dan rasa lelah. Di surga, durasi kenikmatan berjalan sepanjang yang diinginkan tanpa ada istilah lemas, lelah, ataupun rasa bosan dari kedua belah pihak.</li>
+                <li><strong>Murni Kenikmatan:</strong> Aktivitas jimak di surga murni ditujukan sebagai puncak rekreasi dan hadiah dari Allah atas kesabaran hamba-Nya di dunia. Tidak ada beban kehamilan, rasa lengket yang kotor, atau keharusan mandi wajib yang melelahkan.</li>
+            </ul>
+        </div>
+
+        <!-- SEKSI 4 -->
+        <div class="section-block">
+            <h2>👑 4. Pelayanan Sempurna Tanpa Batas</h2>
+            <p>Suasana di dalam istana surga didesain penuh keintiman. Ketika seorang suami sedang berduaan dengan istrinya, tidak akan ada gangguan dalam bentuk apapun. Istri-istri surga akan menghibur suaminya dengan suara-suara yang sangat merdu, bernyanyi tentang keabadian cinta mereka, dan memandang suaminya dengan pandangan yang menyejukkan hati (Qashiratuth-Tharf).</p>
+            <p>Bahkan bagi "Raja Terakhir"—orang yang tingkatannya paling rendah di surga—Allah langsung memberikan minimal 2 istri dari bidadari yang menyambutnya dengan pelukan hangat dan kata-kata: <em>"Segala puji bagi Allah yang menghidupkanmu untuk kami dan menghidupkan kami untukmu."</em></p>
+        </div>
+    </main>
+
+    <script>
+        // --- LOGIK TOGGLE TEMA ---
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        const body = document.documentElement;
+
+        body.setAttribute('data-theme', 'light');
+
+        themeToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+                themeToggle.classList.add('active');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+                themeToggle.classList.remove('active');
+            }
+        });
+
+        // --- LOGIK AUDIO PLAY / PAUSE ---
+        const audioToggle = document.getElementById('audioToggle');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+        const bgAudio = document.getElementById('bgAudio');
+
+        audioToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgAudio.paused) {
+                bgAudio.play().catch(err => console.log("Audio blm diijinkan browser: ", err));
+                audioIcon.textContent = '⏸️';
+                audioText.textContent = 'Musik: On';
+                audioToggle.classList.add('active');
+            } else {
+                bgAudio.pause();
+                audioIcon.textContent = '▶️';
+                audioText.textContent = 'Musik: Off';
+                audioToggle.classList.remove('active');
+            }
+        });
+
+        // --- LOGIK KURSOR HALO ---
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mousedown', () => {
+            cursor.style.width = '30px';
+            cursor.style.height = '30px';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.width = '44px';
+            cursor.style.height = '44px';
+        });
+
+        // --- LOGIK EFEK LINGKARAN (RIPPLE EFFECT) ---
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => { ripple.remove(); }, 700);
+        });
+    </script>
+</body>
+</html>
