@@ -665,9 +665,11 @@ if (kataKunciSalam.some(kunci => input.includes(kunci)) || input.startsWith('asm
     // --- DYNAMIC DYNAMIC FRIENDLY GAYALAH JIKA TIDAK TAHU (FIX BUG KAKU) ---
     const kataAsing = rawInput.length > 25 ? rawInput.substring(0, 22) + "..." : rawInput;
     const fallbackGaul = [
-        `Bro, jujur sebenernya gue pernah denger kata atau kalimat <b>"${kataAsing}"</b> itu, tapi memori offline gue belum terlalu paham detail konteksnya nih, hfftt... 🥶 Daripada garing, mending lu ketik <b>menu</b> aja biar kita sefrekuensi! 🦾`,
-        `Gue denger kok ketikan lu tentang <b>"${kataAsing}"</b> barusan. Tapi jujur, karena sistem gue lagi dibikin mode hemat daya pas lu offline gini, gue agak kurang konek, bro. 😭 Coba ketik kata kunci kayak <b>lawak</b> atau <b>nasehat</b> deh!`,
-        `Waduh bro, kalimat <b>"${kataAsing}"</b> lu agak di luar radar database ringkas gue saat ini. Tapi tenang, gue gak bakal ninggalin lu sendirian kok. 🤜🤛 Mending panggil <b>menu</b> aja yuk buat liat wejangan seru!`
+        `Bro, jujur sebenernya gue pernah denger kata atau kalimat <b>"${kataAsing}"</b> tapi nih ya tapii, keyword lu terlalu bersayap untuk otak AI offline gw yang cuma bermodal if-else ini. Coba ketik yang ada di menu aja lah! 😭😭`,
+        `Error 404 cuy: Otak gw gak nyampe ke sana. Coba ketik 'lawak' atau 'nasehat' biar iman lu naik, jangan ngetik yang aneh-aneh! <br><br><b>"${kataAsing}"</b> itu aneh banget menurut guweh..😭😭😭😭😭`
+        `Lu ngetik apaan sih? Gw cuma AI buatan anak SMA yang lagi sibuk kejar sanad. Ilmu gw TERBATAS, gak kayak nafsu lu yang tak terbatas~ 😭😏😏`
+        `Sistem mendeteksi ketikan random cuyyy. Mau gw panggilin robot pembersih RAM? Ketik 'amal' aja mendingan, biar dapet pahala. 😌😌`
+        `Glitch!! Coba ketik ulang pake bahasa manusia yang ada di menu ya. 😒`
     ];
     return fallbackGaul[Math.floor(Math.random() * fallbackGaul.length)];
 }
