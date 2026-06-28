@@ -621,41 +621,6 @@ if (kataKunciSalam.some(kunci => input.includes(kunci)) || input.startsWith('asm
         `Waduh bro, kalimat <b>"${kataAsing}"</b> lu agak di luar radar database ringkas gue saat ini. Tapi tenang, gue gak bakal ninggalin lu sendirian kok. 🤜🤛 Mending panggil <b>menu</b> aja yuk buat liat wejangan seru!`
     ];
     return fallbackGaul[Math.floor(Math.random() * fallbackGaul.length)];
-
-    // --- PROMPT KUSTOM BUATAN GUE ---
-// Di sini lo sebutin kata-kata kunci apa aja yang bikin AI peka (pake huruf kecil semua)
-const kataKunciCurhatx = ['sedih', 'gundah', 'nangis', 'pusing', 'sdih'];
-
-if (kataKunciCurhat.some(kunci => input.includes(kunci))) {
-    // Di sini tempat lo ngatur variasi jawabannya. Pisahkan pake koma ya!
-    const listJawaban = [
-        "Sabar ya bro, badai pasti berlalu. Tarik napas dalam-dalam, lo gak sendirian kok. 🌿",
-        "Gue dengerin kok, bro. Kalau mau nangis atau rehat dulu, gak apa-apa, itu manusiawi banget. ☕",
-        "Ga ada ujian yang abadi, bro. Sedih hari ini penentu posisi terakhir lu di surga nanti. Tetep semangat! 🔥"
-    ];
-    
-    // Kode gaib di bawah ini fungsinya buat milih jawaban di atas secara acak (random)
-    const jawabanAcak = listJawaban[Math.floor(Math.random() * listJawaban.length)];
-    return prefixWarning + jawabanAcak;
-}
-
-// --- PROMPT KUSTOM BUATAN GUE ---
-// Di sini lo sebutin kata-kata kunci apa aja yang bikin AI peka (pake huruf kecil semua)
-const kataKunciCurhatxx = ['nama gw', 'nama', 'nama dia', 'namanya', 'nama aku', 'nma'];
-
-if (kataKunciCurhat.some(kunci => input.includes(kunci))) {
-    // Di sini tempat lo ngatur variasi jawabannya. Pisahkan pake koma ya!
-    const listJawaban = [
-        "Gw ga peduli nama lu siapa. bacot. gw gapaham. pencet tombol bulet dibawah ini aja KALAU MAU.",
-        "Gue dengerin kok, bro. 1 hal yang harus lu tau: lu ANJING banget!! ☕",
-        "weh.. si goblok mulai aktif nih.. 🔥"
-    ];
-    
-    // Kode gaib di bawah ini fungsinya buat milih jawaban di atas secara acak (random)
-    const jawabanAcak = listJawaban[Math.floor(Math.random() * listJawaban.length)];
-    return prefixWarning + jawabanAcak;
-}
-
 }
 </script>
 </body>
