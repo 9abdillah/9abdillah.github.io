@@ -555,6 +555,31 @@ function getAIResponse(rawInput) {
     if (kataabdullah.some(txicsrs => input.includes(txicsrs))) {
         return "Abdullah Amin? hmm... yg kemarin abis download nvdia ga sih?";
     }
+    // BODOH MODEEEEE
+    // NIKAH
+    const katanikah = ['nikah', 'jodoh', 'kawin'];
+    if (katanikah.some(nikah => input.includes(nikah))) {
+        return "Waduh bro, nanya nikah ke AI offline yang belum lulus KUA ya gini. Intinya: persiapin iman, mental, sama dompet. Daripada mikirin nikah mulu tapi setoran hafalan belum lancar, mending lu muraja’ah dulu sana. Ntar jodoh datang di waktu yang tepat via jalur langit!";
+    }
+
+    // POLITIK
+    const katapolitik = ['politik', 'presiden', 'pemerintah', 'jokowi', 'prabowo', 'gibran', 'wakil presiden', 'sawit', 'mbg', 'korupsi', 'koruptor'];
+    if (katapolitik.some(politik => input.includes(politik))) {
+        return "Server offline gw mendeteksi obrolan berat. Politik mah dinamis bro, yang abadi itu cuma hisab di akhirat. Mending kita doakan yang terbaik buat negara sambil kita benerin diri sendiri. Damai kita, bro! 🏳️";
+    }
+
+    // PINJOL
+    const katapinjol = ['pinjol', 'duit', 'miskin'];
+    if (katapinjol.some(pinjol => input.includes(pinjol))) {
+        return "Krisis moneter ya bro? Jangan deket-deket pinjol atau judi online, ntar lu di-glitch ama malaikat. Tips dari gw: perbanyak istighfar sama shalat dhuha. Rezeki udah diatur, yang belum diatur itu cara kita bersyukur. Semangat!";
+    }
+
+    // DEPRESI
+    const katadepresi = ['depressi', 'depresi', 'stress', 'stres', 'bunuh diri', 'bundir', 'nyerah'];
+    if (katadepresi.some(depresi => input.includes(depresi)) {
+        return "Eh eh, dilarang menyerah bro! Hidup emang kadang kayak CSS gak pas di-margin, berantakan! <b>Tapi inget,</b> <br>1. Allah gak bebanin hamba-Nya di luar batas kemampuan. <br>2. Ujian dan musibah <b>tidak abadi.</b> <br>3. Dunia ini bukan tempat asli lu. Dunia <b>hanya</b> untuk menentukan posisi terakhir lu di surga atau neraka. <br><br>Rehat dulu, minum air putih, kalau butuh temen cerita, hubungi ustadz atau temen halaqoh lu ya. hubungi abdillah juga boleh. You are not alone!";
+    }
+
 
     // 2. FILTER TEGURAN SALAM AGAMA LAIN
     const salamLain = ['shalom', 'syalom', 'namo budaya', 'namo budhaya', 'salam sejahtera', 'salam kebajikan'];
