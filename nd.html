@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langit Senja & Satu Janji</title>
+    <style>
+        /* --- ANIME SUNSET & CELESTIAL PALETTE --- */
+        :root {
+            /* Light Mode: Aesthetic Anime Daybreak */
+            --bg-color: #f0f4f8; 
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-primary: #1e293b; 
+            --text-secondary: #64748b;
+            --accent-sunset: #ff7a59; /* Soft Sunset Orange */
+            --accent-sunset-rgb: 255, 122, 89;
+            --toggle-bg: #e2e8f0;
+            --shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            --effect-color: rgba(255, 122, 89, 0.3);
+            --cursor-color: rgba(255, 122, 89, 0.15);
+            --backdrop-blur: blur(12px);
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode: Deep Shinkai Celestial Blue (NO PURPLE) */
+            --bg-color: #0b1424; /* Deep Ocean/Sky Blue */
+            --card-bg: rgba(15, 32, 54, 0.7); /* Translucent Blue Card */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-sunset: #ff9e7d; /* Glowing Sunset Pink-Orange */
+            --accent-sunset-rgb: 255, 158, 125;
+            --toggle-bg: #1e293b;
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            --effect-color: rgba(255, 158, 125, 0.35);
+            --cursor-color: rgba(255, 158, 125, 0.12);
+        }
+
+        /* --- BASIC RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            /* Bikin gradasi tipis khas background anime */
+            background-image: linear-gradient(135deg, var(--bg-color) 0%, rgba(255, 122, 89, 0.05) 100%);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            transition: var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        [data-theme="dark"] body {
+            background-image: linear-gradient(135deg, #0b1424 0%, #172a45 100%);
+        }
+
+        /* --- CUSTOM ANIME CURSOR HALO --- */
+        #custom-cursor {
+            width: 44px;
+            height: 44px;
+            border: 2px var(--accent-sunset); /* Efek garis putus-putus ala radar/sketsa anime */
+            background-color: var(--cursor-color);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color var(--transition), border-color var(--transition);
+        }
+
+        /* --- THEME TOGGLE BUTTON --- */
+        .theme-toggle-container {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .toggle-btn {
+            background: var(--toggle-bg);
+            border: 2px solid transparent;
+            padding: 10px 22px;
+            border-radius: 16px; /* Sudut ala UI modern anime */
+            cursor: pointer;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        /* Highlight Glow pas Aktif */
+        .toggle-btn:hover, .toggle-btn.active {
+            border-color: var(--accent-sunset);
+            background: var(--card-bg);
+            box-shadow: 0 0 20px rgba(var(--accent-sunset-rgb), 0.4);
+            transform: scale(1.05);
+        }
+
+        /* --- CONTAINER (GLASSMORPHISM EFFECT) --- */
+        .container {
+            max-width: 680px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            padding: 55px 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        /* Aksen garis estetik di atas kartu */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-sunset), transparent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .sparkle {
+            color: var(--accent-sunset);
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* Teks Arab (Bersih, Jelas, Modern) */
+        .arabic {
+            font-family: 'Amiri', 'Meiryo', serif;
+            font-size: 2rem;
+            line-height: 3.5rem;
+            direction: rtl;
+            margin-bottom: 35px;
+            color: var(--text-primary);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        [data-theme="dark"] .arabic {
+            text-shadow: 0 4px 20px rgba(255, 158, 125, 0.15);
+        }
+
+        /* Terjemahan */
+        .translation {
+            font-size: 1.1rem;
+            line-height: 1.9rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        /* Perawi */
+        .narator {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--accent-sunset);
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        /* --- CLICK RIPPLE EFFECT --- */
+        .ripple {
+            position: fixed;
+            border: 2px solid var(--accent-sunset);
+            background: var(--effect-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: ripple-animation 0.7s cubic-bezier(0.1, 0.8, 0.4, 1) forwards;
+            z-index: 9998;
+        }
+
+        @keyframes ripple-animation {
+            0% {
+                width: 0px;
+                height: 0px;
+                opacity: 1;
+            }
+            100% {
+                width: 350px;
+                height: 350px;
+                opacity: 0;
+            }
+        }
+
+        /* --- RESPONSIVE LAYOUT (HP < 600px) --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+            
+            /* Kursor halo otomatis hilang di HP */
+            #custom-cursor {
+                display: none !important;
+            }
+
+            .container {
+                padding: 45px 20px;
+                border-radius: 20px;
+            }
+
+            .arabic {
+                font-size: 1.6rem;
+                line-height: 2.8rem;
+                margin-bottom: 25px;
+            }
+
+            .translation {
+                font-size: 1rem;
+                line-height: 1.7rem;
+                margin-bottom: 25px;
+            }
+
+            .theme-toggle-container {
+                position: fixed;
+                top: auto;
+                bottom: 30px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .toggle-btn {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                border: 1px solid var(--accent-sunset);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Kursor Halo Anime -->
+    <div id="custom-cursor"></div>
+
+    <!-- Tombol Toggle Tema -->
+    <div class="theme-toggle-container">
+        <button class="toggle-btn" id="themeToggle" aria-label="Ubah Tema">
+            <span id="toggle-icon">🌙</span> <span id="toggle-text">Dark Mode</span>
+        </button>
+    </div>
+
+    <!-- Konten Utama -->
+    <main class="container">
+        <div class="sparkle">✨</div>
+        
+        <p class="arabic">
+            وَلَوْ أَنَّ امْرَأَةً مِنْ أَهْلِ الْجَنَّةِ اطَّلَعَتْ إِلَى أَهْلِ الأَرْضِ لأَضَاءَتْ مَا بَيْنَهُمَا وَلَمَلأَتْهُ رِيحًا، وَلَنَصِيفُهَا عَلَى رَأْسِهَا خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا
+        </p>
+
+        <p class="translation">
+            "Kalaulah seandainya seorang wanita penghuni surga (bidadari) mengintip ke bumi, niscaya dia akan menyinari antara timur dan barat, dan akan memenuhinya dengan bau wewangian yang harum. Sungguh, kerudung yang ada di atas kepalanya itu lebih baik daripada dunia dan seisinya."
+        </p>
+
+        <p class="narator">HR. BUKHARI — 2796</p>
+    </main>
+
+    <script>
+        // --- LOGIK TOGGLE TEMA ---
+        const toggleBtn = document.getElementById('themeToggle');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const toggleText = document.getElementById('toggle-text');
+        const body = document.documentElement;
+
+        body.setAttribute('data-theme', 'light');
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleIcon.textContent = '☀️';
+                toggleText.textContent = 'Light Mode';
+                toggleBtn.classList.add('active');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleIcon.textContent = '🌙';
+                toggleText.textContent = 'Dark Mode';
+                toggleBtn.classList.remove('active');
+            }
+        });
+
+        // --- LOGIK KURSOR HALO ---
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.width = '30px';
+            cursor.style.height = '30px';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.width = '44px';
+            cursor.style.height = '44px';
+        });
+
+        // --- LOGIK EFEK LINGKARAN (RIPPLE EFFECT) ---
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+            
+            document.body.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 700);
+        });
+    </script>
+</body>
+</html>
