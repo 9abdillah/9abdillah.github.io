@@ -538,6 +538,17 @@ function getAIResponse(rawInput) {
         return "Aduuh... Jangan dong.. 😳😳";
     }
 
+    // gabut ataya
+    const kataNakalparah = ['athaya', 'ataya', 'tayz', 'atya', 'atayaa', 'atayaa'];
+    if (kataNakalparah.some(toxicsr => input.includes(toxicsr))) {
+        return "Itu mah si anak halaqoh Ustad Arfan yang suka duduk di pinggir kelas kan? Ngobrolnya kalau bukan sama Jek ya jibran.. dia sahabatnya ghozy.. <br> <br> bener kan? hehe";
+    }
+
+    // gabut valid
+    const katabener = ['bener', 'benr', 'benar', 'bnr', 'bner', 'benerr'];
+    if (katabener.some(toxicsrs => input.includes(toxicsrs))) {
+        return "Yo... mantap lah... Akhirnya gw bisa tenang.. wkwkwk";
+    }
 
     // 2. FILTER TEGURAN SALAM AGAMA LAIN
     const salamLain = ['shalom', 'syalom', 'namo budaya', 'namo budhaya', 'salam sejahtera', 'salam kebajikan'];
