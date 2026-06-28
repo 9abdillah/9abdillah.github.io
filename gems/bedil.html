@@ -538,23 +538,39 @@ function getAIResponse(rawInput) {
         return "Aduuh... Jangan dong.. 😳😳";
     }
 
-    // gabut ataya
+    // ATHAYA
     const kataataya = ['athaya', 'ataya', 'tayz', 'atya', 'atayaa', 'atayaa'];
     if (kataataya.some(toxicsr => input.includes(toxicsr))) {
         return "Athaya? Itu mah si anak halaqoh Ustad Arfan yang suka duduk di pinggir kelas kan? Ngobrolnya kalau bukan sama Jek ya jibran.. dia sahabatnya ghozy.. <br> <br> bener kan? hehe";
     }
 
-    // gabut valid
+    // BENER
     const katabener = ['bener', 'benr', 'benar', 'bnr', 'bner', 'benerr', 'yoi', 'yo', 'mantap', 'gokil', 'iya'];
     if (katabener.some(toxicsrs => input.includes(toxicsrs))) {
         return "Yo... mantap lah... Akhirnya gw bisa tenang.. wkwkwk";
     }
 
-    // gabut sekale
-    const kataabdullah = ['abdullah', 'abdulloh', 'abdulah', 'abduloh', 'dulmin', 'dullmin'];
+    // ABDULLOH
+    const kataabdullah = ['abdullah', 'abdulloh', 'abdulah', 'abduloh', 'dulmin', 'dullmin', 'dulloh', 'duloh'];
     if (kataabdullah.some(txicsrs => input.includes(txicsrs))) {
-        return "Amin? hmm... yg download nvdia ga sih?";
+        return "Abdullah Amin? hmm... yg kemarin abis download nvdia ga sih?";
     }
+
+    // AVRAH
+    const kataAsingTerkaitAvrah = rawInput.length > 25 ? rawInput.substring(0, 22) + "..." : rawInput;
+    const kataavrah = ['avroh', 'avrah', 'proh', 'froh', 'afrah', 'afroh'];
+    if (kataavrahsome(avrah => input.includes(avrah))) {
+        return "Lu ketik <b>"${kataAsingTerkaitAvrah}"</b> <br> Itu maksudnya lu ngebahas avroh kan? Itu mah si paling santai cuy... orangnya baek...";
+    }
+
+    // GHOZY
+    const kataAsingTerkaitGhozy = rawInput.length > 25 ? rawInput.substring(0, 22) + "..." : rawInput;
+    const kataghozy = ['ghozy', 'goji', 'gozi', 'gazi', 'ghazy', 'ghazi', 'ghozi', 'ghzy'];
+    if (kataavrahsome(ghozy => input.includes(ghozy))) {
+        return "Yang lu maksud <b>"${kataAsingTerkaitGhozy}"</b> <br> Itu maksudnya Ghozy kan? dia orangnya penter bgt coyy.. suka ngajarin matematika..";
+    }
+
+
 
     // 2. FILTER TEGURAN SALAM AGAMA LAIN
     const salamLain = ['shalom', 'syalom', 'namo budaya', 'namo budhaya', 'salam sejahtera', 'salam kebajikan'];
