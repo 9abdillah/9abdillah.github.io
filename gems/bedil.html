@@ -532,6 +532,13 @@ function getAIResponse(rawInput) {
         prefixWarning = "⚠️ <b>[SECURITY WARNING: Lisan Terdeteksi Kasar]</b><br><i>Bro, rem dikit ketikannya. Rasulullah SAW bersabda, seorang mukmin itu gak pantes berkata kotor dan keji (HR. Tirmidzi). Yuk dijaga lisan indahnya, tapi keluhan lu tetep gue jawab kok:</i><br><hr style='border:0;border-top:1px dashed #364455;margin:8px 0;'>";
     }
 
+    // gabut
+    const kataNakal = ['titit', 'vagina', 'kemaluan', 'perempuan', 'cewek', 'jimak'];
+    if (kataNakal.some(toxics => input.includes(toxics))) {
+        return "Aduuh... Jangan dong.. 😳😳";
+    }
+
+
     // 2. FILTER TEGURAN SALAM AGAMA LAIN
     const salamLain = ['shalom', 'syalom', 'namo budaya', 'namo budhaya', 'salam sejahtera', 'salam kebajikan'];
     if (salamLain.some(salam => input.includes(salam)) && !input.includes('assalamualaikum') && !input.includes('asalamualaikum')) {
