@@ -556,23 +556,6 @@ function getAIResponse(rawInput) {
         return "Abdullah Amin? hmm... yg kemarin abis download nvdia ga sih?";
     }
 
-    // AVRAH
-    const kataAsingTerkaitAvrah = rawInput.length > 25 ? rawInput.substring(0, 22) + "..." : rawInput;
-    const kataavrah = ['avroh', 'avrah', 'proh', 'froh', 'afrah', 'afroh'];
-    if (kataavrah.some(avrah => input.includes(avrah))) {
-        return "Lu ketik <b>"${kataAsingTerkaitAvrah}"</b> <br> Itu maksudnya lu ngebahas avroh kan? Itu mah si paling santai cuy... orangnya baek...";
-    }
-
-    // GHOZY
-    const kataAsingTerkaitGhozy = rawInput.length > 25 ? rawInput.substring(0, 22) + "..." : rawInput;
-    const kataghozy = ['ghozy', 'goji', 'gozi', 'gazi', 'ghazy', 'ghazi', 'ghozi', 'ghzy'];
-    if (kataghozy.some(ghozy => input.includes(ghozy))) {
-        return "Yang lu maksud <b>"${kataAsingTerkaitGhozy}"</b> <br> Itu maksudnya Ghozy kan? dia orangnya penter bgt coyy.. suka ngajarin matematika..";
-    }
-
-
-
-
     // 2. FILTER TEGURAN SALAM AGAMA LAIN
     const salamLain = ['shalom', 'syalom', 'namo budaya', 'namo budhaya', 'salam sejahtera', 'salam kebajikan'];
     if (salamLain.some(salam => input.includes(salam)) && !input.includes('assalamualaikum') && !input.includes('asalamualaikum')) {
