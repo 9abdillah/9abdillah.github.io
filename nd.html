@@ -3,80 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langit Senja & Satu Janji</title>
+    <title>Motivasi</title>
     <style>
-        /* --- ANIME SUNSET & CELESTIAL PALETTE --- */
+
+        /* --- ANIME CELESTIAL PALETTE (NO PURPLE) (#ff6b4a buatacccentsunset) (#0f172a buattextprimary) --- */
         :root {
-            /* Light Mode: Aesthetic Anime Daybreak */
-            --bg-color: #f0f4f8; 
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-primary: #1e293b; 
-            --text-secondary: #64748b;
-            --accent-sunset: #ff7a59; /* Soft Sunset Orange */
-            --accent-sunset-rgb: 255, 122, 89;
+            --bg-color: #f1f5f9; 
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --top-title: #262626;
+            --text-primary: #333f50; 
+            --text-secondary: #475569;
+            --text-secondarys: #475569;
+            --accent-sunset: #2f5597; /* Sunset Orange Glow */
+            --text-secondary-arabic: #4a812f;
+            --accent-sunset-rgb: 197, 224, 180;
             --toggle-bg: #e2e8f0;
-            --shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-            --effect-color: rgba(255, 122, 89, 0.3);
-            --cursor-color: rgba(255, 122, 89, 0.15);
-            --backdrop-blur: blur(12px);
-            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+/*            --effect-color: rgba(255, 107, 74, 0.25); */
+/*            --cursor-color: rgba(255, 107, 74, 0.12); */
+			--cursor-color: rgba(0, 176, 240, 0.12);
+            --effect-color: rgba(0, 176, 165, 0.25);
+            --backdrop-blur: blur(16px);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		  --bg-highlight: #e8f0fe;  /* Biru muda pastel */
+		  --border:       #1a73e8;  /* Biru core/utama */
+ 		  --text:         #174ea6;  /* Biru navy gelap */
         }
 
         [data-theme="dark"] {
-            /* Dark Mode: Deep Shinkai Celestial Blue (NO PURPLE) */
-            --bg-color: #0b1424; /* Deep Ocean/Sky Blue */
-            --card-bg: rgba(15, 32, 54, 0.7); /* Translucent Blue Card */
+            --bg-color: #070d19; 
+            --card-bg: rgba(38, 38, 38, 0.8); 
             --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-sunset: #ff9e7d; /* Glowing Sunset Pink-Orange */
-            --accent-sunset-rgb: 255, 158, 125;
+            --text-secondary: #92D050;
+            --text-secondarys: #f8fafc;
+            --text-secondary-arabic: #f8fafc;
+            --top-title: #ED7D31;
+            --accent-sunset: #ffc000; 
+            --accent-sunset-rgb: 255, 160, 133;
             --toggle-bg: #1e293b;
-            --shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            --effect-color: rgba(255, 158, 125, 0.35);
-            --cursor-color: rgba(255, 158, 125, 0.12);
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            --effect-color: rgba(255, 160, 133, 0.3);
+            --cursor-color: rgba(255, 255, 255, 0.1);
+            --bg-highlight: #132746;  /* Biru navy sangat gelap (Deep Blue) */
+  --border:       #3b82f6;  /* Biru terang / Neon soft */
+  --text:         #dbeafe;  /* Biru es sangat muda (hampir putih) */
         }
 
-        /* --- BASIC RESET --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
+/* Buat semua teks di website */
+::-moz-selection { /* Khusus browser Firefox jadul */
+  background-color: #00ff84; /* Hijau neon/mint khas Skillshare */
+  color: #002213;            /* Warna teks pas di-blok (hijau tua gelap biar kontras) */
+}
+
+::selection {
+  background-color: #00ff84; /* Hijau neon/mint khas Skillshare */
+  color: #002213;            /* Warna teks pas di-blok */
+}
+
+
         body {
             background-color: var(--bg-color);
-            /* Bikin gradasi tipis khas background anime */
-            background-image: linear-gradient(135deg, var(--bg-color) 0%, rgba(255, 122, 89, 0.05) 100%);
+            background-image: linear-gradient(180deg, var(--bg-color) 0%, rgba(255, 107, 74, 0.03) 100%);
             color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 24px;
+            align-items: flex-start;
+            padding: 40px 20px;
             transition: var(--transition);
             overflow-x: hidden;
             position: relative;
         }
 
         [data-theme="dark"] body {
-            background-image: linear-gradient(135deg, #0b1424 0%, #172a45 100%);
+            background-image: linear-gradient(180deg, #070d19 0%, #111f38 100%);
         }
 
-        /* --- CUSTOM ANIME CURSOR HALO --- */
+        /* --- CUSTOM CURSOR HALO --- */
         #custom-cursor {
             width: 44px;
             height: 44px;
-            border: 2px var(--accent-sunset); /* Efek garis putus-putus ala radar/sketsa anime */
+            /* --- aslinya 2px dashed var --- */
+            border: 2px var(--accent-sunset);
             background-color: var(--cursor-color);
             border-radius: 50%;
             position: fixed;
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 9999;
-            transition: width 0.2s, height 0.2s, background-color var(--transition), border-color var(--transition);
+            transition: width 0.15s, height 0.15s, background-color var(--transition), border-color var(--transition);
         }
-
+        
         /* --- THEME TOGGLE BUTTON --- */
         .theme-toggle-container {
             position: absolute;
