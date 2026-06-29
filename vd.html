@@ -12,6 +12,7 @@
             --top-title: #262626;
             --text-primary: #333f50; 
             --text-secondary: #475569;
+            --text-secondarys: #475569;
             --accent-sunset: #2f5597; /* Sunset Orange Glow */
             --text-secondary-arabic: #4a812f;
             --accent-sunset-rgb: 197, 224, 180;
@@ -23,6 +24,9 @@
             --effect-color: rgba(0, 176, 165, 0.25);
             --backdrop-blur: blur(16px);
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		  --bg-highlight: #e8f0fe;  /* Biru muda pastel */
+		  --border:       #1a73e8;  /* Biru core/utama */
+ 		  --text:         #174ea6;  /* Biru navy gelap */
         }
 
         [data-theme="dark"] {
@@ -30,7 +34,8 @@
             --card-bg: rgba(38, 38, 38, 0.8); 
             --text-primary: #f8fafc;
             --text-secondary: #92D050;
-            --text-secondary-arabic: #92D050;
+            --text-secondarys: #f8fafc;
+            --text-secondary-arabic: #f8fafc;
             --top-title: #ED7D31;
             --accent-sunset: #ffc000; 
             --accent-sunset-rgb: 255, 160, 133;
@@ -38,6 +43,9 @@
             --shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
             --effect-color: rgba(255, 160, 133, 0.3);
             --cursor-color: rgba(255, 255, 255, 0.1);
+            --bg-highlight: #132746;  /* Biru navy sangat gelap (Deep Blue) */
+  --border:       #3b82f6;  /* Biru terang / Neon soft */
+  --text:         #dbeafe;  /* Biru es sangat muda (hampir putih) */
         }
 
         * {
@@ -225,7 +233,7 @@
         .quote-box .latin-translation {
             font-style: italic;
             font-size: 1rem;
-            color: var(--text-secondary);
+            color: var(--text-secondarys);
             line-height: 1.6rem;
         }
 
@@ -382,6 +390,20 @@ besar:hover {
   font-weight: bold;
   font-style: italic;
 }
+
+
+
+keutamaan {
+  display: inline;            /* Biar dia nyambung di tengah kalimat, gak bikin baris baru */
+  font-weight: 300;           /* Bikin teksnya tebal */
+  color: var(--text);             /* Warna hijau tua yang ramah di mata */
+  background-color: var(--bg-highlight);  /* Background hijau muda soft (bukan kuning stabilo) */
+  padding: 10px 6px;          /* Jarak space tipis biar estetik */
+  margin: 0 2px;              /* Jarak dikit sama kata sebelum/sesudahnya */
+  border: 2px solid var(--border);
+  
+}
+
     </style>
 </head>
 <body>
@@ -421,7 +443,7 @@ besar:hover {
 <div class="section-block">
 <p>Kamu lagi Galau? Sange? Bete?</p>
 
-Mari kita hempas rasa bete lu sekarang dengan membongkar <b><i>seluruh paket lengkap literatur Al-Qur'an dan Hadits</i></b> tentang betapa mewahnya pasangan halal lu di surga nanti. <br>Anggap ini sebagai katalog hadiah yang lagi nungguin nama lu dicantumin di sana.
+Mari kita hempas rasa bete lu sekarang dengan membongkar <mark><i>seluruh paket lengkap literatur Al-Qur'an dan Hadits</i></mark> tentang betapa mewahnya pasangan halal lu di surga nanti. <br>Anggap ini sebagai katalog hadiah yang lagi nungguin nama lu dicantumin di sana.
 <br><br>
 Rebahan/duduk yang nyaman, rileks, dan baca ini baik-baik:
 <br><br>
@@ -429,7 +451,9 @@ Rebahan/duduk yang nyaman, rileks, dan baca ini baik-baik:
 
 <h2>1. Paket Fisik & Kecantikan yang Sempurna</h2>
 
-<p>Bening bak Permata dan Marjan</p>
+<br><br><br><keutamaan>
+Bening bak Permata dan Marjan
+</keutamaan>
 <div class="quote-box">
 <div class="arabic">
 كَأَنَّهُنَّ الْيَاقُوتُ وَالْمَرْجَانُ
@@ -443,10 +467,10 @@ Rebahan/duduk yang nyaman, rileks, dan baca ini baik-baik:
 <b>Keterangan:</b> Ulama menjelaskan kulit mereka begitu bersih dan bening, sampai-sampai kalau lu melihat mereka, keindahannya memantulkan cahaya seperti permata berharga yang gak ada cacatnya sama sekali.
 
 
-<br><br><p>
+<br><br><br><keutamaan>
 Mata yang Indah dan Lebar
 (Hurun 'Iin)
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="arabic">
 وَحُورٌ عِينٌ . كَأَمْثَالِ اللُّؤْلُؤِ الْمَكْنُونِ
@@ -460,9 +484,9 @@ Mata yang Indah dan Lebar
 
 <b>Keterangan:</b> Putih matanya sangat bersih, hitam matanya sangat pekat, dan tatapannya teduh. Mereka seperti mutiara yang dijaga rapat di dalam kerangnya—belum pernah disentuh atau dilihat oleh siapa pun sebelum lu.
 
-<br><br><p>
+<br><br><br><keutamaan>
 Kerudung yang Mengalahkan Dunia
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="latin-translation">“...Sungguh, kerudung yang ada di atas kepalanya itu lebih baik daripada dunia dan seisinya.” 
 <br>[HR. Bukhari]
@@ -477,9 +501,10 @@ Kerudung yang Mengalahkan Dunia
 
 <h2>2. Sifat, Karakter, dan Romantisme Full Manja</h2>
 
+<br><br><br><keutamaan>
 Penuh Cinta dan Sebaya 
 ('Uruban Atroba)
-<br>
+</keutamaan>
 
 <div class="quote-box">
 <div class="arabic">
@@ -493,11 +518,10 @@ Penuh Cinta dan Sebaya
 <b>Keterangan:</b> Kalimat 'Uruban artinya mereka sangat manja, bicaranya lembut, penuh rayuan yang menyenangkan hati, dan selalu berhasrat tinggi hanya kepada suaminya. 
 Sedangkan Atroba artinya umurnya sebaya dengan lu (umur ideal penduduk surga, sekitar 30-33 tahun), jadi kalau diajak ngobrol dan <bercumbu>bercumbu</bercumbu> bakal nyambung dan klop banget!
 
-<br><br>
-<p>
+<br><br><br><keutamaan>
 Menjaga Pandangan 
 (Qashiratut Tharf)
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="arabic">
 فِيهِنَّ قَاصِرَاتُ الطَّرْفِ لَمْ يَطْمِثْهُنَّ إِنْسٌ قَبْلَهُمْ وَلَا جَانٌّ
@@ -510,9 +534,9 @@ Menjaga Pandangan
 
 <b>Keterangan:</b> Di hatinya dan di matanya, cuma ada lu. Dia gak akan melirik cowok lain, gak peduli seberapa banyak penghuni surga lainnya. Di mata dia, lu adalah cowok paling tampan dan paling dia cintai selamanya.
 
-<br><br><p>
+<br><br><br><keutamaan>
 Suara yang Mendendangkan Lagu Paling Indah
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="latin-translation">“Sesungguhnya para istri penghuni surga akan bernyanyi untuk suami mereka dengan suara yang paling merdu yang tidak pernah didengar oleh seorang pun...”
 <br>[HR. Al-Mu’jam Al-Ausath]
@@ -528,9 +552,9 @@ Suara yang Mendendangkan Lagu Paling Indah
 <br><br><br>
 <h2>3. Garansi Kenikmatan Jimak yang Endless </h2>
 
-<p>
+<br><br><br><keutamaan>
 Selalu Kembali Perawan (Abkara)
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="arabic">
 إِنَّا أَنْشَأْنَاهُنَّ إِنْشَاءً . فَجَعَلْنَاهُنَّ أَبْكَارًا
@@ -543,9 +567,9 @@ Selalu Kembali Perawan (Abkara)
 
 <b>Keterangan:</b> Dalam hadits riwayat Thabrani, Nabi menjelaskan bahwa setiap kali lu selesai berhubungan intim/berjimak dengan istri lu, dia akan kembali menjadi perawan yang suci, wangi, dan ketat. Tidak ada rasa bosan, tidak ada rasa lelah.
 
-<br><br><p>
+<br><br><br><keutamaan>
 Kekuatan Fisik 100 Kali Lipat
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="latin-translation">Ada sahabat bertanya, <br>"Wahai Rasulullah, apakah kita bisa menyetubuhi istri-istri kita di surga?" Rasulullah menjawab: "Seorang lelaki di surga akan diberi kekuatan 100 kali lipat dalam hal makan, minum, syahwat, dan jima’."
 <br>[HR. Ahmad & An-Nasa'i]
@@ -556,9 +580,9 @@ Kekuatan Fisik 100 Kali Lipat
 
 
 
-<br><br><p>
+<br><br><br><keutamaan>
 Disucikan dari Segala Kotoran (Azwajun Muthahharah)
-</p>
+</keutamaan>
 <div class="quote-box">
 <div class="arabic">
 وَلَهُمْ فِيهَا أَزْوَاجٌ مُطَهَّرَةٌ ۖ وَهُمْ فِيهَا خَالِدُونَ
