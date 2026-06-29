@@ -1,63 +1,48 @@
 <h3>Siapakah Abdillah?</h3>
 <p>Abdillah adalah manusia biasa, makan nasi. <br> Dia adalah penggemar <i>Mini4wd & plastic models</i>. <br> Abdillah suka mempelajari hal-hal baru di hidupnya dan <mark>mengeksplorasi dunia</mark> lewat buku-buku yang tidak termasuk atau bahkan jauh dari kata <i>bestseller</i></p>
-
-<img src="avatar.jpg" width="200px"></img>
-
+<br>
+<br>
+<h3>Mengenal Abdillah</h3>
 <table>
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th>Subyek</th>
+    <th>Informasi</th>
+    <th>Keterangan</th>
   </tr>
   <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+    <td>Avatar</td>
+    <td>Tersedia</td>
+    <td><img src="avatar.jpg" width="130px"></img></td>
   </tr>
   <tr>
-    <td>Berglunds snabbköp</td>
-    <td>Christina Berglund</td>
-    <td>Sweden</td>
+    <td>Nama</td>
+    <td>Abdillah Indunisi</td>
+    <td>Homo-Jakselens, Homo-Sapiens</td>
   </tr>
   <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
+    <td>Tujuan Hidup</td>
+    <td>Bertujuan</td>
+    <td>"Mencari arti kehidupan"</td>
   </tr>
   <tr>
-    <td>Ernst Handel</td>
+    <td>Figur Teladan</td>
     <td>Roland Mendel</td>
-    <td>Austria</td>
+    <td>Asal Austria</td>
   </tr>
   <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
+    <td>Pengalaman Hidup</td>
+    <td>80% Studi</td>
+    <td>10 lba</td>
   </tr>
   <tr>
-    <td>Königlich Essen</td>
-    <td>Philip Cramer</td>
-    <td>Germany</td>
+    <td>Tujuan Setelah Hidup</td>
+    <td>Baqi Grave</td>
+    <td>Madinah</td>
   </tr>
   <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-  <tr>
-    <td>North/South</td>
-    <td>Simon Crowther</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Paris spécialités</td>
-    <td>Marie Bertrand</td>
-    <td>France</td>
+    <td>Gaming Status</td>
+    <td>Not a gamer</td>
+    <td>Very busy</td>
   </tr>
 </table>
 
