@@ -1,5 +1,5 @@
 <h3>Siapakah Abdillah?</h3>
-<p>Abdillah adalah manusia biasa, makan nasi. <br> Dia adalah penggemar <i>Mini4wd & plastic models</i>. <br> Abdillah suka mempelajari hal-hal baru di hidupnya dan <mark>mengeksplorasi dunia<mark> lewat buku-buku yang tidak termasuk atau bahkan jauh dari kata <i>bestseller</i></p>
+<p>Abdillah adalah manusia biasa, makan nasi. <br> Dia adalah penggemar <i>Mini4wd & plastic models</i>. <br> Abdillah suka mempelajari hal-hal baru di hidupnya dan <mark>mengeksplorasi dunia</mark> lewat buku-buku yang tidak termasuk atau bahkan jauh dari kata <i>bestseller</i></p>
 <br>
 <table>
   <tr>
