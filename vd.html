@@ -5,33 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ensiklopedi Kenikmatan Surga</title>
     <style>
-        /* --- ANIME CELESTIAL PALETTE (NO PURPLE) --- */
+        /* --- ANIME CELESTIAL PALETTE (NO PURPLE) (#ff6b4a buatacccentsunset) (#0f172a buattextprimary) --- */
         :root {
             --bg-color: #f1f5f9; 
             --card-bg: rgba(255, 255, 255, 0.9);
-            --text-primary: #0f172a; 
+            --top-title: #262626;
+            --text-primary: #333f50; 
             --text-secondary: #475569;
-            --accent-sunset: #ff6b4a; /* Sunset Orange Glow */
-            --accent-sunset-rgb: 255, 107, 74;
+            --accent-sunset: #2f5597; /* Sunset Orange Glow */
+            --text-secondary-arabic: #4a812f;
+            --accent-sunset-rgb: 197, 224, 180;
             --toggle-bg: #e2e8f0;
             --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-            --effect-color: rgba(255, 107, 74, 0.25);
-            --cursor-color: rgba(255, 107, 74, 0.12);
+/*            --effect-color: rgba(255, 107, 74, 0.25); */
+/*            --cursor-color: rgba(255, 107, 74, 0.12); */
+			--cursor-color: rgba(0, 176, 240, 0.12);
+            --effect-color: rgba(0, 176, 165, 0.25);
             --backdrop-blur: blur(16px);
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         [data-theme="dark"] {
             --bg-color: #070d19; 
-            --card-bg: rgba(13, 25, 44, 0.8); 
+            --card-bg: rgba(38, 38, 38, 0.8); 
             --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-sunset: #ffa085; 
+            --text-secondary: #92D050;
+            --text-secondary-arabic: #92D050;
+            --top-title: #ED7D31;
+            --accent-sunset: #ffc000; 
             --accent-sunset-rgb: 255, 160, 133;
             --toggle-bg: #1e293b;
             --shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
             --effect-color: rgba(255, 160, 133, 0.3);
-            --cursor-color: rgba(255, 160, 133, 0.1);
+            --cursor-color: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -63,6 +69,7 @@
         #custom-cursor {
             width: 44px;
             height: 44px;
+            /* --- aslinya 2px dashed var --- */
             border: 2px var(--accent-sunset);
             background-color: var(--cursor-color);
             border-radius: 50%;
@@ -199,7 +206,7 @@
             direction: rtl;
             text-align: right;
             margin-bottom: 12px;
-            color: var(--text-primary);
+            color: var(--text-secondary-arabic);
         }
 
         .quote-box .latin-translation {
@@ -275,13 +282,13 @@
     <!-- Konten Utama -->
     <main class="container">
         <div class="header-title">
-            <h1>Satu Kamar di Surga</h1>
-            <p>Rincian Hubungan & Wanita Penghuni Surga</p>
+            <h1 style="color: var(--top-title);">Satu Kamar di Surga</h1>
+            <p style="text-align: center;">Rincian Hubungan & Wanita Penghuni Surga</p>
         </div>
 
         <!-- SEKSI 1 -->
         <div class="section-block">
-            <h2>✨ 1. Dua Jenis Pendamping di Surga</h2>
+            <h2>1. Dua Jenis Pendamping di Surga</h2>
             <p>Setiap laki-laki yang berhasil menginjakkan kakinya di surga akan diberikan dua jenis pendamping wanita yang kebaikannya tak tertandingi:</p>
             <ul>
                 <li><strong>Bidadari Asli Surga (Huurun 'In):</strong> Makhluk suci yang diciptakan langsung di dalam surga, tidak pernah mengalami kehidupan dunia, dan tidak pernah disentuh oleh siapapun sebelum suaminya.</li>
@@ -306,7 +313,7 @@
 
         <!-- SEKSI 3 -->
         <div class="section-block">
-            <h2>orgasm 3. Hakikat Jimak (Hubungan Badan) di Surga</h2>
+            <h2>3. Hakikat Jimak (Hubungan Badan) di Surga</h2>
             <p>Hubungan badan di surga bukan sekadar bayangan atau kiasan, melainkan aktivitas fisik yang nyata, penuh kelezatan, dan bersih dari segala kekurangan duniawi:</p>
             <ul>
                 <li><strong>Kekuatan 100 Pria:</strong> Rasulullah ﷺ menegaskan bahwa setiap laki-laki di surga diberikan kekuatan fisik, stamina, dan gairah setara dengan 100 orang laki-laki di dunia dalam hal makan, minum, dan berjimak (HR. Tirmidzi).</li>
