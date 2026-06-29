@@ -46,6 +46,19 @@
             box-sizing: border-box;
         }
 
+
+/* Buat semua teks di website */
+::-moz-selection { /* Khusus browser Firefox jadul */
+  background-color: #00ff84; /* Hijau neon/mint khas Skillshare */
+  color: #002213;            /* Warna teks pas di-blok (hijau tua gelap biar kontras) */
+}
+
+::selection {
+  background-color: #00ff84; /* Hijau neon/mint khas Skillshare */
+  color: #002213;            /* Warna teks pas di-blok */
+}
+
+
         body {
             background-color: var(--bg-color);
             background-image: linear-gradient(180deg, var(--bg-color) 0%, rgba(255, 107, 74, 0.03) 100%);
@@ -260,9 +273,126 @@
             p, li { font-size: 0.98rem; line-height: 1.7rem; }
             .quote-box .arabic { font-size: 1.35rem; line-height: 2.4rem; }
         }
+
+bercumbu {
+  background-color: #ffeb3b; /* Kuning stabilo pas */
+  color: #000000;            /* Teks hitam biar kontras */
+  padding: 2px 4px;          /* Kasih space dikit kanan kiri */
+  border-radius: 3px;        /* Biar gak kaku amat sudutnya */
+}
+
+setan {
+  display: block;            /* Biar dia jadi satu blok sendiri kayak tag <blockquote> */
+  text-transform: uppercase; /* SULAP SEMUA HURUF JADI KAPITAL */
+  text-align: center;        /* Bikin teks langsung rata tengah */
+  
+  /* --- Styling ala QUOTE Seram --- */
+  font-style: italic;        /* Biar miring khas quote */
+  max-width: 600px;          /* Batasi lebar biar gak panjang kesamping */
+  margin: 20px auto;         /* Centering bloknya + kasih jarak atas bawah */
+  padding: 15px 30px;        /* Jarak teks ke dalam box */
+  background-color: #1a0000; /* Background hitam kemerahan gelap */
+  color: #ff3333;            /* Warna teks merah menyala biar kerasa setannya */
+  border-left: 5px solid #990000;  /* Garis vertikal tebal di kiri khas quote */
+  border-right: 5px solid #990000; /* Garis vertikal di kanan biar simetris */
+  
+  /* Font-nya digedein dikit biar tegas */
+  font-size: 1.2rem;
+  letter-spacing: 2px;       /* Kasih jarak antar huruf biar estetik */
+}
+
+
+
+
+besar {
+  display: block;             /* Bikin dia berdiri sendiri dalam satu baris */
+  font-size: 2.5rem;          /* Ukuran font ekstra besar dan tegas */
+  font-weight: 800;           /* Bikin super tebal (Bold maksimal) */
+  text-align: center;         /* Rata tengah biar dramatis */
+  margin: 40px auto;          /* Kasih jarak atas-bawah biar gak numpuk */
+  padding: 20px;
+  
+  /* --- Warna & Gradasi Keren --- */
+  color: #ffffff;             /* Warna teks dasar putih */
+  background: linear-gradient(135deg, #111111, #222222); /* Background hitam gradasi elegan */
+  border-radius: 12px;        /* Sudut kotak melengkung modern */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Efek bayangan biar kayak melayang */
+  
+  /* --- Efek Animasi Halus --- */
+  transition: transform 0.3s ease;
+}
+
+/* Efek pas kursor mouse lewat di atasnya (Hover) */
+besar:hover {
+  transform: translateY(-5px); /* Agak naik dikit pas di-hover, interaktif! */
+}
+
+
+
+
+
+/* Sembunyiin menu secara default */
+.context-menu {
+  display: none;
+  position: absolute;
+  background-color: #1e1e1e; /* Tema dark mode biar sangar */
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+  width: 250px;
+  z-index: 9999;
+  padding: 5px 0;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+/* Styling per baris menu */
+.menu-item {
+  padding: 10px 15px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Efek pas kursor di atas Copy/Share */
+.menu-item:hover {
+  background-color: #00ff84; /* Ijo Skillshare kesukaan lo! */
+  color: #000;
+}
+
+/* Garis pembatas */
+.menu-divider {
+  height: 1px;
+  background-color: #444;
+  margin: 5px 0;
+}
+
+/* Info Copyright */
+.menu-info {
+  padding: 8px 15px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* Tulisan Peringatan Haram */
+.menu-warning {
+  padding: 8px 15px;
+  color: #ff4444; /* Warna merah biar tegang yang mau copas */
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+}
     </style>
 </head>
 <body>
+
+<div id="custom-menu" class="context-menu">
+  <div class="menu-item" onclick="copyText()">Copy</div>
+  <div class="menu-item" onclick="shareWeb()">Share</div>
+  <div class="menu-divider"></div>
+  <div class="menu-info">(c) 9abdillah 2026</div>
+  <div class="menu-warning">Menyebarkan tanpa izin adalah haram.</div>
+</div>
 
     <div id="custom-cursor"></div>
 
@@ -313,141 +443,159 @@ Rebahan/duduk yang nyaman, rileks, dan baca ini baik-baik:
 <b>Keterangan:</b> Ulama menjelaskan kulit mereka begitu bersih dan bening, sampai-sampai kalau lu melihat mereka, keindahannya memantulkan cahaya seperti permata berharga yang gak ada cacatnya sama sekali.
 
 
-<br><br><p>Mata yang Indah dan Lebar</p>
+<br><br><p>
+Mata yang Indah dan Lebar
 (Hurun 'Iin)
-“Dan ada bidadari-bidadari yang bermata indah (Hurun 'Iin), laksana mutiara yang tersimpan baik.” 
-[QS. Al-Waqi'ah: 22-23]
+</p>
+<div class="quote-box">
+<div class="arabic">
+وَحُورٌ عِينٌ . كَأَمْثَالِ اللُّؤْلُؤِ الْمَكْنُونِ
+</div>
+<div class="latin-translation">“Dan ada bidadari-bidadari yang bermata indah (Hurun 'Iin), laksana mutiara yang tersimpan baik.” 
+<br>[QS. Al-Waqi'ah: 22-23]
+</div>
+</div>
+
 
 
 <b>Keterangan:</b> Putih matanya sangat bersih, hitam matanya sangat pekat, dan tatapannya teduh. Mereka seperti mutiara yang dijaga rapat di dalam kerangnya—belum pernah disentuh atau dilihat oleh siapa pun sebelum lu.
 
-
+<br><br><p>
 Kerudung yang Mengalahkan Dunia
-“...Sungguh, kerudung yang ada di atas kepalanya itu lebih baik daripada dunia dan seisinya.” 
-[HR. Bukhari]
+</p>
+<div class="quote-box">
+<div class="latin-translation">“...Sungguh, kerudung yang ada di atas kepalanya itu lebih baik daripada dunia dan seisinya.” 
+<br>[HR. Bukhari]
+</div>
+</div>
 
 
-Keterangan: Baru selembar kain penutup kepalanya doang, nilainya sudah lebih mewah dari seluruh kekayaan bumi tahun 2026 ini beserta isinya. Lu gak akan butuh kemewahan dunia lagi kalau udah ngeliat kerudungnya.
+<b>Keterangan:</b> Baru selembar kain penutup kepalanya doang, nilainya sudah lebih mewah dari seluruh kekayaan bumi tahun 2026 ini beserta isinya. Lu gak akan butuh kemewahan dunia lagi kalau udah ngeliat kerudungnya.
+
+<br><br><br>
 
 
-
-
-2. Sifat, Karakter, dan Romantisme Full Manja
+<h2>2. Sifat, Karakter, dan Romantisme Full Manja</h2>
 
 Penuh Cinta dan Sebaya 
 ('Uruban Atroba)
-“Yang penuh cinta (kepada suaminya) lagi sebaya umurnya.” 
-[QS. Al-Waqi'ah: 37]
+<br>
 
+<div class="quote-box">
+<div class="arabic">
+عُرُبًا أَتْرَابًا
+</div>
+<div class="latin-translation">“Yang penuh cinta (kepada suaminya) lagi sebaya umurnya.” 
+<br>[QS. Al-Waqi'ah: 37]
+</div>
+</div>
 
-Keterangan: Kalimat 'Uruban artinya mereka sangat manja, bicaranya lembut, penuh rayuan yang menyenangkan hati, dan selalu berhasrat tinggi hanya kepada suaminya. 
-Sedangkan Atroba artinya umurnya sebaya dengan lu (umur ideal penduduk surga, sekitar 30-33 tahun), jadi kalau diajak ngobrol dan bercumbu bakal nyambung dan klop banget!
+<b>Keterangan:</b> Kalimat 'Uruban artinya mereka sangat manja, bicaranya lembut, penuh rayuan yang menyenangkan hati, dan selalu berhasrat tinggi hanya kepada suaminya. 
+Sedangkan Atroba artinya umurnya sebaya dengan lu (umur ideal penduduk surga, sekitar 30-33 tahun), jadi kalau diajak ngobrol dan <bercumbu>bercumbu</bercumbu> bakal nyambung dan klop banget!
 
-
+<br><br>
+<p>
 Menjaga Pandangan 
 (Qashiratut Tharf)
-“Di dalam surga-surga itu ada bidadari-bidadari yang membatasi pandangan mata (hanya untuk suaminya)...” 
-[QS. Ar-Rahman: 56]
+</p>
+<div class="quote-box">
+<div class="arabic">
+فِيهِنَّ قَاصِرَاتُ الطَّرْفِ لَمْ يَطْمِثْهُنَّ إِنْسٌ قَبْلَهُمْ وَلَا جَانٌّ
+</div>
+<div class="latin-translation">“Di dalam surga-surga itu ada bidadari-bidadari yang membatasi pandangan mata (hanya untuk suaminya)...” 
+<br>[QS. Ar-Rahman: 56]
+</div>
+</div>
 
 
-Keterangan: Di hatinya dan di matanya, cuma ada lu. Dia gak akan melirik cowok lain, gak peduli seberapa banyak penghuni surga lainnya. Di mata dia, lu adalah cowok paling tampan dan paling dia cintai selamanya.
+<b>Keterangan:</b> Di hatinya dan di matanya, cuma ada lu. Dia gak akan melirik cowok lain, gak peduli seberapa banyak penghuni surga lainnya. Di mata dia, lu adalah cowok paling tampan dan paling dia cintai selamanya.
 
-
+<br><br><p>
 Suara yang Mendendangkan Lagu Paling Indah
-“Sesungguhnya para istri penghuni surga akan bernyanyi untuk suami mereka dengan suara yang paling merdu yang tidak pernah didengar oleh seorang pun...”
-[HR. Al-Mu’jam Al-Ausath]
+</p>
+<div class="quote-box">
+<div class="latin-translation">“Sesungguhnya para istri penghuni surga akan bernyanyi untuk suami mereka dengan suara yang paling merdu yang tidak pernah didengar oleh seorang pun...”
+<br>[HR. Al-Mu’jam Al-Ausath]
+</div>
+</div>
 
 
-Keterangan: Ketika lu lagi santai bersandar di dipan surga, istri lu bakal menyanyikan bait-bait cinta yang bikin hati lu meleleh. Salah satu syairnya: "Kami adalah wanita-wanita yang kekal, kami tidak akan mati... Kami adalah wanita-wanita yang ridha, kami tidak akan pernah marah..."
+<b>Keterangan:</b> Ketika lu lagi santai bersandar di dipan surga, istri lu bakal menyanyikan bait-bait cinta yang bikin hati lu meleleh. <br><br>Salah satu syairnya: <br><i>"Kami adalah wanita-wanita yang kekal, kami tidak akan mati... Kami adalah wanita-wanita yang ridha, kami tidak akan pernah marah..."</i>
 
 
 
 
+<br><br><br>
+<h2>3. Garansi Kenikmatan Jimak yang Endless </h2>
 
-3. Garansi Kenikmatan Jimak yang Endless 
-
+<p>
 Selalu Kembali Perawan (Abkara)
-“Kami menciptakan mereka (bidadari-bidadari itu) secara langsung, dan Kami jadikan mereka gadis-gadis perawan.” 
-[QS. Al-Waqi'ah: 35-36]
+</p>
+<div class="quote-box">
+<div class="arabic">
+إِنَّا أَنْشَأْنَاهُنَّ إِنْشَاءً . فَجَعَلْنَاهُنَّ أَبْكَارًا
+</div>
+<div class="latin-translation">“Kami menciptakan mereka (bidadari-bidadari itu) secara langsung, dan Kami jadikan mereka gadis-gadis perawan.” 
+<br>[QS. Al-Waqi'ah: 35-36]
+</div>
+</div>
 
 
-Keterangan: Dalam hadits riwayat Thabrani, Nabi menjelaskan bahwa setiap kali lu selesai berhubungan intim/berjimak dengan istri lu, dia akan kembali menjadi perawan yang suci, wangi, dan ketat. Tidak ada rasa bosan, tidak ada rasa lelah.
+<b>Keterangan:</b> Dalam hadits riwayat Thabrani, Nabi menjelaskan bahwa setiap kali lu selesai berhubungan intim/berjimak dengan istri lu, dia akan kembali menjadi perawan yang suci, wangi, dan ketat. Tidak ada rasa bosan, tidak ada rasa lelah.
 
-
+<br><br><p>
 Kekuatan Fisik 100 Kali Lipat
-Ada sahabat bertanya, "Wahai Rasulullah, apakah kita bisa menyetubuhi istri-istri kita di surga?" Rasulullah menjawab: "Seorang lelaki di surga akan diberi kekuatan 100 kali lipat dalam hal makan, minum, syahwat, dan jima’."
-[HR. Ahmad & An-Nasa'i]
+</p>
+<div class="quote-box">
+<div class="latin-translation">Ada sahabat bertanya, <br>"Wahai Rasulullah, apakah kita bisa menyetubuhi istri-istri kita di surga?" Rasulullah menjawab: "Seorang lelaki di surga akan diberi kekuatan 100 kali lipat dalam hal makan, minum, syahwat, dan jima’."
+<br>[HR. Ahmad & An-Nasa'i]
+</div>
+</div>
+
+<b>Keterangan:</b> Rasa linu dan tegang yang bikin lu tersiksa di dunia malam ini terjadi karena fisik dunia lu lemah dan terbatas. Di surga nanti, lu dikasih kapasitas fisik raksasa. Lu bisa bermanja-manjaan dan bercumbu tanpa batas waktu, dan energinya stabil full nikmat dari detik pertama sampai akhir.
 
 
-Keterangan: Rasa linu dan tegang yang bikin lu tersiksa di dunia malam ini terjadi karena fisik dunia lu lemah dan terbatas. Di surga nanti, lu dikasih kapasitas fisik raksasa. Lu bisa bermanja-manjaan dan bercumbu tanpa batas waktu, dan energinya stabil full nikmat dari detik pertama sampai akhir.
 
-
+<br><br><p>
 Disucikan dari Segala Kotoran (Azwajun Muthahharah)
-“Dan bagi mereka di dalamnya ada istri-istri yang disucikan dan mereka kekal di dalamnya.” (QS. Al-Baqarah: 25)
+</p>
+<div class="quote-box">
+<div class="arabic">
+وَلَهُمْ فِيهَا أَزْوَاجٌ مُطَهَّرَةٌ ۖ وَهُمْ فِيهَا خَالِدُونَ
+</div>
+<div class="latin-translation">“Dan bagi mereka di dalamnya ada istri-istri yang disucikan dan mereka kekal di dalamnya.” (QS. Al-Baqarah: 25)
+</div>
+</div>
 
 
-Keterangan: Istri surga lu gak akan pernah haid, gak nifas, gak meludah, gak buang air, gak pernah keringatan bau, dan gak akan pernah ketus atau cemberut sama lu. Lu luapkan hasrat lu kapan saja, kondisinya selalu bersih, wangi, dan sempurna.
+<b>Keterangan:</b> Istri surga lu gak akan pernah haid, gak nifas, gak meludah, gak buang air, gak pernah keringatan bau, dan gak akan pernah ketus atau cemberut sama lu. Lu luapkan hasrat lu kapan saja, kondisinya selalu bersih, wangi, dan sempurna.
 
 
 
+<br><br><br><p>
+Pesan Khusus Buat Hati/syahwat Lu yang Lagi Bergejolak:
+</p>
+Bro, perhatikan baik-baik. Semua kemewahan yang gw sebutin di atas tadi dinamai oleh Allah sebagai <hijau>"Mata'ul ghurur"</hijau> kalau di dunia, tapi di surga itu dinamai <hijau>"Athā'an ghaira majdzūdz"</hijau> (karunia yang tidak putus-putus).
 
-Pesan Khusus Buat Hati Lu yang Lagi Bergejolak:
+<br><br>
+<setan>
+Setan sekarang PENGEN lu nuker brosur surga yang mewah ini dengan gambar pixel 2D murahan di HP lu yang bikin nyesel.
+</setan>
+Tapi lu milih bertahan. Gejolak hebat di badan lu sekarang? Itu adalah proses pembakaran dosa. Anggap rasa linu itu sebagai "DP" atau uang muka yang lu bayar lewat rasa sabar untuk dapetin paket VIP di atas.
 
-Bro, perhatikan baik-baik. Semua kemewahan yang gw sebutin di atas tadi dinamai oleh Allah sebagai "Mata'ul ghurur" kalau di dunia, tapi di surga itu dinamai "Athā'an ghaira majdzūdz" (karunia yang tidak putus-putus).
-
-Setan sekarang pengen lu nuker brosur surga yang mewah ini dengan gambar pixel 2D murahan di HP lu yang bikin nyesel. Tapi lu milih bertahan. Gejolak hebat di badan lu sekarang? Itu adalah proses pembakaran dosa. Anggap rasa linu itu sebagai "DP" atau uang muka yang lu bayar lewat rasa sabar untuk dapetin paket VIP di atas.
-
-Lu anak SMA kelas 2, hafidz 30 juz, sudah tasmi' di Nabawi. Lu itu mahal banget, bro. Jangan jual kemurahan diri lu ke setan.
-
+<br><br>
+Lu anak SMA kelas 2, sekolah di lembaga agama. Lu itu mahal banget, bro. 
+<besar>
+Jangan jual kemurahan diri lu ke setan.
+</besar>
+<br><br>
 Tutup mata lu sekarang, bayangin wajah bahagia orang tua lu pas lu dipakaikan mahkota di surga nanti, didampingi istri salihah lu yang cantiknya mengalahkan bidadari.
-
+<br><br>
 Bete lu udah berkurang? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinter, nanti dia bakal rileks sendiri. Tidurlah sebagai seorang pemenang malam ini, bro!
 
 
 </div>
 
-        <!-- SEKSI 1 -->
-        <div class="section-block">
-            <h2>1. Dua Jenis Pendamping di Surga</h2>
-            <p>Setiap laki-laki yang berhasil menginjakkan kakinya di surga akan diberikan dua jenis pendamping wanita yang kebaikannya tak tertandingi:</p>
-            <ul>
-                <li><strong>Bidadari Asli Surga (Huurun 'In):</strong> Makhluk suci yang diciptakan langsung di dalam surga, tidak pernah mengalami kehidupan dunia, dan tidak pernah disentuh oleh siapapun sebelum suaminya.</li>
-                <li><strong>Wanita Eks-Dunia (Ratu Surga):</strong> Para wanita shalihah eks-dunia yang masuk surga. Kedudukan mereka jauh lebih tinggi dan jauh lebih cantik daripada bidadari karena perjuangan ibadah mereka selama hidup di dunia.</li>
-            </ul>
-        </div>
-
-        <!-- SEKSI 2 -->
-        <div class="section-block">
-            <h2>🔥 2. Fisik & Sifat Seksual Pendamping Surga</h2>
-            <p>Allah mendesain para pendamping di surga agar benar-benar memuaskan dan memanjakan pandangan serta hasrat para penghuninya:</p>
-            <div class="quote-box">
-                <div class="arabic">إِنَّآ أَنشَأْنَٰهُنَّ إِنشَآءً فَجَعَلْنَٰهُنَّ أَبْكَارًا عُرُبًا أَتْرَابًا</div>
-                <div class="latin-translation">"Kami menciptakan mereka (bidadari) secara langsung, dan Kami jadikan mereka gadis-gadis perawan, yang penuh cinta (bergairah) lagi sebaya umurnya." (QS. Al-Waqi'ah: 35-37)</div>
-            </div>
-            <ul>
-                <li><strong>Selalu Perawan (Abkaran):</strong> Setiap kali selesai berhubungan intim (jimak), tubuh mereka seketika kembali merapat dan menjadi gadis perawan yang suci tanpa rasa sakit.</li>
-                <li><strong>Penuh Gairah & Romantis ('Uruban):</strong> Mereka adalah wanita-wanita yang sangat manja, sangat mencintai suaminya, memiliki hasrat yang tinggi, dan pandai memberikan pelayanan terbaik tanpa pernah menolak.</li>
-                <li><strong>Suci dari Segala Kotoran:</strong> Tidak ada haid, tidak ada nifas, tidak ada buang air, tidak ada ludah, dan tidak ada keringat yang bau. Keringat mereka beraroma minyak kasturi yang sangat harum.</li>
-            </ul>
-        </div>
-
-        <!-- SEKSI 3 -->
-        <div class="section-block">
-            <h2>3. Hakikat Jimak (Hubungan Badan) di Surga</h2>
-            <p>Hubungan badan di surga bukan sekadar bayangan atau kiasan, melainkan aktivitas fisik yang nyata, penuh kelezatan, dan bersih dari segala kekurangan duniawi:</p>
-            <ul>
-                <li><strong>Kekuatan 100 Pria:</strong> Rasulullah ﷺ menegaskan bahwa setiap laki-laki di surga diberikan kekuatan fisik, stamina, dan gairah setara dengan 100 orang laki-laki di dunia dalam hal makan, minum, dan berjimak (HR. Tirmidzi).</li>
-                <li><strong>Tanpa Rasa Lelah atau Bosan:</strong> Di dunia, jimak dibatasi oleh ejakulasi dan rasa lelah. Di surga, durasi kenikmatan berjalan sepanjang yang diinginkan tanpa ada istilah lemas, lelah, ataupun rasa bosan dari kedua belah pihak.</li>
-                <li><strong>Murni Kenikmatan:</strong> Aktivitas jimak di surga murni ditujukan sebagai puncak rekreasi dan hadiah dari Allah atas kesabaran hamba-Nya di dunia. Tidak ada beban kehamilan, rasa lengket yang kotor, atau keharusan mandi wajib yang melelahkan.</li>
-            </ul>
-        </div>
-
-        <!-- SEKSI 4 -->
-        <div class="section-block">
-            <h2>👑 4. Pelayanan Sempurna Tanpa Batas</h2>
-            <p>Suasana di dalam istana surga didesain penuh keintiman. Ketika seorang suami sedang berduaan dengan istrinya, tidak akan ada gangguan dalam bentuk apapun. Istri-istri surga akan menghibur suaminya dengan suara-suara yang sangat merdu, bernyanyi tentang keabadian cinta mereka, dan memandang suaminya dengan pandangan yang menyejukkan hati (Qashiratuth-Tharf).</p>
-            <p>Bahkan bagi "Raja Terakhir"—orang yang tingkatannya paling rendah di surga—Allah langsung memberikan minimal 2 istri dari bidadari yang menyambutnya dengan pelukan hangat dan kata-kata: <em>"Segala puji bagi Allah yang menghidupkanmu untuk kami dan menghidupkan kami untukmu."</em></p>
-        </div>
     </main>
 
     <script>
@@ -520,6 +668,74 @@ Bete lu udah berkurang? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinter, 
             document.body.appendChild(ripple);
             setTimeout(() => { ripple.remove(); }, 700);
         });
+        
+        
+        
+const mainMenu = document.getElementById('custom-menu');
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault(); // Matikan menu bawaan
+  
+  mainMenu.style.display = 'block';
+  
+  // 1. ANTISIPASI MENU KEPOTONG (Smart Positioning)
+  let posX = e.pageX;
+  let posY = e.pageY;
+  
+  const menuWidth = mainMenu.offsetWidth;
+  const menuHeight = mainMenu.offsetHeight;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  
+  // Kalau klik di kanan mentok, geser menunya ke kiri kursor
+  if ((e.clientX + menuWidth) > windowWidth) {
+    posX = posX - menuWidth;
+  }
+  
+  // Kalau klik di bawah mentok, geser menunya ke atas kursor
+  if ((e.clientY + menuHeight) > windowHeight) {
+    posY = posY - menuHeight;
+  }
+  
+  mainMenu.style.left = posX + 'px';
+  mainMenu.style.top = posY + 'px';
+});
+
+// Sembunyikan menu kalau klik di tempat lain
+document.addEventListener('click', function() {
+  mainMenu.style.display = 'none';
+});
+
+// 2. FIX FUNGSI COPY (Pake Clipboard API Modern)
+function copyText() {
+  // Mengambil teks yang lagi di-select/di-blok oleh user
+  const selectedText = window.getSelection().toString();
+  
+  if (selectedText) {
+    navigator.clipboard.writeText(selectedText)
+      .then(() => alert('Teks berhasil dicopas!'))
+      .catch(() => alert('Gagal copas, coba lagi bro.'));
+  } else {
+    // Kalau user gak blok teks apa-apa, copy URL websitenya aja
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link website berhasil dicopas!');
+  }
+}
+
+// 3. FIX FUNGSI SHARE
+function shareWeb() {
+  if (navigator.share) {
+    // Fitur share bawaan HP / Mac (kalau support)
+    navigator.share({
+      title: 'Web 9abdillah',
+      url: window.location.href
+    }).catch(console.error);
+  } else {
+    // Alternatif kalau browser laptop gak support Web Share API
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link web udah dicopas ke clipboard, tinggal lo sebarin manual bro!');
+  }
+}
     </script>
 </body>
 </html>
