@@ -1,18 +1,18 @@
-# 👨‍💻 Profil Abdillah Indunisi
+# Profil Abdillah Indunisi
 > *"Github adalah tempat refreshingn"*
 
 ---
 
-### 👋 Siapakah Abdillah?
+### Siapakah Abdillah?
 Abdillah adalah manusia biasa yang masih makan nasi. Dia adalah seorang penggemar berat **Mini4wd & plastic models** (Tamiya enthusiast!). 
 
 Abdillah suka banget mempelajari hal-hal baru di hidupnya dan **mengeksplorasi dunia** lewat buku-buku anti-mainstream (buku-buku yang tidak termasuk atau bahkan jauh dari kata *bestseller*).
 
 ---
 
-### 📊 Mengenal Lebih Dekat
+### Mengenal Lebih Dekat
 
-| Subyek | Informasi | Keterangan |
+| Subjek | Informasi | Keterangan/Lampiran |
 | :--- | :--- | :--- |
 | **🖼️ Avatar** | Tersedia | `avatar.jpg` |
 | **📛 Nama** | Abdillah Indunisi | *Homo-Jakselens, Homo-Sapiens* |
