@@ -11,7 +11,7 @@ Abdillah suka banget mempelajari hal-hal baru di hidupnya dan **mengeksplorasi d
 
 | Subjek | Informasi | Keterangan/Lampiran |
 | :--- | :--- | :--- |
-| **🖼️ Avatar** | Tersedia | `avatar.jpg` |
+| **🖼️ Avatar** | Tersedia | <img src="avatar.jpg" width="130px"> |
 | **📛 Nama** | Abdillah Indunisi | *Homo-Jakselens, Homo-Sapiens* |
 | **🎯 Tujuan Hidup** | Bertujuan | "Mencari arti kehidupan" |
 | **🦸 Figur Teladan** | Roland Mendel | Asal Austria |
