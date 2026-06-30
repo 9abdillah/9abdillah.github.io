@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/*fon nya biar bagus*/
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Inter:wght@400;600;800&display=swap');
+
+
+/* 1. Pengaturan Dasar Artikel (Gunakan Font yang Elegan & Readable) */
+.artikel-pmo {
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    max-width: 680px; /* Ukuran ideal biar mata ga capek gerak kiri-kanan */
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.8; /* Kasih ruang udara antar baris teks */
+    color: #2c3e50; /* Warna teks gelap yang soft, bukan hitam pekat */
+    background-color: #fbfbfc; /* Background putih gading biar adem */
+}
+
+/* 2. Styling Judul-Judul Bagian (Bikin Tegas Tapi Estetik) */
+.artikel-pmo h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1a252f;
+    line-height: 1.3;
+    margin-bottom: 30px;
+}
+
+.artikel-pmo h3 {
+    font-size: 1.5rem;
+    color: #16a085; /* Warna hijau teal islami modern */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+/* 3. Analogi Box (Buat bagian "Emas 99 Gram" & "Peter di Pulau") */
+.box-analogi {
+    background-color: #f1f2f6;
+    border-left: 5px solid #ff9f43; /* Aksen oranye emas biar kontras */
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 4px;
+    font-style: italic;
+}
+
+/* 4. STYLING AYAT AL-QUR'AN (Ini Kuncinya, Bro!) */
+.box-ayat {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Shadow tipis premium */
+}
+
+/* Teks Arab harus gede dan elegan */
+.teks-arab {
+    font-family: 'Amiri', 'Traditional Arabic', Georgia, serif;
+    font-size: 1.8rem;
+    direction: rtl; /* Biar rata kanan otomatis karena teks Arab */
+    line-height: 2.5;
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+/* Transliterasi Latin (Miring dan Soft) */
+.transliterasi {
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+/* Terjemahan Kemenag */
+.terjemahan {
+    font-size: 1rem;
+    color: #475569;
+    border-left: 3px solid #1abc9c; /* Sesuai konsep turquoise kita kemarin */
+    padding-left: 15px;
+}
+
+/* 5. Dekorasi Teks & Poin-poin */
+.highlight-tegas {
+    background-color: #ffeaa7; /* Stabilo kuning soft */
+    padding: 2px 6px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.kesimpulan-footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 2px dashed #bdc3c7;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+
+/*animasi*/
+/* Efek transisi halus untuk Box Ayat */
+.box-ayat {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pas di-hover (disorot), box agak ngangkat dikit kayak kartu premium */
+.box-ayat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+    border-color: #1abc9c; /* Border berubah jadi turquoise */
+}
+
+
+
+/*rezponziv*/
+@media (max-width: 600px) {
+    .artikel-pmo {
+        padding: 20px 15px; /* Kurangi padding biar space teks lebih luas */
+    }
+    .artikel-pmo h1 {
+        font-size: 1.8rem; /* Judul gak kegedean di HP */
+    }
+    .teks-arab {
+        font-size: 1.5rem; /* Teks Arab pas di layar HP */
+        line-height: 2.2;
+    }
+}
+
+
+
+
+/* Container bar-nya */
+.progress-container {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 10px;
+    background: #f1f2f6;
+}
+
+/* Bar penunjuk yang bakal jalan (Warna Turquoise andalan kita) */
+.progress-bar {
+    height: 10px;
+    background: #04AA6D;
+    /*#1abc9c*/
+    width: 0%; /* Nanti digerakin pake JavaScript tipis-tipis
+    */
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/* Huruf pertama di paragraf pertama setelah judul akan otomatis gede */
+.artikel-pmo > p:first-of-type::first-letter {
+    font-size: 3.5rem;
+    font-weight: 100;
+    float: left;
+    color: tomato;
+    line-height: 0.9;
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+
+
+/* Pembatas antar bab */
+.divider-space {
+    text-align: center;
+    margin: 60px 0;
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+    color: #bdc3c7;
+}
+
+
+
+/* ========================================================
+   PERBAIKAN CSS LIST ANGKA (BIAR GA KEGENCET DAN LEGA)
+   ======================================================== */
+
+.artikel-pmo ol {
+    list-style: none; /* Hapus angka bawaan browser */
+    counter-reset: pmo-counter;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.artikel-pmo ol li {
+    counter-increment: pmo-counter;
+    position: relative;
+    /* Ditambahin padding-left biar teks utamanya geser ke kanan, ga nabrak badge */
+    padding-left: 50px; 
+    margin-bottom: 40px; /* Kasih jarak antar poin biar ga numpuk */
+}
+
+/* Lingkaran angka custom */
+.artikel-pmo ol li::before {
+    content: counter(pmo-counter);
+    position: absolute;
+    left: 0;
+    top: 0px; /* Sejajarin sama baris pertama teks */
+    width: 32px;
+    height: 32px;
+    background-color: #e8f8f5;
+    color: #16a085;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 0.95rem;
+}
+
+/* Khusus Box Ayat yang ada DI DALAM list (li), biar dapet space ekstra */
+.artikel-pmo ol li .box-ayat {
+    margin-left: -50px; /* Narik box ayat ke kiri lagi biar simetris sama lebar artikel utama */
+    margin-top: 20px;
+    clear: both; /* Biar ga kegencet sama posisi badge di atasnya */
+}
+
+
+/* Base Kotak Melayang (Retro Clean Style) */
+  .floating-card {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: rgb(00,00,00,0.8); /* Warna dasar pas 0% */
+    color: white;
+    padding: 16px 22px;
+    border-radius: 8px;
+    box-shadow: 6px 6px 0px #111111;
+    border: 3px solid #111111;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 9999;
+    text-align: center;
+    max-width: 260px;
+    overflow: hidden; /* Biar background hijau gak luber keluar kotak */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  }
+
+  /* Layer Konten Teks (Wajib di atas background progress) */
+  .content-layer {
+    position: relative;
+    z-index: 2; /* Di atas progress-layer */
+  }
+
+  /* Efek Bayangan Teks biar Gak Bentrok pas ketutup Hijau */
+  #scroll-text {
+    margin: 0;
+    /* Kasih text-shadow tipis biar teks item tetep super kontras di bg putih maupun hijau */
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8); 
+    transition: color 0.3s ease;
+  }
+
+
+  /* LAYER BACKGROUND HIJAU YANG MERAYAP */
+  .progress-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%; /* Diatur dinamis lewat JS */
+    background-color: dodgerblue; /* Warna bawaan */
+    z-index: 1; /* Di bawah teks */
+    transition: width 0.1s linear; /* Biar jalannya smooth ngikutin scroll */
+  }
+
+  /* KETIKA UDAH MENTOK 100% (Full Finish State) */
+  .floating-card.finished {
+    transform: translate(-2px, -2px) scale(1.02);
+    box-shadow: 6px 6px 0px black; /* Shadow menyesuaikan forestgreen tua */
+    border-color: black;
+  }
+
+  /* Otomatis ubah semua teks jadi putih pas udah 100% biar mewah */
+  .floating-card.finished #scroll-text,
+  .floating-card.finished .arabic-text {
+    color: white;
+    text-shadow: 6px 1px 2px rgba(0, 0, 0, 0);
+  }
+  
+  
+
+</style>
+</head>
+<body>
+
+
+<!-- Kotak Melayang dengan Progress Background -->
+<div id="scroll-card" class="floating-card">
+  <!-- Ini layer background hijau yang bakal melebar -->
+  <div id="progress-bg" class="progress-layer"></div>
+  
+  <!-- Ini layer konten teks agar selalu di atas background -->
+  <div class="content-layer">
+    <p id="scroll-text">Bismillah, Let's go<span id="scroll-pct">!</span></p>
+  </div>
+</div>
+
+
+<!-- 1. PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <!-- WRAPPER UTAMA ARTIKEL -->
+    <div class="artikel-pmo">
+
+        <!-- JUDUL UTAMA -->
+        <h1>Menukar Emas 99 Gram Demi 1 Gram?</h1>
+        <h4 style="margin-top: -38px; color: darkgreen;">Sebuah Ilusi Menipu</h4>
+        <!-- PARAGRAF PERTAMA (Otomatis kena efek "Drop Cap" huruf pertama gede) -->
+        <p>Sakit ya rasanya? Kita ga boleh berzina, ga boleh khamr, ga boleh banyak hal yg kadang terlihat menggoda.. Sakit kan? Bro, lu baru aja <b>melihat ilusi.</b> Kok ilusi? Ya, gw sebut ilusi karena <b>justru merekalah yg rugi.</b></p>
+        
+        <h3 style="margin-top: -5px;">Loh kok begitu?</h3>
+        
+        <p>Jadi, kita belum selesai, bro. Allah menciptakan kita untuk nantinya menempatkan di tempat-tempat masing-masing. Dahulu, disaaat lu, gw, dan bahkan bumi ini belum lahir, Allah sudah menciptakan surga dan neraka.</p>
+        
+        <p>Nah, untuk menguji kelayakan, menentukan <b>siapa yg berhak masuk neraka atau surga, Allah buat dunia.</b> Di dunia ini, cuma ada 1 dari 100 kenikmatan yg Allah turunkan. <span class="highlight-tegas">(cuma secuil)</span></p>
+        
+        <p>[Harta, tahta, wanita, anak dan semua yang ada di dunia] itu cuma 1 dari 100 kenikmatan yang ada.</p>
+        
+<p>Maka, orang-orang yg mau mengambil yg 1 dari 100 <i>yang cuma secuil</i> ini tanpa aturan, <b>mereka rugi.</b> Tapi orang yg mau menjalani dengan regulasi dunia yg di buat Allah, <b>mereka beruntung.</b> Kok beruntung? Kalau lu bilang gw kebalik... ok...</p>
+
+        <!-- 2. BOX ANALOGI EMAS -->
+        <div class="box-analogi">
+            Apakah orang yang mengorbankan 99 gram emas demi 1 gram emas hanya dengan alasan “belum pernah mersasakannya sama sekali” itu beruntung?
+        </div>
+
+Nooo! Itu investasi bodoh!
+
+        <p>Bro, biar hati lu lebih tenang dan kuat menahan syahwat itu, mari kita lihat ini. <br><span class="highlight-tegas">Demi Allah, ini pasti akan terjadi!</span></p>
+
+
+        <!-- RUANG JEDA / DIVIDER -->
+        <div class="divider-space">***</div>
+
+
+        <!-- SUB-BAB 1 -->
+        <h3>Apa yang terjadi di hari kiamat?</h3>
+        
+        <!-- LIST ANGKA CUSTOM (Trik nomor 4, otomatis jadi badge lingkaran) -->
+        <ol>
+            <li>
+                <b>Pada hari kiamat, keadaan berbalik.</b> <br>Orang-orang yang beriman gantian menertawakan orang kafir dan pelaku maksiat karena melihat siksaan yang mereka terima, setelah dulu di dunia merekalah yang selalu dihina, dianggap sok suci, dan ditertawakan.
+                <!-- BOX AYAT DI DALAM POIN -->
+                <div class="box-ayat">
+                    <div class="teks-arab">فَالْيَوْمَ الَّذِينَ آمَنُوا مِنَ الْكُفَّارِ يَضْحَكُونَ</div>
+                    <div class="transliterasi">Falyawmal-ladziina aamanuu minal-kuffaari yadh-hakuun.</div>
+                    <div class="terjemahan">"Maka pada hari ini, orang-orang yang beriman menertawakan orang-orang kafir." (QS. Al-Muthaffifin: 34)</div>
+                </div>
+            </li>
+            <li><b>Duduk Santai di Dipan Surga</b><br>
+                Orang-orang mukmin tersebut duduk santai di atas dipan-dipan surga yang megah, sambil melepas pandangan melihat segala kenikmatan yang Allah berikan kepada mereka, sekaligus melihat kehinaan para musuh Allah yang dulu sombong dengan maksiatnya.
+                <div class="box-ayat">
+                    <div class="teks-arab">عَلَى الْأَرَائِكِ يَنْظُرُونَ</div>
+                    <div class="transliterasi">‘Alal-araa-iki yanzhuruun.</div>
+                    <div class="terjemahan">"Mereka (duduk) di atas dipan-dipan melepas pandangan." (QS. Al-Muthaffifin: 35)</div>
+                </div>
+            </li>
+        </ol>
+
+
+        <!-- RUANG JEDA / DIVIDER -->
+        <div class="divider-space">***</div>
+
+
+        <!-- SUB-BAB 2 -->
+        <h3>Apa yang terjadi di Neraka?</h3>
+        
+        <ol>
+            <li><b>Dialog yang Memilukan</b> <br>
+                Penghuni neraka yang sangat kehausan dan kelaparan berteriak meminta air atau sedikit makanan kepada penghuni surga. Namun, penghuni surga menjawab bahwa Allah telah mengharamkan segala kenikmatan surga bagi orang-orang kafir.
+                <div class="box-ayat">
+                    <div class="teks-arab">وَنَادَىٰ أَصْحَابُ النَّارِ أَصْحَابَ الْجَنَّةِ أَنْ أَفِيضُوا عَلَيْنَا مِنَ الْمَاءِ أَوْ مِمَّا رَزَقَكُمُ اللَّهُ ۚ قَالُوا إِنَّ اللَّهَ حَرَّمَهُمَا عَلَى الْكَافِرِينَ</div>
+                    <div class="transliterasi">Wanaadaa ash-haabun-naari ash-haabal-jannati an afiidhuu ‘alaynaa minal-maai aw mimmaa razaqakumullaah, qaaluu innallaaha harramahumaa ‘alal-kaafiriin.</div>
+                    <div class="terjemahan">"Para penghuni neraka menyeru para penghuni surga, 'Kucurkanlah kepada kami sedikit air atau rezeki yang telah Allah anugerahkan kepadamu.' Mereka (penghuni surga) menjawab, 'Sungguh, Allah telah mengharamkan keduanya bagi orang-orang kafir.'" (QS. Al-A'raf: 50)</div>
+                </div>
+            </li>
+            <li><b>Siksaan Mental yang Luar Biasa</b><br>
+                Orang-orang yang durhaka dan tidak taat kepada Allah bukan hanya sedih karena tersiksa fisiknya, tapi juga <span class="highlight-tegas">hancur mentalnya</span> karena <b>kehilangan kesempatan</b> untuk mendapatkan nikmat surga. Mereka melihat dari kejauhan para penghuni surga makan-makan, minum-minum, <span class="highlight-tegas">bersenang-senang dengan istri-istri mereka.</span> Siksaan mental yang luar biasa, bukan?
+            </li>
+            <li> <b>Sindiran dari Allah</b><br>
+                Apakah orang-orang kafir itu sudah diberi balasan yang setimpal atas ejekan dan perbuatan buruk yang mereka lakukan dulu di dunia?
+            </li>
+            <li>
+                <b>Jawabannya:</b> Tentu saja, mereka dibalas dengan siksaan yang adil.
+                <div class="box-ayat">
+                    <div class="teks-arab">هَلْ ثُوِّبَ الْكُفَّارُ مَا كَانُوا يَفْعَلُونَ</div>
+                    <div class="transliterasi">Hal tsuwwibal-kuffaaru maa kaanuu yaf’aluun.</div>
+                    <div class="terjemahan">"Apakah orang-orang kafir itu diberi balasan (hukuman) atas apa yang dulu selalu mereka kerjakan?" (QS. Al-Muthaffifin: 36)</div>
+                </div>
+            </li>
+            <li>
+                <b>Penjelasan kenapa mereka disiksa:</b> <br>Karena dulu di dunia mereka meremehkan agama, menjadikannya bahan mainan, dan <b>tertipu oleh kemewahan dunia (daintaranya mencuri, berzina, khamr, PMO).</b> Maka pada hari kiamat, <b>Allah "melupakan"</b> (membiarkan) mereka di dalam azab, sebagaimana mereka melupakan hari pertemuan ini.
+                <div class="box-ayat">
+                    <div class="teks-arab">الَّذِينَ اتَّخَذُوا دِينَهُمْ لَهْوًا وَلَعِبًا وَغَرَّتْهُمُ الْحَيَاةُ الدُّنْيَا ۚ فَالْيَوْمَ نَنْسَاهُمْ كَمَا نَسُوا لِقَاءَ يَوْمِهِمْ هَٰذَا وَمَا كَانُوا بِآيَاتِنَا يَجْحَدُونَ</div>
+                    <div class="transliterasi">Alladziinat-takhadzuu diinahum lahwan wala’iban wa gharrat-humul-hayaatud-dun-yaa...</div>
+                    <div class="terjemahan">"(Yaitu) orang-orang yang menjadikan agamanya sebagai permainan dan sendau gurau..." (QS. Al-A'raf: 51)</div>
+                </div>
+            </li>
+        </ol>
+
+
+
+        <!-- RUANG JEDA / DIVIDER -->
+        <div class="divider-space">***</div>
+
+
+
+
+        <!-- SUB-BAB 3 -->
+        <h3>Apa yang terjadi di Sisi Lain?</h3>
+        
+        <ol>
+            <li><b>Balasan untuk Orang Bertakwa </b> <br>
+                Sebagai balasan bagi orang bertakwa yang mau menahan syahwatnya di dunia, Allah berikan kemuliaan di surga <b>dan menikahkan mereka dengan bidadari-bidadari</b> (Huurun 'Iin) yang berkulit bersih dan bermata indah menawan.
+                <div class="box-ayat">
+                    <div class="teks-arab">dsdsd</div>
+                    <div class="transliterasi">Kadzalika wa zawwajnaahum bihuurin ‘iin</div>
+                    <div class="terjemahan">"Demikianlah (balasan bagi orang bertakwa). Dan Kami nikahkan mereka dengan bidadari-bidadari yang bermata indah." (QS. Ad-Dukhan: 54)</div>
+                </div>
+            </li>
+            <li><b>Siksaan Mental yang Luar Biasa</b><br>
+                Orang-orang yang durhaka dan tidak taat kepada Allah bukan hanya sedih karena tersiksa fisiknya, tapi juga <span class="highlight-tegas">hancur mentalnya</span> karena <b>kehilangan kesempatan</b> untuk mendapatkan nikmat surga. Mereka melihat dari kejauhan para penghuni surga makan-makan, minum-minum, <span class="highlight-tegas">bersenang-senang dengan istri-istri mereka.</span> Siksaan mental yang luar biasa, bukan?
+            </li>
+            <li> <b>Sindiran dari Allah</b><br>
+                Apakah orang-orang kafir itu sudah diberi balasan yang setimpal atas ejekan dan perbuatan buruk yang mereka lakukan dulu di dunia?
+            </li>
+            <li>
+                <b>Jawabannya:</b> Tentu saja, mereka dibalas dengan siksaan yang adil.
+                <div class="box-ayat">
+                    <div class="teks-arab">هَلْ ثُوِّبَ الْكُفَّارُ مَا كَانُوا يَفْعَلُونَ</div>
+                    <div class="transliterasi">Hal tsuwwibal-kuffaaru maa kaanuu yaf’aluun.</div>
+                    <div class="terjemahan">"Apakah orang-orang kafir itu diberi balasan (hukuman) atas apa yang dulu selalu mereka kerjakan?" (QS. Al-Muthaffifin: 36)</div>
+                </div>
+            </li>
+            <li>
+                <b>Penjelasan kenapa mereka disiksa:</b> <br>Karena dulu di dunia mereka meremehkan agama, menjadikannya bahan mainan, dan <b>tertipu oleh kemewahan dunia (daintaranya mencuri, berzina, khamr, PMO).</b> Maka pada hari kiamat, <b>Allah "melupakan"</b> (membiarkan) mereka di dalam azab, sebagaimana mereka melupakan hari pertemuan ini.
+                <div class="box-ayat">
+                    <div class="teks-arab">الَّذِينَ اتَّخَذُوا دِينَهُمْ لَهْوًا وَلَعِبًا وَغَرَّتْهُمُ الْحَيَاةُ الدُّنْيَا ۚ فَالْيَوْمَ نَنْسَاهُمْ كَمَا نَسُوا لِقَاءَ يَوْمِهِمْ هَٰذَا وَمَا كَانُوا بِآيَاتِنَا يَجْحَدُونَ</div>
+                    <div class="transliterasi">Alladziinat-takhadzuu diinahum lahwan wala’iban wa gharrat-humul-hayaatud-dun-yaa...</div>
+                    <div class="terjemahan">"(Yaitu) orang-orang yang menjadikan agamanya sebagai permainan dan sendau gurau..." (QS. Al-A'raf: 51)</div>
+                </div>
+            </li>
+        </ol>
+        
+        
+        <!-- Dan seterusnya untuk sub-bab berikutnya, polanya sama tinggal copy-paste struktur <ol> atau <div class="box-ayat"> nya ya, bro! -->
+
+        <!-- BAGIAN AKHIR ARTIKEL (KHATIMAH) -->
+        <div class="kesimpulan-footer">
+            <p>Pilihan ada di tanganmu. Menjaga kesetiaan sama hadiah Allah di garis finish...</p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT BUAT PROGRESS BAR -->
+    <script>
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+    };
+    
+window.addEventListener('scroll', () => {
+    const scrollCard = document.getElementById('scroll-card');
+    const scrollText = document.getElementById('scroll-text');
+    const progressBg = document.getElementById('progress-bg');
+
+    // Hitung persentase scroll
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const currentScroll = window.scrollY;
+    let percentage = totalHeight > 0 ? Math.round((currentScroll / totalHeight) * 100) : 0;
+    
+    if (percentage > 100) percentage = 100;
+
+    // Cek apakah mentok bawah
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5;
+
+    // 1. Jalankan progress barnya melebar ke kanan
+    progressBg.style.width = `${percentage}%`;
+
+    // 2. Logika teks dan warna finish
+    if (isAtBottom || percentage === 100) {
+      scrollCard.classList.add('finished');
+      scrollText.innerHTML = 'Yeayy.. Congrats bro! 🎉';
+    } else {
+      scrollCard.classList.remove('finished');
+      scrollText.innerHTML = `Lu udah <span id="scroll-pct">${percentage}</span>% cuy!`;
+    }
+  });
+    </script>
+</body>
+</html>
