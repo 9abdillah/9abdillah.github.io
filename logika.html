@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+/* ========================================================
+   THEME: COLORFUL SWISS MINIMALISM (LIGHT MODE PREMIUM)
+   Karakter: Kotak Tegas, No Shadow, Tipografi Kuat, Bold Colors
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+/* 1. Pengaturan Dasar - Bersih & Rapi ala Swiss */
+.artikel-pmo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    line-height: 1.85;
+    color: #1a1a1a; /* Hitam solid universal */
+    background-color: #ffffff; /* Putih bersih */
+}
+
+/* 2. Judul Utama & Sub-Judul (Tegas, Rata Kiri Kuat) */
+.artikel-pmo h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+/* Sub-judul dengan blok warna solid biru cerah */
+h4[style*="color: darkgreen;"] {
+    display: inline-block;
+    color: #ffffff !important;
+    background-color: #0066ff; /* Biru Royal Swiss */
+    padding: 4px 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px !important;
+    margin-bottom: 40px;
+}
+
+/* Judul Bab (H3) dengan garis bawah tebal berwarna merah pop */
+.artikel-pmo h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #ff3333; /* Merah Solid */
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* 3. Analogi Box (Blok Kuning Solid Tanpa Shadow) */
+.box-analogi {
+    background-color: #ffe600; /* Kuning Stabilo Solid */
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 20px 25px;
+    margin: 35px 0;
+    border-radius: 0px; /* Sudut tajam khas Swiss */
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* 4. STRUKTUR BOX AYAT (Blok Warna Kontras & Rapi) */
+.box-ayat {
+    background: #f8fafc; /* Latar abu-abu terang netral */
+    border: 2px solid #1a1a1a; /* Border hitam tegas */
+    border-radius: 0px; /* Tajam/Grid System */
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: none; /* Hapus shadow gradasi jadul */
+    transition: background-color 0.2s ease;
+}
+
+/* Efek interaktif minimalis */
+.box-ayat:hover {
+    background-color: #f1f5f9;
+    border-color: #0066ff; /* Berubah jadi biru royal saat disorot */
+}
+
+/* Teks Arab Jelas & Longgar */
+.teks-arab {
+    font-family: 'Amiri', serif;
+    font-size: 1.9rem;
+    direction: rtl;
+    line-height: 2.3;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+/* Transliterasi */
+.transliterasi {
+    font-style: italic;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+/* Terjemahan dengan blok warna ungu muda solid di kirinya */
+.terjemahan {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    border-left: 6px solid #7000ff; /* Ungu Pop */
+    padding-left: 15px;
+    font-weight: 500;
+}
+
+/* 5. List Angka Model Badge Kotak Solid (Anti-Gencet) */
+.artikel-pmo ol {
+    list-style: none;
+    counter-reset: pmo-counter;
+    padding-left: 0;
+}
+
+.artikel-pmo ol li {
+    counter-increment: pmo-counter;
+    position: relative;
+    padding-left: 55px; /* Kasih ruang pas buat badge kotak */
+    margin-bottom: 45px;
+}
+
+/* Badge Nomor Kotak Solid ala Swiss Layout */
+.artikel-pmo ol li::before {
+    content: counter(pmo-counter);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 32px;
+    height: 32px;
+    background-color: #1a1a1a; /* Hitam pekat */
+    color: #ffffff; /* Angka putih */
+    font-weight: 800;
+    border-radius: 0px; /* Kotak kaku modern */
+    text-align: center;
+    line-height: 32px;
+    font-size: 0.95rem;
+}
+
+/* Perbaikan posisi box ayat di dalam list */
+.artikel-pmo ol li .box-ayat {
+    margin-left: -55px;
+    margin-top: 20px;
+}
+
+/* 6. Dropcap (Huruf Pertama Gede & Bold Hijau Cerah) */
+.artikel-pmo > p:first-of-type::first-letter {
+    font-size: 4rem;
+    font-weight: 800;
+    float: left;
+    color: #00cc66; /* Hijau Stabilo/Cerah */
+    line-height: 0.8;
+    margin-right: 12px;
+    margin-top: 5px;
+}
+
+/* 7. PROGRESS BAR ATAS (Laser Merah Solid) */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #ff3333; /* Merah menyala, penanda progres yang jelas */
+    width: 0%;
+}
+
+/* 8. FLOATING CARD POJOK BAWAH (Kotak Border Tebal / Neo-Swiss) */
+.floating-card {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    padding: 14px 22px;
+    border-radius: 0px; /* Kotak kaku */
+    box-shadow: none;
+    border: 3px solid #1a1a1a; /* Garis tepi tebal */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    z-index: 9999;
+    text-align: center;
+    max-width: 260px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Efek warna merayap di background kartu bawah */
+.progress-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    background-color: rgba(0, 102, 255, 0.15); /* Biru transparan mengalir */
+    z-index: 1;
+    transition: width 0.1s linear;
+}
+
+/* Pas 100% Selesai (Langsung Berubah Jadi Blok Biru Solid) */
+.floating-card.finished {
+    background-color: #0066ff;
+    border-color: #1a1a1a;
+}
+
+.floating-card.finished #scroll-text {
+    color: #ffffff;
+}
+
+/* 9. TOMBOL UTAMA (Bold Block Button) */
+.btn-elegan {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #1a1a1a; /* Tombol hitam solid */
+    padding: 14px 30px;
+    border: 2px solid #1a1a1a;
+    border-radius: 0px; /* Kotak */
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-elegan:hover {
+    background-color: #0066ff; /* Berubah jadi biru pas disentuh kursor */
+    border-color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+/* Warna-warni Highlight Pengunci Mata */
+.highlight-tegas { background-color: #ffe600; color: #1a1a1a; padding: 2px 6px; font-weight: bold; }
+.highlight-ijo { background-color: #00cc66; color: white; padding: 2px 6px; font-weight: bold; }
+.highlight-merah { background-color: #ff3333; color: white; padding: 2px 6px; font-weight: bold; }
+.highlight-marah { background-color: #1a1a1a; color: white; padding: 2px 6px; font-weight: bold; }
+.highlight-biru { background-color: #0066ff; color: white; padding: 2px 6px; font-weight: bold; }
+
+/* Pembatas Bab (***) */
+.divider-space {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 1.3rem;
+    letter-spacing: 12px;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+/* Footer / Akhiran */
+.kesimpulan-footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border: 2px solid #1a1a1a;
+    text-align: center;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+        /* Analogi Box - Didesain ulang agar elegan & berwibawa */
+        .box-analogis {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ff9f43;
+            padding: 22px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .box-analogis strong {
+            color: #ff9f43;
+            font-size: 11.5pt;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .quote-block {
+            font-style: italic;
+            color: #4a5568;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border: 1px solid #e2e8f0;
+        }
+       
+       
+       
+/*tambahan*/
+
+        .box-analogisis {
+            background-color: #f8f9fa;
+            border-left: 4px solid dodgerblue;
+            padding: 22px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .box-analogisis strong {
+            color: #ff9f43;
+            font-size: 11.5pt;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        
+        /* Highlight & Teks Penting */
+        .punch-line {
+            font-weight: 700;
+            color: #e53e3e;
+            background-color: #fff5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        
+        
+
+
+
+
+
+
+
+
+        /* Waktu / Kalkulasi Section */
+        .waktu-section {
+          /* background: linear-gradient(135deg, #16a085, #1abc9c);*/
+            color: black;
+            padding: 30px;
+            border-radius: 1px;
+            margin: 40px 0;
+            box-shadow: 0 10px 20px rgba(22, 160, 133, 0.99);
+            page-break-inside: avoid;
+        }
+
+.waktu-section h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #ff3333; /* Merah Solid */
+    padding-bottom: 5px;
+    display: inline-block;
+}
+        
+        
+
+        .badge-inline {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 9.5pt;
+        }
+
+        /* Action Button */
+        .action-area {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-premium {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 10pt;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: forestgreen;
+            padding: 14px 32px;
+            border: 2px solid forestgreen;
+            border-radius: 8px;
+            background-color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        /* Footer / Khatimah */
+        .khatimah-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 35px;
+            margin-top: 50px;
+            border-top: 4px solid #16a085;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            page-break-inside: avoid;
+        }
+
+        .khatimah-title {
+            font-size: 13pt;
+            font-weight: 800;
+            color: #1a252f;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .finish-banner {
+            background-color: #f0fff4;
+            border: 1px solid #c6f6d5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            color: #22543d;
+            margin-top: 25px;
+        }
+        
+        
+        
+        
+        
+</style>
+</head>
+<body>
+
+
+<!-- Kotak Melayang dengan Progress Background -->
+<div id="scroll-card" class="floating-card">
+  <!-- Ini layer background hijau yang bakal melebar -->
+  <div id="progress-bg" class="progress-layer"></div>
+  
+  <!-- Ini layer konten teks agar selalu di atas background -->
+  <div class="content-layer">
+    <p id="scroll-text">Bismillah, Let's go<span id="scroll-pct">!</span></p>
+  </div>
+</div>
+
+
+<!-- 1. PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <!-- WRAPPER UTAMA ARTIKEL -->
+    <div class="artikel-pmo">
+
+        <!-- JUDUL UTAMA -->
+        <h1>Haruskah kita beriman dengan ayat-ayat tersebut?</h1>
+        <h4 style="margin-top: -38px; color: darkgreen;">Harus.</h4>
+        <ds style="color: white;">....</ds>No debat.
+        <!-- PARAGRAF PERTAMA (Otomatis kena efek "Drop Cap" huruf pertama gede) -->
+        <p>Kenapa sih kita harus percaya? Mari kita bedah bareng-bareng secara logis dan pakai akal sehat.</p>
+        
+        <h3 style="margin-top: -5px;">Allah itu beneran ada.</h3>
+        <ol>
+        <li>
+        <p>Buktinya apa? <b>Banyak banget, cuy!</b><br>Lihatlah tubuh manusia. Paru-parunya, organnya, semua manusia di dunia strukturnya sama. Menurut gw ini ajaib dan berpola.</p> 
+        </li>
+        <p>Kenapa semuanya sama? Bisa aja kan bentuk dalem manusia itu beda-beda tiap orang kayak cetakan abstrak?</p>
+        
+        <p>Kenapa manusia selalu berasal dari air mani? Kenapa jantung selalu di kiri dan paru-paru kanan lebih besar? Kenapa gender dari dulu cuma 2 (Laki-laki & Perempuan)? Kenapa nggak 18 aja sekalian?</p>
+        
+        <p>Semua keteraturan ini menjadi bukti kuat bahwa <strong>"PELAKU"</strong> dari desain super duper rapi ini beneran ada, <span style="font-weight:700;">TAPI KITA GAK BISA LIHAT PELAKUNYA.</span></p>
+        
+        
+
+<!-- Box Analogi Si Peter -->
+<div class="box-analogis">
+<strong>Analogi Logika Terbalik:</strong>
+Guys, bodoh nggak sih, kalau si Peter terdampar di sebuah pulau yang gak ada penghuninya, tapi di sana ada rumah yang bagus, taman yang indah, bahkan ada iPhone 17 Pro Max tergeletak di pesisir pantainya dengan baterai yang masih 50%.
+                    
+<div class="quote-block">
+"Rumah ini berdiri sendiri, bro. Air laut tertiup angin dan mendorong pasir-pasir ke tempat yang tepat, lalu pasir tersebut mengeras karena kering sehingga jadilah dinding yang kuat dan membentuk rumah. iPhone ini awalnya adalah ikan yang membusuk, lalu ada seekor gagak yang buang kotoran di atasnya, dan setelah proses kimia alam selama 5 tahun, akhirnya terbentuklah prosesor dan komponen lainnya. Lalu tiba-tiba ada petir yang menyambar secara intens, makanya baterainya jadi 50%."
+</div>
+</div>
+
+<p>Menurut kamu, apakah Peter itu pintar? Kalau kata gw, <span class="punch-line">dia bodoh bgt, cuy.</span> Gw bakal debat si Peter, <em>"Rumah dan HP ini ada pembuatnya, dan mungkin mereka lagi berlayar beberapa menit yang lalu!"</em></p>
+
+<p>Sama seperti ateis. Mereka bilang segalanya dari evolusi kebetulan, dan dengan sendirinya 'ketiadaan' menciptakan 'keadaan'. Lalu kamu bilang narasi mereka itu bener? Terserah pilihan lu.</p>
+
+
+
+<br>
+
+<li>
+<b>Lihatlah Al-Qur'an</b> 
+<br>Baca Al-Qur'an itu pakai tafsirnya, broo. Lu akan menemukan struktur kata yang indah dan presisi banget.
+                
+<br><br>Diantaranya contohnya:
+<!-- BOX AYAT DI DALAM POIN -->
+<div class="box-ayat">
+<div class="teks-arab">إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ</div>
+<div class="transliterasi">Inna kulla syai'in khalaqnahu biqadar.</div>
+<div class="terjemahan">"Sesungguhnya Kami menciptakan segala sesuatu menurut ukuran." (QS. Al-Qamar: 49)</div>
+</div>
+
+</li>
+<p>2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</p>
+<p>Untuk membuat air (H<sub>2</sub>O), lu butuh 2 atom hidrogen dan 1 atom oksigen untuk setiap satu molekul air.</p>
+<b>SIAPA YANG MENCIPTAKAN HUKUM INI?</b>
+<br><br>           
+            
+<li><b>Kebenaran Nubuwah yang Terbukti</b><br>
+Al-Qur'an dan lisan Rasulullah sudah memprediksi masa depan yang sekarang benar-benar kita rasakan. Mulai dari teknologi, manusia yang berlomba meninggikan bangunan, hingga fenomena tersebarnya perzinaan, musik dan pornografi di akhir zaman.</li>
+
+Bagaimana mungkin seorang buta huruf di tengah padang pasir 1400 tahun lalu bisa tahu detail psikologi manusia modern zaman sekarang kalau bukan diberi tahu oleh Pencipta manusia itu sendiri?
+<div class="box-analogisis">
+<div class="teks-arab">لَيَكُونَنَّ مِنْ أُمَّتِي أَقْوَامٌ يَسْتَحِلُّونَ الْحِرَ وَالْحَرِيرَ وَالْخَمْرَ وَالْمَعَازِفَ</div>
+<div class="transliterasi">Layakuunanna min ummatii aqwaamun yastahilluunal-hira wal-hariira wal-khamra wal-ma'aazif.</div>
+<div class="quote-block">"Sungguh, akan ada di antara umatku beberapa kaum yang menghalalkan zina, sutra (untuk laki-laki), khamr (minuman keras), dan alat-alat musik."</div>
+<br>Status Riwayat: <b>SHAHIH.</b><br>
+Hadis ini diriwayatkan oleh Imam Al-Bukhari dalam kitab Shahih-nya (No. 5590). Walaupun sebagian ulama menyebutnya mu'allaq (ada sanad yang terputus di awal), tetapi Imam Al-Bukhari menyambungkannya di tempat lain, dan diperkuat oleh jalur sanad shahih dari imam-imam hadis lainnya seperti Ibnu Hibban dan Al-Baihaqi. Jadi, no debat, ini shahih.
+</div>
+
+
+<br>
+<div class="box-analogisis">
+Dalam hadits lain,
+<br>
+<b>Sahabat bertanya kepada Nabi ﷺ :</b> "Apakah karena jumlah kami waktu itu sedikit (wahai Rasulullah)?"<br>
+Rasulullah ﷺ menjawab:<br><br>
+<div class="teks-arab">
+بَلْ أَنْتُمْ يَوْمَئِذٍ كَثِيرٌ، وَلَكِنَّكُمْ غُثَاءٌ كَغُثَاءِ السَّيْلِ
+</div>
+<div class="transliterasi">Bal antum yauma'idzin katsiir, wa lakinnakum ghutsaa'un kaghutsaa'is-sayl.</div>
+<div class="quote-block">"Bahkan jumlah kalian pada hari itu banyak sekali, tetapi kalian seperti buih di lautan (terombang-ambing tanpa arah)." <br>Allah akan mencabut rasa takut dari dada musuh-musuh kalian, dan Allah akan <b>menanamkan penyakit wahn</b> di dalam hati kalian."
+<br><br>Sahabat bertanya: "Apa itu <b>wahn</b>, wahai Rasulullah?"
+<br><br>Beliau menjawab: <b>"Cinta dunia dan takut mati."</b></div>
+<br>Status Riwayat: <b>SHAHIH.</b><br>
+Diriwayatkan oleh Imam Abu Dawud (No. 4297) dan Imam Ahmad. Hadis ini disahihkan oleh Syaikh Al-Albani dalam Shahih Abi Dawud. Isinya mutlak shahih dan menggambarkan psikologis umat modern yang gampang kena mental karena penyakit wahn tersebut.
+</div>
+</ol>
+
+Rasulullah 1400 tahun lalu udah 'spoiler' kalau akhir zaman nanti bakal banyak orang yang nyari pembenaran buat menghalalkan musik dan zina (PMO/Pornografi), <br>dan umat Islam bakal kehilangan mahkota karena kebanyakan cuma 'Islam KTP' yang cinta dunia (buih lautan).
+<br><br>
+<b>SPOILER YANG MENGERIKAN BUKAN?</b>
+
+
+
+<!-- RUANG JEDA / DIVIDER -->
+<div class="divider-space">***</div>
+
+
+
+        <!-- Section Hitungan Waktu -->
+        <h3>Waktu: Mata Uang Perniagaan Kita dengan Allah</h3>
+            <p>Mari kita berhitung,</p>
+            <p>Mayoritas manusia itu hidup antara 60-70 tahun saja. Dalam satu hari, waktu efektif kita untuk murni menghadap Allah lewat shalat lima waktu itu totalnya <strong>nggak sampai 3 jam, cuy.</strong></p>
+            
+        <div class="box-ayat">
+            <p>Kalau dikalikan sisa usia produktif kita setelah baligh, total waktu yang kita pakai buat beribadah murni itu sebenernya singkat banget.</p>
+            <p style="background: white; padding: 12px; border-radius: 0px; margin-top: 15px;">
+                Bayangin, waktu hidup kita yang "segini doang" di dunia, bakal menentukan nasib abadi kita selama-lamanya (miliaran tahun bahkan tak terhingga) di akhirat nanti. Jadi, pilihan ada di tanganmu.
+            </p>
+        </div>
+
+        <p>Mengalihkan syahwat yang meledak-ledak itu dengan <span class="badge-inline">Olahraga</span>, menyibukkan diri ke hobi, atau konsisten puasa Dawud, itu insyaAllah bernilai pahala besar di sisi-Nya, cuy...</p>
+        
+        <p>Itu bukan sekadar buang-buang energi, tapi <strong>MENJAGA KESETIAAN SAMA HADIAH ALLAH YANG BAKAL DIKASIH KE KAMU DI GARIS FINISH NANTI.</strong> Supaya hadiah bidadari dan kenikmatan surga lu nggak rusak dan gak hambar gara-gara maksiat murahan di dunia.</p>
+
+        <p style="margin-top: 25px;">Jadi, dengan mengalihkan pandangan dan tangan lu dari PMO:
+            <br>&bull; <strong>Fisik:</strong> Aman dan bugar!
+            <br>&bull; <strong>Emosional:</strong> Kalau lagi burnout atau kesepian, bisa baca landing page gw yang kemarin ya! Biar lu nggak sedih dan termotivasi lagi.
+        </p>
+
+<a href="vd.html" class="btn-elegan">Baca Artikel</a>
+<br>
+<taru style="font-size: 10pt; color: #666; line-height: 1.4 !important;">Tombol diatas bakal ngarahin lu ke artikel <opi style="color: forestgreen;">[Katalog Hadiah]</opi>, bro. Gas klik aja!</taru>
+
+        <!-- Khatimah -->
+        <div class="khatimah-card">
+            <h3>Closing</h3>
+            <p>Bro, setiap kali lu dapet trigger atau godaan buat membuka tab terlarang itu, ingatlah analogi emas tadi. Lu lagi megang tiket emas 99 gram berupa surga yang kekal, jangan sampai lu tukar demi 1 gram emas palsu berupa kesenangan 5 menit yang setelahnya cuma menyisakan rasa bersalah, lemas, depresi, dan dosa di hadapan Allah.</p>
+            
+            <p>Lu nggak sendirian di medan perang ini. Setiap kali lu berhasil menutup HP saat godaan itu datang, saat itu juga lu memenangkan satu pertempuran besar melawan setan.</p>
+            
+            <p style="font-style: italic; color: #4a5568;">Keep fighting, jaga pandangan, lari ke sajadah atau tempat olahraga kalau syahwat mulai naik.</p>
+            
+
+
+
+</div>
+            
+
+        <!-- BAGIAN AKHIR ARTIKEL (KHATIMAH) -->
+        <div class="kesimpulan-footer">
+            <p>Pilihan ada di tanganmu. Jagalah kesetiaan sama hadiah Allah yang lagi <br><span class="highlight-biru">nungguin kamu seorang</span> di garis finish...</p>
+        </div>
+
+
+
+
+<br><br>
+
+    <p style="line-height: 1.4; text-align: center; font-size: 13px;"> © 2026 Abdillah. <br> Repo Git Kesekian kalinya.. <br> Dibuat dengan 💙 <b>GRADE 10 EXCLUSIVE EDITION</b> <br> [2026 period, diketuai oleh <b>Zidan Ramadhan Bayu</b>] <br> Tolong doain gw biar sukses jg yak... <br>Lu pd jg insyaAllah gw doain. 🤲 💛💛</p>
+    
+<br><br><br>
+
+    </div>
+    
+<div>
+
+</div>
+
+
+    <!-- JAVASCRIPT BUAT PROGRESS BAR -->
+    <script>
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+    };
+    
+window.addEventListener('scroll', () => {
+    const scrollCard = document.getElementById('scroll-card');
+    const scrollText = document.getElementById('scroll-text');
+    const progressBg = document.getElementById('progress-bg');
+
+    // Hitung persentase scroll
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const currentScroll = window.scrollY;
+    let percentage = totalHeight > 0 ? Math.round((currentScroll / totalHeight) * 100) : 0;
+    
+    if (percentage > 100) percentage = 100;
+
+    // Cek apakah mentok bawah
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5;
+
+    // 1. Jalankan progress barnya melebar ke kanan
+    progressBg.style.width = `${percentage}%`;
+
+    // 2. Logika teks dan warna finish
+    if (isAtBottom || percentage === 100) {
+      scrollCard.classList.add('finished');
+      scrollText.innerHTML = 'Yeayy.. Congrats bro! 🎉';
+    } else {
+      scrollCard.classList.remove('finished');
+      scrollText.innerHTML = `Caharging your iman: <br><span id="scroll-pct">${percentage}</span>% bro!`;
+    }
+  });
+    </script>
+</body>
+</html>
