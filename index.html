@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdillah | Hub</title>
+    <!-- Google Fonts: Playfair Display untuk kesan klasik & Plus Jakarta Sans untuk keterbacaan -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+
+                        /* Palet Warna Klasik (Heritage Dark) */
+            --bg-base: #0B1915; /* Hijau malam sangat gelap */
+            --primary: #D4AF37; /* Emas jadi warna utama di dark mode */
+            --primary-light: #F3E5AB;
+            --accent-gold: #1b6b57;
+            --accent-gold-hover: #124E3F;
+            --text-main: #F4F7F5;
+            --text-muted: #9BB0A3;
+            --card-bg: #112520;
+            --border-color: #1F3A32;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] {
+            /* Palet Warna Klasik (Heritage Light) */
+            --bg-base: #fbf9f4; /* Warna kertas gading/ivory hangat */
+            --primary: #124E3F; /* Hijau Zamrud Tua */
+            --primary-light: #1b6b57;
+            --accent-gold: #D4AF37; /* Emas Klasik */
+            --accent-gold-hover: #AA7C11;
+            --text-main: #2C3E35; /* Teks hijau-gelap agar soft di mata */
+            --text-muted: #607266;
+            --card-bg: #ffffff;
+            --border-color: #E2DCD0;
+            --shadow: 0 10px 30px rgba(18, 78, 63, 0.06);
+            --radius: 12px; /* Melengkung natural, tidak berlebihan */
+            
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            /* Pola halus arabesque/klasik pada latar belakang */
+            background-image: radial-gradient(var(--border-color) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* Container Utama berbentuk Buku/Manuskrip */
+        .container {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Ornamen Sudut Klasik */
+        .container::before, .container::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-gold);
+            opacity: 0.6;
+        }
+        .container::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+        .container::after { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+
+        /* Control Panel */
+        .controls {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        .control-btn:hover, .control-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #ffffff !important;
+            transform: translateY(-2px);
+        }
+
+        /* Pembatas Narasi (Storytelling Divider) */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            color: var(--accent-gold);
+            gap: 10px;
+            opacity: 0.8;
+        }
+        .divider::before, .divider::after {
+            content: "";
+            height: 1px;
+            width: 50px;
+            background: var(--border-color);
+        }
+
+        /* Profile Area */
+        .profile h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .profile-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .vision-mission {
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            padding: 0 10px;
+        }
+
+        .vision-mission p {
+            margin-bottom: 15px;
+        }
+
+        .vision-mission strong {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Menu Links - Bergaya Antik & Premium */
+        .links-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .link-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.98rem;
+            border-radius: var(--radius);
+        }
+
+        /* Efek Hover Mengisi Warna dari Samping secara Klasik */
+        .link-item:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        /* Indikator Panah Kuno/Klasik */
+        .link-item::after {
+            content: "⟶";
+            font-family: serif;
+            font-size: 1.2rem;
+            opacity: 0.5;
+            transition: transform 0.3s;
+        }
+        .link-item:hover::after {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+
+        /* Badge Terinspirasi dari Cap Segel Lilin Tua */
+        .badge-new {
+            background: #BA4A00; /* Teracotta / Merah Bata Tua */
+            color: white !important;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .link-item:hover .badge-new {
+            background: var(--accent-gold);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" src="latar.mp4" loop></audio>
+
+    <div class="container">
+        <!-- Tombol Kontrol -->
+        <div class="controls">
+            <button id="theme-toggle" class="control-btn" title="Ganti Tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="music-toggle" class="control-btn" title="Musik On/Off">
+                <i class="fas fa-music"></i>
+            </button>
+        </div>
+
+        <!-- Profil & Narasi -->
+        <div class="profile">
+            <h1>Abdillah</h1>
+            <div class="profile-subtitle">Menjaga Sanad di Era Digital</div>
+            
+            <div class="divider">
+                <i class="fas fa-quran"></i>
+            </div>
+
+            <div class="vision-mission">
+                <p><strong>Visi Luhur</strong> Membumikan Al-Qur'an dengan Sanad yang Terjaga di Era Digital.</p>
+                <p><strong>Misi Mulia</strong> Memanfaatkan keajaiban teknologi untuk mempermudah umat dalam menghafal, mengkaji, dan memahami Al-Qur'an secara mutqin.</p>
+            </div>
+        </div>
+
+        <div class="divider">
+            <i class="fa-solid fa-feather-pointed"></i>
+        </div>
+
+        <!-- Menu Dokumen/Link -->
+        <div class="links-menu">
+            <a href="#" class="link-item">
+                <span>Katalog Surga <span class="badge-new">New</span></span>
+            </a>
+            <a href="#" class="link-item">
+                <span>Mindset Muslim <span class="badge-new">New</span></span>
+            </a>
+            <a href="#" class="link-item">
+                <span>Charger Iman <span class="badge-new">New</span></span>
+            </a>
+            <a href="#" class="link-item"><span>Tester Sebelum Mulai</span></a>
+            <a href="#" class="link-item"><span>Chatbot Pake If-Else</span></a>
+            <a href="#" class="link-item"><span>Slides Tentang Quran</span></a>
+            <a href="#" class="link-item"><span>Hasta Karya Project</span></a>
+            <a href="#" class="link-item"><span>Portofolio Digital</span></a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Abdillah. Seri Hub Klasik Digital.</p>
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const musicToggle = document.getElementById('music-toggle');
+        const bgMusic = document.getElementById('bg-music');
+        const body = document.body;
+
+        // Logika Dark/Light Mode
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Logika Music Background Toggle
+        musicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(error => {
+                    console.log("Audio play diblokir browser, butuh interaksi user pertama kali.");
+                });
+                musicToggle.classList.add('active');
+            } else {
+                bgMusic.pause();
+                musicToggle.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
