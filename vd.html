@@ -27,6 +27,7 @@
 		  --bg-highlight: #e8f0fe;  /* Biru muda pastel */
 		  --border:       #1a73e8;  /* Biru core/utama */
  		  --text:         #174ea6;  /* Biru navy gelap */
+          --btn-baru: forestgreen;
         }
 
         [data-theme="dark"] {
@@ -46,6 +47,7 @@
             --bg-highlight: #132746;  /* Biru navy sangat gelap (Deep Blue) */
   --border:       #3b82f6;  /* Biru terang / Neon soft */
   --text:         #dbeafe;  /* Biru es sangat muda (hampir putih) */
+  --btn-baru: #ffc000;
         }
 
         * {
@@ -428,6 +430,40 @@ markbiru {
 }
 
 
+  
+  .btn-elegan {
+  /* Biar tampilannya pas sebagai tombol */
+  display: inline-block;
+  text-decoration: none;
+  
+  /* Atur tulisan */
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px; /* Kasih jarak antar huruf biar estetik */
+  text-transform: uppercase; /* Bikin huruf kapital semua */
+  color: var(--btn-baru); /* Warna teks gelap yang elegan */
+  
+  /* Atur jarak dan border */
+  padding: 12px 28px; /* Atas-bawah 12px, kiri-kanan 28px */
+  border: 2px solid var(--btn-baru); /* Ini dia bordernya! */
+  border-radius: 10px; /* Sudut agak melengkung dikit biar smooth */
+  background-color: transparent; /* Background bolong/transparan */
+  
+  /* Efek animasi pas di-hover */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* EFEK PAS KURSOR DI ATAS TOMBOL */
+.btn-elegan:hover {
+  background-color: var(--btn-baru); /* Background berubah jadi penuh */
+  color: #000; /* Warna teks berubah jadi putih */
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2); /* Kasih bayangan tipis */
+  transform: translateY(-2px); /* Tombol agak ngangkat dikit */
+}
+
+
     </style>
 </head>
 <body>
@@ -675,6 +711,8 @@ Bete lu udah berkurangkan? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinte
         <button onclick="tutupKatalog()" style="background-color: #dc3545; color: white; border: none; padding: 14px 28px; font-size: 1rem; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 20px; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4); transition: transform 0.2s;">
             Tutup Katalog Hadiah
         </button>
+        <br><br><br>Kalau kamu belum tenang, ada hadiah spesial buat kamu;<br><br>
+        <a href="mindset-99.html" class="btn-elegan">Baca Artikel</a>
     </div>
     <br>
     <br>
