@@ -28,6 +28,7 @@
 		  --border:       #1a73e8;  /* Biru core/utama */
  		  --text:         #174ea6;  /* Biru navy gelap */
           --btn-baru: forestgreen;
+          --text-hover; white;
         }
 
         [data-theme="dark"] {
@@ -48,6 +49,7 @@
   --border:       #3b82f6;  /* Biru terang / Neon soft */
   --text:         #dbeafe;  /* Biru es sangat muda (hampir putih) */
   --btn-baru: #ffc000;
+  --text-hover: black;
         }
 
         * {
@@ -458,7 +460,7 @@ markbiru {
 /* EFEK PAS KURSOR DI ATAS TOMBOL */
 .btn-elegan:hover {
   background-color: var(--btn-baru); /* Background berubah jadi penuh */
-  color: #000; /* Warna teks berubah jadi putih */
+  color: var(--text-hover); /* Warna teks berubah jadi putih */
   box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2); /* Kasih bayangan tipis */
   transform: translateY(-2px); /* Tombol agak ngangkat dikit */
 }
