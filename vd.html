@@ -486,7 +486,7 @@ markbiru {
     <!-- Kontrol Atas -->
     <div class="controls-container">
         <button class="control-btn" id="audioToggle">
-            <span id="audio-icon">▶️</span> <span id="audio-text">Musik: Off</span>
+            <span id="audio-icon">▶️</span> <span id="audio-text">SFX: Off</span>
         </button>
         <button class="control-btn" id="themeToggle">
             <span id="theme-icon">🌙</span> <span id="theme-text">Dark</span>
@@ -774,12 +774,12 @@ Bete lu udah berkurangkan? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinte
             if (bgAudio.paused) {
                 bgAudio.play().catch(err => console.log("Audio blm diijinkan browser: ", err));
                 audioIcon.textContent = '⏸️';
-                audioText.textContent = 'Musik: On';
+                audioText.textContent = 'SFX: On';
                 audioToggle.classList.add('active');
             } else {
                 bgAudio.pause();
                 audioIcon.textContent = '▶️';
-                audioText.textContent = 'Musik: Off';
+                audioText.textContent = 'SFX: Off';
                 audioToggle.classList.remove('active');
             }
         });
