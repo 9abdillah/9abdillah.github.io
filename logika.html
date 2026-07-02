@@ -2,119 +2,154 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
 
+<!-- Link dari Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
 /* ========================================================
-   THEME: COLORFUL SWISS MINIMALISM (LIGHT MODE PREMIUM)
-   Karakter: Kotak Tegas, No Shadow, Tipografi Kuat, Bold Colors
+   THEME: TRENDY BLUE POP (FUN, FRESH, & COLORFUL)
+   Karakter: Santai, Cerah, Dominan Biru Estetik, Anti-Bosen
    ======================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:ital@0;1&display=swap');
 
-/* 1. Pengaturan Dasar - Bersih & Rapi ala Swiss */
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@900&family=DM+Sans:wght@400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400;700;900&display=swap');
+
+/* Base Body - Putih Kebiruan Lembut, Fresh Banget */
+body {
+    background-color: #F4F8FA;
+    margin: 0;
+    padding: 0;
+}
+
+/* 1. Pengaturan Dasar - Kasual & Plong */
 .artikel-pmo {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    max-width: 660px;
+    max-width: 650px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 60px 24px;
     line-height: 1.85;
-    color: #1a1a1a; /* Hitam solid universal */
-    background-color: #ffffff; /* Putih bersih */
+    color: #334E68; /* Slate Blue - Nggak sekaku hitam biasa */
 }
 
-/* 2. Judul Utama & Sub-Judul (Tegas, Rata Kiri Kuat) */
+/* 2. Judul Utama & Sub-Judul */
 .artikel-pmo h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1a1a1a;
+    font-family: 'open sans', sans-serif; /* Bulat super santai */
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #102A43; /* Deep Blue Ocean */
     line-height: 1.2;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
 }
 
-/* Sub-judul dengan blok warna solid biru cerah */
+/* Sub-judul "HARUS." - Electric Cyan Pop */
 h4[style*="color: darkgreen;"] {
     display: inline-block;
     color: #ffffff !important;
-    background-color: #0066ff; /* Biru Royal Swiss */
-    padding: 4px 12px;
-    font-size: 1rem;
+    background-color: #00B4D8; /* Biru Cyan Cerah */
+    padding: 6px 16px;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 5px !important;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
+    border-radius: 20px; /* Rounded kapsul */
+    box-shadow: 0 4px 0 #0077B6; /* Efek pop up 3D */
 }
 
-/* Judul Bab (H3) dengan garis bawah tebal berwarna merah pop */
+/* Judul Bab (H3) - Gaya Stabilo Biru Muda */
 .artikel-pmo h3 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #1a1a1a;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: #102A43;
     margin-top: 50px;
-    margin-bottom: 25px;
-    border-bottom: 4px solid #ff3333; /* Merah Solid */
-    padding-bottom: 5px;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 50%, #90E0EF 50%); /* Highlighter Sky Blue */
     display: inline-block;
+    padding: 0 4px;
 }
 
-/* 3. Analogi Box (Blok Kuning Solid Tanpa Shadow) */
-.box-analogi {
-    background-color: #ffe600; /* Kuning Stabilo Solid */
-    border: 2px solid #1a1a1a;
-    color: #1a1a1a;
-    padding: 20px 25px;
+/* 3. Analogi Box - Perpaduan Kuning-Biru Kontras Cantik */
+.box-analogis, .box-analogisis, .box-analogi {
+    background-color: #EBF8FF; /* Ice Blue */
+    border: 2px dashed #0077B6; /* Garis putus-putus biru royal */
+    color: #03045E;
+    padding: 26px;
     margin: 35px 0;
-    border-radius: 0px; /* Sudut tajam khas Swiss */
+    border-radius: 16px;
+}
+
+.box-analogis strong, .box-analogisis strong {
+    color: #0096C7;
+    font-size: 1.1rem;
     font-weight: 700;
-    font-style: normal;
+    display: block;
+    margin-bottom: 8px;
 }
 
-/* 4. STRUKTUR BOX AYAT (Blok Warna Kontras & Rapi) */
+.quote-block {
+    font-style: italic;
+    color: #486581;
+    background: #FFFFFF;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 12px;
+    border: 1px solid #D9E2EC;
+}
+
+/* 4. STRUKTUR BOX AYAT - Deep Blue Safe & Cozy */
 .box-ayat {
-    background: #f8fafc; /* Latar abu-abu terang netral */
-    border: 2px solid #1a1a1a; /* Border hitam tegas */
-    border-radius: 0px; /* Tajam/Grid System */
-    padding: 25px;
-    margin: 25px 0;
-    box-shadow: none; /* Hapus shadow gradasi jadul */
-    transition: background-color 0.2s ease;
+    background: #F0F4F8; /* Light Blue-Grey */
+    border: 2px solid #BCCCDC;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 35px 0;
+    box-shadow: 0 8px 24px rgba(16, 42, 67, 0.04);
+    transition: all 0.3s ease;
 }
 
-/* Efek interaktif minimalis */
 .box-ayat:hover {
-    background-color: #f1f5f9;
-    border-color: #0066ff; /* Berubah jadi biru royal saat disorot */
+    transform: translateY(-2px);
+    border-color: #62B6CB; /* Highlight teal-blue pas hover */
 }
 
-/* Teks Arab Jelas & Longgar */
+/* Teks Arab */
 .teks-arab {
     font-family: 'Amiri', serif;
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     direction: rtl;
     line-height: 2.3;
-    color: #1a1a1a;
+    color: #102A43;
     margin-bottom: 15px;
 }
 
 /* Transliterasi */
 .transliterasi {
     font-style: italic;
-    color: #64748b;
-    font-size: 0.9rem;
+    color: #627D98;
+    font-size: 0.95rem;
     margin-bottom: 12px;
 }
 
-/* Terjemahan dengan blok warna ungu muda solid di kirinya */
+/* Terjemahan - Pink-Purple Coral Biar Makin Colorful */
 .terjemahan {
-    font-size: 0.95rem;
-    color: #1a1a1a;
-    border-left: 6px solid #7000ff; /* Ungu Pop */
-    padding-left: 15px;
+    font-size: 0.98rem;
+    color: #334E68;
+    border-left: 4px solid #FF5A79; /* Aksen Pink Coral biar ga monoton biru */
+    padding-left: 16px;
     font-weight: 500;
 }
 
-/* 5. List Angka Model Badge Kotak Solid (Anti-Gencet) */
+/* 5. List Angka Modern - Bulat Neon Blue Pop */
 .artikel-pmo ol {
     list-style: none;
     counter-reset: pmo-counter;
@@ -124,45 +159,47 @@ h4[style*="color: darkgreen;"] {
 .artikel-pmo ol li {
     counter-increment: pmo-counter;
     position: relative;
-    padding-left: 55px; /* Kasih ruang pas buat badge kotak */
-    margin-bottom: 45px;
+    padding-left: 48px;
+    margin-bottom: 30px;
 }
 
-/* Badge Nomor Kotak Solid ala Swiss Layout */
 .artikel-pmo ol li::before {
     content: counter(pmo-counter);
     position: absolute;
     left: 0;
-    top: 4px;
+    top: 2px;
     width: 32px;
     height: 32px;
-    background-color: #1a1a1a; /* Hitam pekat */
-    color: #ffffff; /* Angka putih */
-    font-weight: 800;
-    border-radius: 0px; /* Kotak kaku modern */
+    background-color: #0077B6; /* Vibrant Ocean Blue */
+    color: #ffffff;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    border-radius: 50%;
     text-align: center;
     line-height: 32px;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
 }
 
-/* Perbaikan posisi box ayat di dalam list */
-.artikel-pmo ol li .box-ayat {
-    margin-left: -55px;
-    margin-top: 20px;
+.artikel-pmo ol li .box-ayat, 
+.artikel-pmo ol li .box-analogisis {
+    margin-left: 0px;
+    margin-top: 15px;
 }
 
-/* 6. Dropcap (Huruf Pertama Gede & Bold Hijau Cerah) */
+/* 6. Dropcap - Biru Nyentrik */
 .artikel-pmo > p:first-of-type::first-letter {
-    font-size: 4rem;
-    font-weight: 800;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 700;
     float: left;
-    color: #00cc66; /* Hijau Stabilo/Cerah */
+    color: #00B4D8;
     line-height: 0.8;
     margin-right: 12px;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
-/* 7. PROGRESS BAR ATAS (Laser Merah Solid) */
+/* 7. PROGRESS BAR ATAS - Neon Cyan Gradient */
 .progress-container {
     position: fixed;
     top: 0;
@@ -170,26 +207,26 @@ h4[style*="color: darkgreen;"] {
     z-index: 999;
     width: 100%;
     height: 6px;
-    background: #e2e8f0;
+    background: #D9E2EC;
 }
 
 .progress-bar {
     height: 100%;
-    background: #ff3333; /* Merah menyala, penanda progres yang jelas */
+    background: linear-gradient(90deg, #0077B6 0%, #00F2FE 100%);
     width: 0%;
 }
 
-/* 8. FLOATING CARD POJOK BAWAH (Kotak Border Tebal / Neo-Swiss) */
+/* 8. FLOATING CARD POJOK BAWAH - Cute Sticker Style Border Tebal */
 .floating-card {
     position: fixed;
     bottom: 25px;
     right: 25px;
     background-color: #ffffff;
-    color: #1a1a1a;
+    color: #102A43;
     padding: 14px 22px;
-    border-radius: 0px; /* Kotak kaku */
-    box-shadow: none;
-    border: 3px solid #1a1a1a; /* Garis tepi tebal */
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    border: 3px solid #102A43; /* Border tebal retro */
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
     font-weight: 700;
@@ -197,255 +234,100 @@ h4[style*="color: darkgreen;"] {
     text-align: center;
     max-width: 260px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Efek warna merayap di background kartu bawah */
 .progress-layer {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     width: 0%;
-    background-color: rgba(0, 102, 255, 0.15); /* Biru transparan mengalir */
+    background-color: rgba(0, 180, 216, 0.15); 
     z-index: 1;
     transition: width 0.1s linear;
 }
 
-/* Pas 100% Selesai (Langsung Berubah Jadi Blok Biru Solid) */
 .floating-card.finished {
-    background-color: dodgerblue;
-    border-color: #1a1a1a;
+    background-color: #00B4D8; /* Biru sukses */
+    border-color: #102A43;
 }
 
 .floating-card.finished #scroll-text {
     color: #ffffff;
 }
 
-/* 9. TOMBOL UTAMA (Bold Block Button) */
+/* 9. TOMBOL UTAMA - Kapsul Biru Segar */
 .btn-elegan {
     display: inline-block;
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     color: #ffffff;
-    background-color: #1a1a1a; /* Tombol hitam solid */
+    background-color: #0077B6;
     padding: 14px 30px;
-    border: 2px solid #1a1a1a;
-    border-radius: 0px; /* Kotak */
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 14px rgba(0, 119, 182, 0.4);
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
 .btn-elegan:hover {
-    background-color: #0066ff; /* Berubah jadi biru pas disentuh kursor */
-    border-color: #1a1a1a;
+    background-color: #03045E;
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(3, 4, 94, 0.5);
 }
 
-/* Warna-warni Highlight Pengunci Mata */
-.highlight-tegas { background-color: #ffe600; color: #1a1a1a; padding: 2px 6px; font-weight: bold; }
-.highlight-ijo { background-color: #00cc66; color: white; padding: 2px 6px; font-weight: bold; }
-.highlight-merah { background-color: #ff3333; color: white; padding: 2px 6px; font-weight: bold; }
-.highlight-marah { background-color: #1a1a1a; color: white; padding: 2px 6px; font-weight: bold; }
-.highlight-biru { background-color: #0066ff; color: white; padding: 2px 6px; font-weight: bold; }
+/* Highlight Flat Colorful & Cozy (Tetap ramah di mata) */
+.highlight-tegas { background-color: #FFF3C7; color: #B45309; padding: 3px 8px; font-weight: bold; border-radius: 8px; }
+.highlight-ijo { background-color: #D1FAE5; color: #065F46; padding: 3px 8px; font-weight: bold; border-radius: 8px; }
+.highlight-merah { background-color: #FEE2E2; color: #991B1B; padding: 3px 8px; font-weight: bold; border-radius: 8px; }
+.highlight-marah { background-color: #102A43; color: white; padding: 3px 8px; font-weight: bold; border-radius: 8px; }
+.highlight-biru { background-color: #D0EFFF; color: #005377; padding: 3px 8px; font-weight: bold; border-radius: 8px; }
+.punch-line { font-weight: 700; color: #FFFFFF; background-color: #FF5A79; padding: 4px 10px; border-radius: 20px; font-size: 0.9rem; }
+
+/* Badges */
+.badge-inline, .badge-inlines {
+    background-color: #D9E2EC;
+    color: #334E68;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
 
 /* Pembatas Bab (***) */
 .divider-space {
     text-align: center;
-    margin: 50px 0;
-    font-size: 1.3rem;
-    letter-spacing: 12px;
-    color: #1a1a1a;
+    margin: 45px 0;
+    font-size: 1.6rem;
+    letter-spacing: 16px;
+    color: #BCCCDC;
     font-weight: 700;
 }
 
-/* Footer / Akhiran */
-.kesimpulan-footer {
+/* Footer / Akhiran Box - Soft Sky Blue */
+.kesimpluan-footer, .kesimpulan-footer {
     margin-top: 50px;
-    padding: 20px;
-    background-color: #f8fafc;
-    border: 2px solid #1a1a1a;
+    padding: 26px;
+    background-color: #E6F4F8; 
+    border: 2px dashed #90E0EF;
+    border-radius: 18px;
     text-align: center;
     font-weight: 700;
+    color: #0077B6;
 }
 
-
-
-
-
-
-
-
-        /* Analogi Box - Didesain ulang agar elegan & berwibawa */
-        .box-analogis {
-            background-color: #f8f9fa;
-            border-left: 4px solid #ff9f43;
-            padding: 22px;
-            margin: 25px 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        .box-analogis strong {
-            color: #ff9f43;
-            font-size: 11.5pt;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .quote-block {
-            font-style: italic;
-            color: #4a5568;
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 10px;
-            border: 1px solid #e2e8f0;
-        }
-       
-       
-       
-/*tambahan*/
-
-        .box-analogisis {
-            background-color: #f8f9fa;
-            border-left: 4px solid dodgerblue;
-            padding: 22px;
-            margin: 25px 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        .box-analogisis strong {
-            color: #ff9f43;
-            font-size: 11.5pt;
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        
-        /* Highlight & Teks Penting */
-        .punch-line {
-            font-weight: 700;
-            color: #e53e3e;
-            background-color: #fff5f5;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        
-        
-
-
-
-
-
-
-
-
-        /* Waktu / Kalkulasi Section */
-        .waktu-section {
-          /* background: linear-gradient(135deg, #16a085, #1abc9c);*/
-            color: black;
-            padding: 30px;
-            border-radius: 1px;
-            margin: 40px 0;
-            box-shadow: 0 10px 20px rgba(22, 160, 133, 0.99);
-            page-break-inside: avoid;
-        }
-
-.waktu-section h3 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #1a1a1a;
-    margin-top: 50px;
-    margin-bottom: 25px;
-    border-bottom: 4px solid #ff3333; /* Merah Solid */
-    padding-bottom: 5px;
-    display: inline-block;
+/* Waktu Section Fix */
+.waktu-section {
+    color: #627D98;
+    padding: 0;
+    margin: 40px 0;
+    box-shadow: none;
 }
-        
-        
-
-        .badge-inline {
-            background-color: #e2e8f0;
-            color: #4a5568;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 9.5pt;
-        }
-        
-        .badge-inliness {
-            background-color: dodgerblue;
-            color: #4a5568;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 9.5pt;
-        }
-
-        /* Action Button */
-        .action-area {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .btn-premium {
-            display: inline-block;
-            text-decoration: none;
-            font-size: 10pt;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: forestgreen;
-            padding: 14px 32px;
-            border: 2px solid forestgreen;
-            border-radius: 8px;
-            background-color: transparent;
-            transition: all 0.2s ease;
-        }
-
-        /* Footer / Khatimah */
-        .khatimah-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 35px;
-            margin-top: 50px;
-            border-top: 4px solid #16a085;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            page-break-inside: avoid;
-        }
-
-        .khatimah-title {
-            font-size: 13pt;
-            font-weight: 800;
-            color: #1a252f;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .finish-banner {
-            background-color: #f0fff4;
-            border: 1px solid #c6f6d5;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 700;
-            color: #22543d;
-            margin-top: 25px;
-        }
-        
-        
-        
-        
-        
 </style>
 </head>
 <body>
@@ -472,7 +354,7 @@ h4[style*="color: darkgreen;"] {
     <div class="artikel-pmo">
 
         <!-- JUDUL UTAMA -->
-        <h1>Haruskah kita beriman dengan ayat-ayat tersebut?</h1>
+        <h1>Haruskah kita percaya dengan <br>ayat-ayat tersebut?</h1>
         <h4 style="margin-top: -38px; color: darkgreen;">Harus.</h4>
         <ds style="color: white;">....</ds>No debat.
         <!-- PARAGRAF PERTAMA (Otomatis kena efek "Drop Cap" huruf pertama gede) -->
