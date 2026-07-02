@@ -83,13 +83,7 @@
             max-width: 760px;
             margin: 0 auto 24px auto;
 
-/* Senjata rahasia biar lengket pas di-scroll */
-    position: sticky;
-    top: 0;          /* Lengket tepat di batas paling atas layar */
-    z-index: 1000;   /* Biar tombolnya gak ke-tutup sama teks <main> pas di-scroll */
-    padding: 10px 0; /* Opsional: kasih ruang biar gak terlalu nempel ke dahi browser 
-    background-color: var(--bg-body);  Samakan dengan warna background body antum biar teks di bawahnya tersaru/gak tembus */
-    border-radius: 0px;
+
 /*    background-color: rgba(var(--bg-body), 0.4);
 	backdrop-filter: blur(10px);*/
 }
@@ -447,7 +441,15 @@
             header h1 { font-size: 2.2rem; }
             .gift-card { padding: 20px; }
             .arabic { font-size: 1.7rem; }
-            .controls-container { justify-content: center; }
+            .controls-container { justify-content: center; 
+            /* Senjata rahasia biar lengket pas di-scroll */
+            position: sticky;
+            top: 0;          /* Lengket tepat di batas paling atas layar */
+            z-index: 1000;   /* Biar tombolnya gak ke-tutup sama teks <main> pas di-scroll */
+            padding: 10px 0; /* Opsional: kasih ruang biar gak terlalu nempel ke dahi browser 
+    background-color: var(--bg-body);  Samakan dengan warna background body antum biar teks di bawahnya tersaru/gak tembus */
+            border-radius: 0px;
+            }
         }
     </style>
 </head>
