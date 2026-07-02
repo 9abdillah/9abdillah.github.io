@@ -636,6 +636,27 @@
             }
         });
 
+        // --- LOGIK AUDIO PLAY / PAUSE ---
+        const audioToggle = document.getElementById('audioToggle');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+        const bgAudio = document.getElementById('bgAudio');
+
+        audioToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgAudio.paused) {
+                bgAudio.play().catch(err => console.log("Audio blm diijinkan browser: ", err));
+                audioIcon.textContent = '⏸️';
+                audioText.textContent = 'Sound: On';
+                audioToggle.classList.add('active');
+            } else {
+                bgAudio.pause();
+                audioIcon.textContent = '▶️';
+                audioText.textContent = 'Sound: Off';
+                audioToggle.classList.remove('active');
+            }
+        });
+        
         // Context Menu Handler
         const customMenu = document.getElementById('custom-menu');
         document.addEventListener('contextmenu', (e) => {
