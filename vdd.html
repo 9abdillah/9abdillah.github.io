@@ -41,7 +41,8 @@
             --card-bg: #1c2541;
             --card-border: #3a506b;
             --quote-bg: #0b1329;
-            --quote-border: #10b981;
+            --quote-border: #1bb2e9;
+         /* --quote-border: #10b981;*/
             --text-title: #ffffff;
             --text-primary: #cbd5e1;
             --text-muted: #94a3b8;
@@ -81,7 +82,18 @@
             gap: 12px;
             max-width: 760px;
             margin: 0 auto 24px auto;
-        }
+
+/* Senjata rahasia biar lengket pas di-scroll */
+    position: sticky;
+    top: 0;          /* Lengket tepat di batas paling atas layar */
+    z-index: 1000;   /* Biar tombolnya gak ke-tutup sama teks <main> pas di-scroll */
+    padding: 10px 0; /* Opsional: kasih ruang biar gak terlalu nempel ke dahi browser 
+    background-color: var(--bg-body);  Samakan dengan warna background body antum biar teks di bawahnya tersaru/gak tembus */
+    border-radius: 0px;
+/*    background-color: rgba(var(--bg-body), 0.4);
+	backdrop-filter: blur(10px);*/
+}
+
 
         .control-btn {
             background-color: var(--bg-container);
@@ -516,10 +528,10 @@
         <div class="gift-card">
             <div class="keutamaan-title"><span>05</span> Menjaga Pandangan (Qashiratut Tharf)</div>
             <div class="quote-box">
-                <div class="arabic">فِيهِنَّ قَاصِرَاتُ... لَمْ يَطْمِثْهُنَّ إِنْسٌ قَبْلَهُمْ وَلَا جَانٌّ</div>
-                <div class="latin-translation">“Di dalam surga-surga itu ada bidadari-bidadari yang membatasi pandangan mata (hanya untuk suaminya)...” <br><b>[QS. Ar-Rahman: 56]</b></div>
+                <div class="arabic">فِيهِنَّ قَاصِرَاتُ الطَّرْفِ لَمْ يَطْمِثْهُنَّ إِنْسٌ قَبْلَهُمْ وَلَا جَانٌّ</div>
+                <div class="latin-translation">"Di dalam surga-surga itu ada bidadari-bidadari yang membatasi pandangan mata (hanya untuk suami mereka), yang belum pernah disentuh oleh manusia sebelum mereka (penghuni-penghuni surga yang menjadi suami mereka) dan tidak pula oleh jin." <br><b>[QS. Ar-Rahman: 56]</b></div>
             </div>
-            <p class="keterangan-text"><b>Keterangan:</b> Di hatinya dan di matanya, cuma ada lu. Dia gak akan melirik cowok lain, gak peduli seberapa banyak penghuni surga lainnya. Di mata dia, lu adalah cowok paling tampan dan paling dia cintai selamanya.</p>
+            <p class="keterangan-text"><b>Keterangan:</b> Di hatinya dan di matanya, <span class="bercumbu">cuma ada lu.</span> Dia gak akan melirik cowok lain, gak peduli seberapa banyak penghuni surga lainnya. Di mata dia, lu adalah cowok paling tampan dan paling dia cintai selamanya.</p>
         </div>
 
         <div class="gift-card">
@@ -561,7 +573,7 @@
         <h2>Reminder Buat Hati & Syahwat Lu</h2>
         
         <div style="padding: 10px 5px;">
-            <p>Bro, perhatikan baik-baik. Semua kemewahan yang gw sebutin di atas tadi dinamai oleh Allah sebagai <span class="hijau">"Mata'ul ghurur (مَتَاعُ الْغُرُورِ)"</span> kalau di dunia. Tapi di surga itu dinamai <span class="hijau">"Athā'an ghaira majdzūdz"</span> (karunia yang tidak putus-putus).</p>
+            <p>Bro, perhatikan baik-baik. Semua kemewahan yang gw sebutin di atas tadi dinamai oleh Allah sebagai <span class="hijau">"Mata'ul ghurur (مَتَاعُ الْغُرُورِ)"</span> kalau di dunia. Tapi di surga itu dinamai <span class="hijau">"Athā'an ghaira majdzūdz" (عَطَاءً غَيْرَ مَجْذُوذٍ)</span> karunia yang tidak putus-putus.</p>
             
             <div class="warning-box">
                 <span>⚠️</span>
@@ -596,8 +608,8 @@
             <span class="big-alert">So, jangan jual diri lu ke setan. 😭</span>
 
             <div class="visual-motivation">
-                Tutup mata lu sekarang, bayangin wajah bahagia orang tua lu pas lu dipakaikan mahkota di surga nanti, didampingi istri salihah lu yang cantiknya mengalahkan bidadari. <br><br> 
-                Bete lu udah berkurangkan? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinter, nanti dia bakal rileks sendiri.
+                Tutup mata lu sekarang, bayangin wajah bahagia orang tua lu pas lu menginjakkan kaki di surga nanti, didampingi istri salihah lu yang cantiknya mengalahkan bidadari. <br><br> 
+                Bete lu udah berkurangkan? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinter insyaAllah, nanti dia bakal rileks sendiri.
             </div>
         </div>
 
@@ -671,9 +683,65 @@
         });
 
         // Placeholder Functions
-        function copyText() { alert("Text berhasil di-copy!"); }
-        function shareWeb() { alert("Link web disalin!"); }
-        function tutupKatalog() { alert("Katalog ditutup. Tetap semangat bertahan, Bro!"); }
+
+
+
+
+
+// Tempat penampungan rahasia untuk teks yang diblok
+let teksTersimpan = "";
+
+// 1. Setiap kali user melakukan seleksi teks, langsung kita simpan otomatis
+document.addEventListener("selectionchange", function() {
+    const seleksi = window.getSelection().toString();
+    if (seleksi.trim() !== "") {
+        teksTersimpan = seleksi; // Amankan teksnya di sini
+    }
+});
+
+// 2. Fungsi Copy Teks yang baru
+function copyText() { 
+    // Cek apakah ada teks yang sempat tersimpan
+    if (teksTersimpan.trim() !== "") {
+        // Salin teks dari tempat penampungan rahasia
+        navigator.clipboard.writeText(teksTersimpan)
+            .then(() => {
+                alert("Teks '" + teksTersimpan + "' udah di-copy ke clipboard!");
+                teksTersimpan = ""; // Reset kembali setelah sukses
+            })
+            .catch(err => {
+                console.error("Mampus! gabisa disalin: ", err);
+            });
+    } else {
+        alert("Kalau teksnya belum diblok ya kaga bisa lah kocak!");
+    }
+}
+
+// 3. Fungsi Share Web
+function shareWeb() { 
+    const urlWeb = window.location.href;
+    navigator.clipboard.writeText(urlWeb)
+        .then(() => {
+            alert("Link web siap dibagikan cuy!");
+        })
+        .catch(err => {
+            console.error("Mampus! gagal kodenya bro..: ", err);
+        });
+}
+
+// 4. Fungsi Tutup Katalog
+function tutupKatalog() { 
+    alert("Katalog ditutup. Tetap semangat bertahan, Bro!"); 
+    window.close();
+    setTimeout(function() {
+        window.location.href = "about:blank";
+    }, 300);
+}
+
+
+
+
+
     </script>
 </body>
 </html>
