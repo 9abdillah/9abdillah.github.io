@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perisai Maksiat - Katalog Hadiah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Amiri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Lexend:wght@100..900&family=Montenegrin+Gothic+One&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Modern Custom Properties (Light Mode Default) */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-container: #ffffff;
+            --bg-intro: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --quote-bg: #f1f5f9;
+            --quote-border: #10b981;
+            --text-title: #0f172a;
+            --text-primary: #334155;
+            --text-muted: #64748b;
+            --accent-gold: #b45309;
+            --accent-gold-rgb: 180, 83, 9;
+            --accent-green: #059669;
+            --accent-red: #dc2626;
+            --accent-blue: #0284c7;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --btn-danger-grad: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --warning-bg: #fef2f2;
+            --warning-border: #fca5a5;
+            --warning-text: #991b1b;
+            --toggle-bg: #e2e8f0;
+        }
+
+        /* Dark Mode Override (Diaktifkan lewat class .dark-theme) */
+        .dark-theme {
+            --bg-body: #0b1329;
+            --bg-container: #111c44;
+            --bg-intro: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --card-bg: #1c2541;
+            --card-border: #3a506b;
+            --quote-bg: #0b1329;
+            --quote-border: #10b981;
+            --text-title: #ffffff;
+            --text-primary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-gold: #fbbf24;
+            --accent-gold-rgb: 251, 191, 36;
+            --accent-green: #34d399;
+            --accent-red: #f87171;
+            --accent-blue: #38bdf8;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            --btn-danger-grad: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+            --warning-bg: rgba(239, 68, 68, 0.1);
+            --warning-border: rgba(239, 68, 68, 0.3);
+            --warning-text: #fca5a5;
+            --toggle-bg: #3a506b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'google sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        /* Floating Controls */
+        .controls-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            max-width: 760px;
+            margin: 0 auto 24px auto;
+        }
+
+        .control-btn {
+            background-color: var(--bg-container);
+            border: 1px solid var(--card-border);
+            color: var(--text-title);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-gold);
+        }
+
+        /* Main Wrapper */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background-color: var(--bg-container);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--card-border);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: "Montenegrin Gothic One", serif;
+            /*font-family: "Geist Pixel", sans-serif;*/
+            /*font-family: 'Playfair Display', serif;*/
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Decorative line */
+        header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-gold);
+            margin: 24px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Intro Section */
+        .intro-block {
+            background: var(--bg-intro);
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 45px;
+            border-left: 5px solid var(--accent-blue);
+            font-family:  google sans;
+        }
+
+        .intro-block h3 {
+            color: var(--text-title);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .intro-block p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-blue {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        /* Section Title H2 */
+        h2 {
+            font-family: 'google sans', sans-serif;
+            font-size: 1.6rem;
+            color: var(--text-title);
+            margin: 45px 0 24px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--card-border);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        /* Premium Cards Layout */
+        .gift-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 28px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px -10px rgba(var(--accent-gold-rgb), 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .keutamaan-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-title);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .keutamaan-title span {
+            background-color: rgba(var(--accent-gold-rgb), 0.1);
+            color: var(--accent-gold);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background-color: var(--quote-bg);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 18px;
+            border-left: 4px solid var(--quote-border);
+        }
+
+        .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            text-align: right;
+            direction: rtl;
+            margin-bottom: 14px;
+            color: var(--text-title);
+            line-height: 1.4;
+        }
+
+        .latin-translation {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .keterangan-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .keterangan-text b {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Highlighted Wordings */
+        .bercumbu {
+            color: #ec4899;
+            font-weight: 600;
+            background-color: rgba(236, 72, 153, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .hijau {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        /* Alerts & Reminders */
+        .warning-box {
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 14px;
+            padding: 18px;
+            margin: 22px 0;
+            color: var(--warning-text);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .big-alert {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-red);
+            text-align: center;
+            margin: 30px 0;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+
+        .visual-motivation {
+            text-align: center;
+            font-weight: 500;
+            margin-top: 30px;
+            background: linear-gradient(135deg, rgba(var(--accent-gold-rgb), 0.06) 0%, rgba(var(--accent-gold-rgb), 0.01) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(var(--accent-gold-rgb), 0.15);
+            color: var(--text-title);
+        }
+
+        /* Action Footer Buttons */
+        .btn-container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 35px;
+            background-color: var(--quote-bg);
+            border-radius: 24px;
+            border: 1px dashed var(--card-border);
+        }
+
+        .btn-danger {
+            background: var(--btn-danger-grad);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
+        }
+
+        .btn-danger:hover {
+            transform: scale(1.03) translateY(-2px);
+            box-shadow: 0 15px 25px rgba(220, 38, 38, 0.35);
+        }
+
+        .btn-elegan {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        .btn-elegan:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-container);
+            transform: translateY(-2px);
+        }
+
+        /* Custom Context Menu */
+        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: var(--bg-container);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 8px 0;
+            z-index: 1000;
+            box-shadow: var(--card-shadow);
+            min-width: 200px;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .menu-item:hover {
+            background-color: var(--quote-bg);
+            color: var(--accent-gold);
+        }
+
+        .menu-divider {
+            height: 1px;
+            background-color: var(--card-border);
+            margin: 6px 0;
+        }
+
+        .menu-info {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding: 4px 20px;
+        }
+
+        .menu-warning {
+            font-size: 0.75rem;
+            color: var(--accent-red);
+            padding: 4px 20px;
+            font-style: italic;
+        }
+
+        /* Footer Copyright */
+        footer {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 50px;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer b {
+            color: var(--text-title);
+        }
+
+        /* Responsiveness */
+        @media (max-width: 600px) {
+            body { padding: 16px 8px; }
+            .container { padding: 30px 20px; border-radius: 16px; }
+            header h1 { font-size: 2.2rem; }
+            .gift-card { padding: 20px; }
+            .arabic { font-size: 1.7rem; }
+            .controls-container { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="custom-menu" class="context-menu">
+        <div class="menu-item" onclick="copyText()">📋 Copy Text</div>
+        <div class="menu-item" onclick="shareWeb()">🔗 Share Web</div>
+        <div class="menu-divider"></div>
+        <div class="menu-info">© 9abdillah 2026</div>
+        <div class="menu-warning">Menyebarkan tanpa izin adalah haram.</div>
+    </div>
+
+    <audio id="bgAudio" src="latar.mp3" loop></audio>
+
+    <div class="controls-container">
+        <button class="control-btn" id="audioToggle">
+            <span id="audio-icon">▶️</span> <span id="audio-text">Sound: Off</span>
+        </button>
+        <button class="control-btn" id="themeToggle">
+            <span id="theme-icon">☀️</span> <span id="theme-text">Light Mode</span>
+        </button>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Perisai Maksiat</h1>
+            <p style="font-family: google sans, sans-serif; font-size: 14px;">Katalog Hadiah & Esensi Perjuangan</p>
+        </header>
+
+        <div class="intro-block">
+            <h3>Kamu lagi Galau? lagi nafsu? Bete?</h3>
+            <p>Mari kita hempas rasa bete lu sekarang dengan membongkar <span class="highlight-blue">seluruh paket lengkap literatur Al-Qur'an dan Hadits</span> tentang betapa mewahnya pasangan halal lu di surga nanti. Anggap ini sebagai katalog hadiah yang lagi nungguin nama lu dicantumin di sana.</p>
+            <p style="color: var(--accent-gold); font-size: 0.9rem; font-weight: 700; margin-top: 12px; display: flex; align-items: center; gap: 6px;">
+                ✨ Rebahan / duduk yang nyaman, rileks, dan baca ini baik-baik:
+            </p>
+        </div>
+
+        <h2>1. Paket Fisik & Kecantikan yang Sempurna</h2>
+        
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>01</span> Bening bak Permata dan Marjan</div>
+            <div class="quote-box">
+                <div class="arabic">كَأَنَّهُنَّ الْيَاقُوتُ وَالْمَرْجَانُ</div>
+                <div class="latin-translation">“Seakan-akan mereka adalah permata yakut dan marjan.” <br><b>[QS. Ar-Rahman: 58]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Ulama menjelaskan kulit mereka begitu bersih dan bening, sampai-sampai kalau lu melihat mereka, keindahannya memantulkan cahaya seperti permata berharga yang gak ada cacatnya sama sekali.</p>
+        </div>
+
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>02</span> Mata yang Indah dan Lebar (Hurun 'Iin)</div>
+            <div class="quote-box">
+                <div class="arabic">وَحُورٌ عِينٌ . كَأَمْثَالِ اللُّؤْلُؤِ الْمَكْنُونِ</div>
+                <div class="latin-translation">“Dan ada bidadari-bidadari yang bermata indah (Hurun 'Iin), laksana mutiara yang tersimpan baik.” <br><b>[QS. Al-Waqi'ah: 22-23]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Putih matanya sangat bersih, hitam matanya sangat pekat, dan tatapannya teduh. Mereka seperti mutiara yang dijaga rapat di dalam kerangnya—belum pernah disentuh atau dilihat oleh siapa pun sebelum lu.</p>
+        </div>
+
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>03</span> Kerudung yang Mengalahkan Dunia</div>
+            <div class="quote-box">
+                <div class="latin-translation">“...Sungguh, kerudung yang ada di atas kepalanya itu lebih baik daripada dunia dan seisinya.” <br><b>[HR. Bukhari]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Baru selembar kain penutup kepalanya doang, nilainya sudah lebih mewah dari seluruh kekayaan bumi tahun 2026 ini beserta isinya. Lu gak akan butuh kemewahan dunia lagi kalau udah ngeliat kerudungnya.</p>
+        </div>
+
+        <h2>2. Sifat, Karakter, dan Romantisme Full Manja</h2>
+        
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>04</span> Penuh Cinta dan Sebaya ('Uruban Atroba)</div>
+            <div class="quote-box">
+                <div class="arabic">عُرُبًا أَتْرَابًا</div>
+                <div class="latin-translation">“Yang penuh cinta (kepada suaminya) lagi sebaya umurnya.” <br><b>[QS. Al-Waqi'ah: 37]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Kalimat 'Uruban artinya mereka <span class="bercumbu">sangat manja</span>, bicaranya lembut, penuh rayuan yang menyenangkan hati, dan selalu berhasrat tinggi hanya kepada suaminya. Sedangkan Atroba artinya umurnya sebaya dengan lu (umur ideal penduduk surga, sekitar 30-33 tahun), jadi kalau diajak ngobrol dan <span class="bercumbu">bercumbu</span> bakal nyambung dan klop banget!</p>
+        </div>
+
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>05</span> Menjaga Pandangan (Qashiratut Tharf)</div>
+            <div class="quote-box">
+                <div class="arabic">فِيهِنَّ قَاصِرَاتُ... لَمْ يَطْمِثْهُنَّ إِنْسٌ قَبْلَهُمْ وَلَا جَانٌّ</div>
+                <div class="latin-translation">“Di dalam surga-surga itu ada bidadari-bidadari yang membatasi pandangan mata (hanya untuk suaminya)...” <br><b>[QS. Ar-Rahman: 56]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Di hatinya dan di matanya, cuma ada lu. Dia gak akan melirik cowok lain, gak peduli seberapa banyak penghuni surga lainnya. Di mata dia, lu adalah cowok paling tampan dan paling dia cintai selamanya.</p>
+        </div>
+
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>06</span> Suara yang Menyanyikan Lagu Paling Indah</div>
+            <div class="quote-box">
+                <div class="latin-translation">“Sesungguhnya para istri penghuni surga akan bernyanyi untuk suami mereka dengan suara yang paling merdu yang tidak pernah didengar oleh seorang pun...” <br><b>[HR. Al-Mu’jam Al-Ausath]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Ketika lu lagi santai bersandar di dipan surga, istri lu bakal menyanyikan bait-bait cinta yang <span class="bercumbu">bikin hati lu meleleh.</span><br><br>Salah satu syairnya: <br><i>"Kami adalah wanita-wanita yang kekal, kami tidak akan mati... Kami adalah wanita-wanita yang ridha, kami tidak akan pernah marah..."</i></p>
+        </div>
+
+        <h2>3. Garansi Kenikmatan Jimak yang Endless</h2>
+        
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>07</span> Selalu Kembali Perawan (Abkara)</div>
+            <div class="quote-box">
+                <div class="arabic">إِنَّا أَنْشَأْنَاهُنَّ إِنْشَاءً . فَجَعَلْنَاهُنَّ أَبْكَارًا</div>
+                <div class="latin-translation">“Kami menciptakan mereka (bidadari-bidadari itu) secara langsung, dan Kami jadikan mereka gadis-gadis perawan.” <br><b>[QS. Al-Waqi'ah: 35-36]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Dalam hadits riwayat Thabrani, Nabi menjelaskan bahwa setiap kali lu selesai berhubungan intim/berjimak dengan istri lu, dia akan kembali menjadi perawan yang suci, wangi, dan ketat. Tidak ada rasa bosan, tidak ada rasa lelah.</p>
+        </div>
+
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>08</span> Kekuatan Fisik 100 Kali Lipat</div>
+            <div class="quote-box">
+                <div class="latin-translation">Ada sahabat bertanya, "Apakah kita bisa menyetubuhi istri-istri kita di surga?" Rasulullah menjawab: "Seorang lelaki di surga akan diberi kekuatan 100 kali lipat dalam hal makan, minum, syahwat, dan jima’." <br><b>[HR. Ahmad & An-Nasa'i]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Rasa linu dan tegang yang bikin lu tersiksa di dunia malam ini terjadi karena fisik dunia lu lemah dan terbatas. Di surga nanti, lu dikasih kapasitas fisik raksasa. Lu bisa <span class="bercumbu">bermanja-manjaan</span> dan <span class="bercumbu">bercumbu</span> tanpa batas waktu, dan energinya stabil full nikmat dari detik pertama sampai akhir.</p>
+        </div>
+
+        <div class="gift-card">
+            <div class="keutamaan-title"><span>09</span> Disucikan dari Segala Kotoran</div>
+            <div class="quote-box">
+                <div class="arabic">وَلَهُمْ فِيهَا أَزْوَاجٌ مُطَهَّرَةٌ ۖ وَهُمْ فِيهَا خَالِدُونَ</div>
+                <div class="latin-translation">“Dan bagi mereka di dalamnya ada istri-istri yang disucikan dan mereka kekal di dalamnya.” <br><b>[QS. Al-Baqarah: 25]</b></div>
+            </div>
+            <p class="keterangan-text"><b>Keterangan:</b> Istri surga lu gak akan pernah haid, gak nifas, gak meludah, gak buang air, gak pernah keringatan bau, dan gak akan pernah ketus atau cemberut sama lu. Lu luapkan hasrat lu kapan saja, kondisinya selalu bersih, wangi, dan sempurna.</p>
+        </div>
+
+        <h2>Reminder Buat Hati & Syahwat Lu</h2>
+        
+        <div style="padding: 10px 5px;">
+            <p>Bro, perhatikan baik-baik. Semua kemewahan yang gw sebutin di atas tadi dinamai oleh Allah sebagai <span class="hijau">"Mata'ul ghurur"</span> kalau di dunia. Tapi di surga itu dinamai <span class="hijau">"Athā'an ghaira majdzūdz"</span> (karunia yang tidak putus-putus).</p>
+            
+            <div class="warning-box">
+                <span>⚠️</span>
+                <div>
+                    <b>Awas Tipuan:</b> Setan sekarang PENGEN lu nuker brosur surga yang mewah ini dengan gambar pixel 2D murahan di HP lu yang bikin nyesel.
+                </div>
+            </div>
+            
+            <p style="margin-bottom: 15px;">Bertahan adalah pilihan terbaik. Gejolak hebat di badan lu sekarang? Itu adalah proses pembakaran dosa. Anggap rasa linu itu sebagai "DP" atau uang muka yang lu bayar lewat rasa sabar untuk dapetin paket VIP di atas.</p>
+            <p>Lu anak SMA kelas 2, sekolah di lembaga agama. Lu itu mahal banget, bro.</p>
+            
+            <div class="warning-box" style="border-color: rgba(220, 38, 38, 0.2);">
+                <span>🛑</span>
+                <div><b>Kalau tetep maksiat?</b> ya.. berarti kamu membatalkan katalog ini!</div>
+            </div>
+            
+            <p style="margin-top: 15px;">Tapi ingat, dosa bisa diampuni dengan taubat. Sebisa mungkin kita harus jujur sama Allah. Allah itu maha pengampun. Tapi juga jangan meremehkan Allah cuy..</p>
+
+            <div class="quote-box" style="margin-top: 20px; border-left-color: var(--accent-gold);">
+                <div class="arabic">وَكُلُّهُمْ آتِيهِ يَوْمَ الْقِيَامَةِ فَرْدًا</div>
+                <div class="latin-translation">"Dan setiap orang dari mereka akan datang kepada-Nya pada hari kiamat dengan sendiri-sendiri." <br><b>[QS. Maryam: 95]</b></div>
+            </div>
+
+            <p style="text-align: center; font-weight: 600; margin-top: 25px; font-size: 1.1rem;">
+                Gw sendiri, lu sendiri, semua sendiri.. <br> <span style="color:var(--accent-red)">Mau jawab apa nanti?</span> <br><br>
+                <span class="hijau">Dan kabar baiknya:</span>
+            </p>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-top: 10px; font-style: italic;">
+                Kita ga tau kapan kita wafat. Entah nanti sore atau kapan. Dengan kata lain, bisa saja diantara kita ada yg bakal menghadap Allah sebentar lagi cuy..
+            </p>
+
+            <span class="big-alert">So, jangan jual diri lu ke setan. 😭</span>
+
+            <div class="visual-motivation">
+                Tutup mata lu sekarang, bayangin wajah bahagia orang tua lu pas lu dipakaikan mahkota di surga nanti, didampingi istri salihah lu yang cantiknya mengalahkan bidadari. <br><br> 
+                Bete lu udah berkurangkan? Gejolaknya pelan-pelan bakal reda kok, tubuh lu pinter, nanti dia bakal rileks sendiri.
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <p style="font-style: italic; color: var(--accent-gold); font-weight: 700; margin-bottom: 25px; font-size: 1.05rem;">
+                Khatimah: Hadiah ini hanya untuk mereka yang menang bertahan sampai garis finis yang ditentukan Allah...
+            </p>
+            <button onclick="tutupKatalog()" class="btn-danger">Tutup Katalog Hadiah</button>
+            <br><br>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">Kalau kamu belum tenang, ada hadiah spesial buat kamu:</p>
+            <a href="mindset-99.html" class="btn-elegan">Baca Artikel</a>
+        </div>
+
+        <footer>
+            <p>© 2026 Abdillah.<br>Repo Git Kesekian kalinya..<br>Dibuat dengan 💙 <b>GRADE 10 EXCLUSIVE EDITION</b><br>[2026 period, diketuai oleh <b>Zidan Ramadhan Bayu</b>]</p>
+            <p style="margin-top: 18px; font-weight: 700; color: var(--accent-blue); font-size: 0.95rem;">
+                Tolong doain gw biar sukses jg yak... Lu pd jg insyaAllah gw doain. 🤲 💛💛
+            </p>
+        </footer>
+    </main>
+
+    <script>
+        // Theme Toggle Logic (Light Mode by Default)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if(document.body.classList.contains('dark-theme')) {
+                themeIcon.innerText = '🌙';
+                themeText.innerText = 'Dark Mode';
+            } else {
+                themeIcon.innerText = '☀️';
+                themeText.innerText = 'Light Mode';
+            }
+        });
+
+        // Context Menu Handler
+        const customMenu = document.getElementById('custom-menu');
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            customMenu.style.display = 'block';
+            customMenu.style.left = e.pageX + 'px';
+            customMenu.style.top = e.pageY + 'px';
+        });
+
+        document.addEventListener('click', () => {
+            customMenu.style.display = 'none';
+        });
+
+        // Placeholder Functions
+        function copyText() { alert("Text berhasil di-copy!"); }
+        function shareWeb() { alert("Link web disalin!"); }
+        function tutupKatalog() { alert("Katalog ditutup. Tetap semangat bertahan, Bro!"); }
+    </script>
+</body>
+</html>
