@@ -22,6 +22,7 @@
             --text-muted: #64748b;
             --accent-gold: #c0621f;
             --accent-gold-rgb: 180, 83, 9;
+            --accent-gold-rgbs: 180, 83, 9;
             --accent-green: #059669;
             --accent-red: #dc2626;
             --accent-blue: #0284c7;
@@ -35,28 +36,28 @@
 
         /* Dark Mode Override (Diaktifkan lewat class .dark-theme) */
         .dark-theme {
-            --bg-body: #0b1329;
-            --bg-container: #111c44;
-            --bg-intro: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            --card-bg: #1c2541;
-            --card-border: #3a506b;
-            --quote-bg: #0b1329;
-            --quote-border: #e9631b;
-         /* --quote-border: #10b981;  1bb2e9*/
-            --text-title: #ffffff;
-            --text-primary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent-gold: #fbbf24;
-            --accent-gold-rgb: 251, 191, 36;
-            --accent-green: #34d399;
-            --accent-red: #f87171;
-            --accent-blue: #38bdf8;
-            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-            --btn-danger-grad: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
-            --warning-bg: rgba(239, 68, 68, 0.1);
-            --warning-border: rgba(239, 68, 68, 0.3);
-            --warning-text: #fca5a5;
-            --toggle-bg: #3a506b;
+--bg-body: #070f18;               /* Biru palung laut pekat */
+    --bg-container: #0f1c2a;          /* Biru marinir gelap */
+    --bg-intro: linear-gradient(135deg, #13293d 0%, #070f18 100%);
+    --card-bg: #0f1c2a;               
+    --card-border: #1b2f45;           
+    --quote-bg: #152638;              
+    --quote-border: #2ec4b6;          /* Biru cyan air */
+    --text-title: #f0f4f8;            
+    --text-primary: #bcccdc;          /* Biru-abu terang yang adem */
+    --text-muted: #819fbc;            
+    --accent-gold: #f3b61f;           /* Emas Amber cerah sebagai pemanis */
+    --accent-gold-rgb: 243, 182, 31;
+    --accent-gold-rgbs: 0,0,0;
+    --accent-green: #2ec4b6;          
+    --accent-red: #e63946;            
+    --accent-blue: #0077b6;           
+    --card-shadow: 0 10px 30px rgba(2, 6, 10, 0.7); 
+    --btn-danger-grad: linear-gradient(135deg, #e63946 0%, #9b1c26 100%);
+    --warning-bg: #1c1517;            
+    --warning-border: #3d1d24;        
+    --warning-text: #ffccd5;          
+    --toggle-bg: #1b2f45;
         }
 
         * {
@@ -224,7 +225,7 @@
 
         .gift-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 35px -10px rgba(var(--accent-gold-rgb), 0.30);
+            box-shadow: 0 20px 35px -10px rgba(var(--accent-gold-rgbs), 0.15);
           /*  border-color: var(--accent-gold); */
         }
 
@@ -584,7 +585,7 @@
                 </div>
             </div>
 
-        <br>
+   
             <div class="warning-box" style="border-color: rgba(220, 38, 38, 0.2);">
                 <span>🛑</span>
                 <div><b>Kalau tetep maksiat?</b> ya.. berarti kamu membatalkan katalog ini!</div>
@@ -626,22 +627,22 @@
 
         <footer style="text-align: left !important;">  
             <h3>Intinya:</h3>
-            1. Garis finish kita sudah ditentukan oleh Allah. Baik pernikahan yang indah di dunia, ataupun pernikahan yang sempurna di akherat kalau umur ga sampai.
-            <br><br>2. Kita harus bertahan sampai garis finish tersebut sebagai pemenang. Jangan menyerah sehingga lu ga sampai ke garis finish.
-            <br><br>3. Olahraga, puasa dawud, dan pengalihan itu ga selamanya. Itu hanya strategi sementara supaya kamu sampai ke garis finish sebagai pemenang.
-            <br><br>4. Allah itu Asy-Syakuur dan janjinya itu Mutlak. Tidak ada amalan sekecil biji dzarrah pun kecuali akan dibalas.
-            <br><br>5. Orang yang bisa brsyukur atas ujian itu hebat. 
+            <b>1. Garis finish kita sudah ditentukan oleh Allah.</b> Baik pernikahan yang indah di dunia, ataupun pernikahan yang sempurna di akherat kalau umur ga sampai.
+            <br><br><b>2. Kita harus bertahan sampai garis finish tersebut sebagai pemenang.</b> Jangan menyerah sehingga lu ga sampai ke garis finish.
+            <br><br><b>3. Olahraga extreme, puasa dawud, dan pengalihan itu ga selamanya.</b> Itu hanyalah cuma sebatas strategi sementara supaya kamu beneran sampai ke garis finish sebagai pemenang.
+            <br><br><b>4. Allah itu Asy-Syakuur dan janjinya itu Mutlak.</b> Tidak ada amalan sekecil biji dzarrah pun kecuali pasti akan dibalas.
+            <br><br><b>5. Bersyukur atas ujian itu lebih utama.</b> 
             <br>  Kok bersyukur? Lihat ini:
             <br><br><b>   A. Ali didorong orang asing ditengah-tengah mall.</b> 
             <br>    Dia marah, akhirnya dia bales dorongannya.
             <br><br><b>   B. Kemudian, Ali pergi ke dokter gigi.</b>
             <br>    Disana, gigi Ali dibor. Dia merasakan kesakitan yang luar biasa, yang bahkan jauh lebih sakit dari apa yang dia rasakan ketika didorong di mall tadi.
             <br><br>    Namun, yang terjadi setelahnya sungguh mengejutkan. Ali tak membalas mengebor gigi dokter tersebut. 
-            <br>    Ali justru malah berterima kasih kepada dokter. Sampai situ aja? Kagak bro, Bahkan Ali memberikan uangnya ke dokter.
-            <br><br>    Kenapa ini bisa terjadi? Jawabannya adalah, karena Ali tahu, bahwa dokter itu sayang sama dia, menginginkan dia sembuh, dan sedang menolong dia dengan cara yang terbaik.
-            <br><br>    Begitupula dengan Allah, Allah memberikan ujian yang terbaik kepada kita. Allah tahu bahwa kita sanggup menjalaninya, Allah sayang sama kita, dan sudah menuliskan takdir yang terbaik untuk hambanya.
-            <br><br>    Ga ada satupun ujian di dunia (termasuk syahwat) yang abadi. Ingat, semua sudah ditentukan garis finishnya.
-            <br>    Sayangnya, beberapa insan terperdaya dengan setan sehingga tak sampai ke garis finish tersebut. Semoga Allah menguatkan kita sampai kita benar-benar bertemu dengan-Nya.<br><br> Aamiin..
+            <br>    Ali justru malah berterima kasih kepada dokter. itu aja? Kagak bro, Bahkan Ali membayar uang ke dokter tersebut.
+            <br><br>    <b>Kenapa ini bisa terjadi?</b> Jawabannya adalah, karena Ali tahu, bahwa dokter itu <i>sayang sama dia, menginginkan dia sembuh, dan sedang menolong dia dengan cara yang terbaik.</i>
+            <br><br>    Begitupula dengan Allah, Allah memberikan ujian yang terbaik kepada kita. Allah sayang sama kita, Dia tahu bahwa kita sanggup menjalaninya. Allah sudah menuliskan takdir yang terbaik untuk hambanya.
+            <br><br>    <b>Ga ada satupun ujian di dunia (termasuk syahwat) yang abadi.</b> Ingat, semua sudah ditentukan garis finishnya.
+            <br><b>    Sayangnya, beberapa insan terperdaya dengan setan</b> sehingga tak sampai ke garis finish tersebut. Semoga Allah menguatkan kita sampai kita benar-benar bertemu dengan-Nya.<br><br> Aamiin..
 
         </footer>
     </main>
