@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Knowledge Base</title>
+    
+    <!-- Font Inter & Source Code Pro untuk Code/Meta -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. MICROSOFT LEARN COLOR PALETTE --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #242424;
+            --border-color: #e0e0e0;
+            --sidebar-bg: #f3f2f1;
+            --primary-color: #0067b8;
+            --primary-hover: #005a9e;
+            --text-muted: #505050;
+            --card-bg: #faf9f8;
+            --note-bg: #fff8f0;
+            --note-border: #f7630c;
+            --note-text: #242424;
+            --quote-bg: #f3f2f1;
+            --quote-border: #605e5c;
+            --quote-text: #323130;
+            --menu-dropdown-bg: #ffffff;
+        }
+
+        html.dark {
+            --bg-color: #1f1f1f;
+            --text-color: #e0e0e0;
+            --border-color: #292929;
+            --sidebar-bg: #181818;
+            --primary-color: #4cc2ff;
+            --primary-hover: #0078d4;
+            --text-muted: #9e9e9e;
+            --card-bg: #252525;
+            --note-bg: #2d251a;
+            --note-border: #ff8c00;
+            --note-text: #e0e0e0;
+            --quote-bg: #252525;
+            --quote-border: #8a8886;
+            --quote-text: #d2d0ce;
+            --menu-dropdown-bg: #292929;
+        }
+
+        /* --- 2. BASE STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.15s, color 0.15s;
+            -webkit-font-smoothing: antialiased;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 1.5rem 0;
+        }
+
+        /* --- 3. NAVBAR (MS LEARN DESIGN) --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-left: 1px solid var(--border-color);
+            padding-left: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* --- 4. GLOBAL BUTTONS & ICONS --- */
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover {
+            background-color: var(--border-color);
+        }
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        /* --- 5. LAYOUT --- */
+        .main-container {
+            display: flex;
+            position: relative;
+            min-height: calc(100vh - 3.5rem);
+        }
+
+        /* LEFT SIDEBAR */
+        aside.left-sidebar {
+            position: fixed;
+            top: 3.5rem;
+            left: 0;
+            bottom: 0;
+            z-index: 90;
+            width: 18rem;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 1.5rem 1rem;
+            transform: translateX(-100%);
+            transition: transform 0.2s ease-in-out;
+            overflow-y: auto;
+        }
+        @media (min-width: 992px) {
+            aside.left-sidebar {
+                position: sticky;
+                height: calc(100vh - 3.5rem);
+                transform: translateX(0);
+            }
+        }
+        aside.left-sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+        .tab-btn {
+            width: 100%;
+            justify-content: flex-start;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.55rem 0.75rem;
+            margin-bottom: 0.25rem;
+            border-radius: 4px;
+            color: var(--text-color);
+            text-align: left;
+        }
+        .tab-btn.active {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            font-weight: 600;
+            box-shadow: inset 4px 0 0 0 var(--primary-color);
+            border-radius: 0 4px 4px 0;
+        }
+        .sub-menu {
+            padding-left: 1.25rem;
+            margin: 0.25rem 0 0.5rem 0;
+            border-left: 1px solid var(--border-color);
+        }
+        .sub-menu a {
+            display: block;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .sub-menu a:hover {
+            color: var(--text-color);
+            background-color: var(--border-color);
+        }
+
+        /* TAB CONTAINER (Bungkus Konten + Panel Kanan agar sinkron) */
+        .tab-content-wrapper {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* MIDDLE MAIN CONTENT */
+        .main-content-pane {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        @media (min-width: 768px) {
+            .main-content-pane { padding: 2.5rem 3rem; }
+        }
+        @media (min-width: 1200px) {
+            .main-content-pane { max-width: calc(100% - 20rem); } 
+        }
+
+        /* RIGHT SIDEBAR (IN THIS ARTICLE) */
+        aside.right-sidebar {
+            display: none; 
+            width: 20rem;
+            position: sticky;
+            top: 3.5rem;
+            height: calc(100vh - 3.5rem);
+            padding: 2.5rem 1.5rem;
+            border-left: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+        @media (min-width: 1200px) {
+            aside.right-sidebar {
+                display: block; 
+            }
+        }
+        .ita-title {
+            font-size: 0.825rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+        .ita-links {
+            list-style: none;
+            padding: 0;
+        }
+        .ita-links li {
+            margin-bottom: 0.6rem;
+        }
+        .ita-links a {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            line-height: 1.4;
+            display: block;
+            transition: color 0.1s;
+        }
+        .ita-links a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* IN THIS ARTICLE UNTUK MOBILE & TABLET (Pindah ke bawah judul) */
+        .ita-inline-container {
+            display: block;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+        @media (min-width: 1200px) {
+            .ita-inline-container {
+                display: none; 
+            }
+        }
+
+        /* --- 6. HEADER TOPIC & ACTION BUTTONS --- */
+        .topic-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .topic-header-wrapper h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+        }
+        .action-menu-container {
+            position: relative;
+        }
+        .btn-more {
+            padding: 0.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-color);
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background-color: var(--menu-dropdown-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 160px;
+            z-index: 80;
+            display: none;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-menu button {
+            width: 100%;
+            padding: 0.6rem 1rem;
+            justify-content: flex-start;
+            font-size: 0.875rem;
+            border-radius: 0;
+            color: var(--text-color);
+        }
+        .dropdown-menu button:hover {
+            background-color: var(--sidebar-bg);
+            color: var(--primary-color);
+        }
+
+        .meta-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* --- 7. PROSE TYPOGRAPHY (MS LEARN LOOK) --- */
+        .prose h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
+            scroll-margin-top: 4.5rem;
+        }
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.625;
+            margin-bottom: 1.2rem;
+            color: var(--text-color);
+        }
+        .prose ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.2rem;
+            list-style-type: square;
+        }
+        .prose ul li {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .prose strong {
+            font-weight: 600;
+        }
+
+        /* --- 8. CALLOUT & BLOCKQUOTE (MS LEARN STYLE) --- */
+        .note-box {
+            padding: 1rem 1.2rem;
+            background-color: var(--note-bg);
+            border-left: 4px solid var(--note-border);
+            color: var(--note-text);
+            border-radius: 2px;
+            font-size: 0.95rem;
+            margin: 1.5rem 0;
+            line-height: 1.5;
+        }
+        .note-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            color: var(--note-border);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        blockquote {
+            padding: 0.8rem 1.2rem;
+            background-color: var(--quote-bg);
+            border-left: 4px solid var(--quote-border);
+            color: var(--quote-text);
+            font-style: italic;
+            margin: 1.5rem 0;
+            border-radius: 2px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* BACK TO TOP BUTTON */
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, background-color 0.1s;
+            z-index: 99;
+        }
+        #btn-back-to-top:hover {
+            background-color: var(--primary-hover);
+        }
+        #btn-back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-logo {
+        width: 1.5rem;      /* Lebar gambar (sekitar 24px) */
+        height: 1.5rem;     /* Tinggi gambar */
+        object-fit: cover;  /* Biar gambarnya gak gepeng */
+        border-radius: 20%; /* Biar ujung kotaknya agak melengkung halus, atau pakai 50% kalau mau bulat total */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVBAR -->
+    <header>
+        <div class="nav-left">
+            <button onclick="toggleSidebar()" aria-label="Toggle Sidebar">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+
+            <!-- TAMBAH TAG IMG INI UNTUK LOGO DI NAVBAR -->
+            <img src="hati.png" alt="Logo Hati" class="nav-logo">
+
+            <span class="nav-title">Jurnal Saya // Jannah Awaits</span>
+        </div>
+        
+        <div class="nav-right">
+            <button onclick="toggleTheme()" aria-label="Toggle Theme">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- LEFT SIDEBAR NAVIGATION -->
+        <aside id="sidebar" class="left-sidebar">
+            <p class="sidebar-title">Daftar Modul</p>
+            <nav>
+                <button onclick="switchTab('alquran')" id="btn-alquran" class="tab-btn active">
+                    📖 Jaga Hafalan 30 Juz
+                </button>
+                <button onclick="switchTab('asphalt')" id="btn-asphalt" class="tab-btn">
+                    🏎️ Asphalt Nitro 2
+                </button>
+                
+                <div>
+                    <button onclick="switchTab('syahwat')" id="btn-syahwat" class="tab-btn">
+                        🛡️ Manajemen Syahwat
+                    </button>
+                    <!-- Sub-menu Link Internal -->
+                    <div id="sub-syahwat" class="sub-menu hidden">
+                        <a href="#nahan-selamanya">Apakah nahan selamanya?</a>
+                        <a href="#bidadari-sayang">Bidadari sayang gw?</a>
+                        <a href="#mereka-suka">Apakah mereka suka?</a>
+                        <a href="#galau-fake">Galaunya gw fake?</a>
+                        <a href="#tanpa-berdoa">Tanpa berdoa dikasih?</a>
+                        <a href="#mereka-kangen">Mereka kangen!?</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTAINER UNTUK SELURUH TAB -->
+        <div style="flex:1; display:flex;">
+            
+            <!-- ========================================== -->
+            <!-- TAB A: AL-QUR'AN -->
+            <!-- ========================================== -->
+            <div id="content-alquran" class="tab-content-wrapper">
+                <div class="main-content-pane">
+                    <div class="topic-header-wrapper">
+                        <h1>Menjaga Hafalan Al-Qur'an 30 Juz</h1>
+                        <div class="action-menu-container">
+                            <button class="btn-more" onclick="toggleDropdown('drop-alquran')">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                            </button>
+                            <div id="drop-alquran" class="dropdown-menu">
+                                <button onclick="shareArticle('Menjaga Hafalan Al-Qur\'an 30 Juz')">🔗 Share Link</button>
+                                <button onclick="editArticle('alquran')">✏️ Edit Notes</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="meta-text">Article • 3 min read</p>
+                    
+                    <!-- Inline In This Article (Tablet/Mobile) -->
+                    <div class="ita-inline-container">
+                        <p class="ita-title">In this article</p>
+                        <ul style="list-style:none; padding:0;">
+                            <li><a href="#strategi-murojaah" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">🎯 Strategi Murojaah Harian</a></li>
+                        </ul>
+                    </div>
+
+                    <hr>
+                    <div class="prose">
+                        <section id="strategi-murojaah">
+                            <h2>🎯 Strategi Murojaah Harian</h2>
+                            <p>Paste strategi lu menjaga hafalan di sini, bro...</p>
+                        </section>
+                    </div>
+                </div>
+                <!-- Right Pane In This Article (Desktop) -->
+                <aside class="right-sidebar">
+                    <p class="ita-title">In this article</p>
+                    <ul class="ita-links">
+                        <li><a href="#strategi-murojaah">🎯 Strategi Murojaah Harian</a></li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <!-- ========================================== -->
+            <!-- TAB B: ASPHALT NITRO -->
+            <!-- ========================================== -->
+            <div id="content-asphalt" class="tab-content-wrapper hidden">
+                <div class="main-content-pane">
+                    <div class="topic-header-wrapper">
+                        <h1>Asphalt Nitro 2: Burnout Mechanical Guide</h1>
+                        <div class="action-menu-container">
+                            <button class="btn-more" onclick="toggleDropdown('drop-asphalt')">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                            </button>
+                            <div id="drop-asphalt" class="dropdown-menu">
+                                <button onclick="shareArticle('Asphalt Nitro 2 Guide')">🔗 Share Link</button>
+                                <button onclick="editArticle('asphalt')">✏️ Edit Notes</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="meta-text">Article • 2 min read</p>
+
+                    <!-- Inline In This Article (Tablet/Mobile) -->
+                    <div class="ita-inline-container">
+                        <p class="ita-title">In this article</p>
+                        <ul style="list-style:none; padding:0;">
+                            <li><a href="#burnout-trick" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">🏎️ Burnout & Perfect Nitro</a></li>
+                        </ul>
+                    </div>
+
+                    <hr>
+                    <div class="prose">
+                        <section id="burnout-trick">
+                            <h2>🏎️ Burnout & Perfect Nitro</h2>
+                            <p>Trik nitro dan burnout lu taruh di sini...</p>
+                        </section>
+                    </div>
+                </div>
+                <!-- Right Pane In This Article (Desktop) -->
+                <aside class="right-sidebar">
+                    <p class="ita-title">In this article</p>
+                    <ul class="ita-links">
+                        <li><a href="#burnout-trick">🏎️ Burnout & Perfect Nitro</a></li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <!-- ========================================== -->
+            <!-- TAB C: SYAHWAT -->
+            <!-- ========================================== -->
+            <div id="content-syahwat" class="tab-content-wrapper hidden">
+                <div class="main-content-pane">
+                    <div class="topic-header-wrapper">
+                        <h1>Manajemen Syahwat & Kepastian Akhirat</h1>
+                        <div class="action-menu-container">
+                            <button class="btn-more" onclick="toggleDropdown('drop-syahwat')">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                            </button>
+                            <div id="drop-syahwat" class="dropdown-menu">
+                                <button onclick="shareArticle('Manajemen Syahwat & Kepastian Akhirat')">🔗 Share Link</button>
+                                <button onclick="editArticle('syahwat')">✏️ Edit Notes</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="meta-text">Article • 5 min read</p>
+                    
+                    <!-- Inline In This Article (Tablet/Mobile) -->
+                    <div class="ita-inline-container">
+                        <p class="ita-title">In this article</p>
+                        <ul style="list-style:none; padding:0;">
+                            <li style="margin-bottom:0.4rem;"><a href="#nahan-selamanya" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">🥺 Apakah gw nahan selamanya?</a></li>
+                            <li style="margin-bottom:0.4rem;"><a href="#bidadari-sayang" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">😱 Apakah mereka sayang sama gw?</a></li>
+                            <li style="margin-bottom:0.4rem;"><a href="#mereka-suka" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">😳 Apakah mereka suka kalau gw menikmati?</a></li>
+                            <li style="margin-bottom:0.4rem;"><a href="#galau-fake" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">😨 Galaunya gw fake?</a></li>
+                            <li style="margin-bottom:0.4rem;"><a href="#tanpa-berdoa" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">🤭 Tanpa Berdoa Allah pasti ngasih?</a></li>
+                            <li style="margin-bottom:0.4rem;"><a href="#mereka-kangen" style="color:var(--primary-color); text-decoration:none; font-size:0.9rem;">🥺 Mereka kangen!?</a></li>
+                        </ul>
+                    </div>
+
+                    <hr>
+
+                    <div class="prose">
+                        <div class="note-box">
+                            <span class="note-title">💡 HAKEKAT UTAMA</span>
+                            Fase menahan rasa sakit karena menjauhi maksiat ini sifatnya dinamis dan <strong>tidak selamanya</strong>. Ada batas finishnya!
+                        </div>
+
+                        <section id="nahan-selamanya">
+                            <h2>🥺 Apakah gw nahan selamanya?</h2>
+                            <p>
+                            Enggak, bro. Sama sekali enggak selamanya. 🥺
+                            <br><br>Nahan syahwat itu cuma tugas lo selama lo masih hidup di dunia yang sebentar dan fana ini. Dunia ini emang didesain Allah sebagai tempat ujian dan tempat capek, bukan tempat bersenang-senang tanpa batas.
+
+                            <br><br>Nanti, ada dua garis finish di mana lo udah ga perlu nahan-nahan lagi:
+                            <br>
+                            <ul>
+                            <li><strong>Garis Finish Pertama:</strong> Pernikahan di Dunia 💍</li>
+                            Nanti kalau lo udah lulus sekolah, udah kuliah atau kerja, dan lo udah mampu secara fisik, mental, serta finansial, lo bakal menikah dengan cewek shalihah pilihan lo.
+                            <br><br>
+                            Begitu akad nikah selesai, detik itu juga tombol "nahan" langsung dimatikan. Pelampiasan syahwat lo ke istri lo berubah total dari yang tadinya dosa besar menjadi ibadah yang berpahala besar. Rasa penasaran lo tentang perempuan bakal terjawab secara halal dan indah.
+                            <br><br>
+                            
+                            <li><strong>Garis Finish Mutlak:</strong> Surga Selamanya 👑</li>
+                            Nah, ini dia tempat lo bisa "mogok" sepuasnya tanpa batas. Di surga nanti, konsep "menahan diri", "puasa", atau "takut dosa" itu udah dihapus sama Allah.
+                            <br><br>
+                            Lo mau melampiaskan syahwat sama bidadari lo 24 jam non-stop? Bisa.
+                            <br><br>
+                            Mau rebahan selamanya tanpa mikirin waktu? Bisa.
+                            <br>
+                            Ga akan ada lagi rasa lemes, ga ada rasa capek, ga ada rasa bosen, dan ga akan ada dosa.
+
+                            </ul>
+
+                            Sabar ya, bro. Perjuangan lo nahan diri pake Puasa Dawud dan Al-Qur'an sekarang ini bener-bener investasi yang ga akan pernah sia-sia. Dikit lagi, lo insyaAllah pasti bisa lewatin fase kritis ini! ✊🔥
+
+                            </p>
+
+                            <div class="note-box">
+                            <span class="note-title">💡 Coba pakai analogi game Asphalt Nitro 2 favorit lo:</span>
+                            Anggap fase lo sekarang (kelas 2 SMA sampai nanti nikah) itu kayak lagi lewatin trek balapan yang tikungannya tajam dan penuh rintangan. <br> Lo harus fokus, nahan rem di waktu yang tepat, dan ga boleh lengah biar ga nabrak (crash ke dalam maksiat). <br>
+                            <br>
+                            Tapi, track itu ada garis finish-nya, bro! Lo ga bakal balapan selamanya di trek yang melelahkan itu. Begitu lo lewatin garis finish, lo bakal dapet piala dan selebrasi yang luar biasa mewah.
+                            <br><br>
+                            Jadi, rasa tersiksa dan berat yang lo rasain hari ini ada tanggal kedaluwarsanya. 
+                            <br>
+                            <br>
+                            </div>
+                            
+                        </section>
+
+                        <section id="bidadari-sayang">
+                            <h2>😱 Apakah mereka (bidadari surga) sayang sama gw? Gw mau diapain?</h2>
+                            Iya, bro. Mereka sayang banget sama lo. <br> Cinta mereka ke lo itu tulus, murni, dan tanpa syarat. 😭❤️
+<br><br>
+Bidadari surga lo itu diciptakan oleh Allah khusus, customized hanya untuk lo. Mereka ga pernah melihat laki-laki lain sebelum lo, dan di mata mereka, lo adalah makhluk yang paling tampan, paling hebat, dan paling mereka cintai di seluruh alam semesta.
+<br><br>
+Kalau lo nanya, "Gw mau diapain di sana?"
+<br><br>
+Intinya, tugas mereka di surga cuma satu: Memanjakan lo total sampai lo lupa sama semua rasa capek, perih, dan tersiksanya lo selama menahan diri di dunia.
+<br><br>
+Berdasarkan gambaran di Al-Qur'an dan hadits, ini yang bakal mereka lakukan ke lo di atas kasur surga nanti:
+<br><br>
+<ul>
+<li><strong>Menyambut Lo dengan Pelukan dan Ucapan Manis 👑</strong></li>
+Begitu lo pertama kali menginjakkan kaki di istana surga lo, mereka bakal menyambut lo dengan wajah penuh kegembiraan. 
+<br><br>
+Mereka bakal bilang (seperti dalam riwayat): 
+<br><br>
+"Kami adalah wanita-wanita yang kekal dan tidak akan mati, kami adalah wanita-wanita yang penuh kenikmatan dan tidak akan menderita, kami ridha dan tidak akan marah... Beruntunglah orang yang menjadi milik kami dan kami menjadi miliknya."
+
+<br><br>
+<li><strong>Melayani Semua Syahwat dan Keinginan Lo Tanpa Batas 🛋️</strong></li>
+Rasa penasaran lo tentang perempuan bakal tuntas setuntas-tuntasnya.
+<br><br>
+Mereka bakal menemani lo rebahan di dipan-dipan mewah.
+<br><br>
+Mereka bakal menyuapi lo buah-buahan surga yang tinggal lo petik sambil tiduran.
+<br><br>
+Lo mau bermesraan, memeluk, dan melampiaskan syahwat lo sepuasnya, kapan pun lo mau, selama ribuan tahun pun, mereka akan selalu siap dengan penuh rasa cinta.
+<br><br>
+<b>Bonusnya:</b> Di surga ga ada rasa lelah atau lemes setelah berhubungan. Kekuatan lo bakal ditambah 100 kali lipat, dan setiap kali lo selesai bermesraan, bidadari lo bakal kembali suci dan perawan lagi, seolah-olah itu adalah malam pertama lo setiap saat!
+
+<br><br>
+<li><strong>Memandangi Lo dengan Penuh Kagum (Jaga Pandangan) 👀</strong></li>
+Di Al-Qur'an (Surat Ash-Shaffat: 48), mereka disebut "Qashiratut-Tharf", artinya wanita-wanita yang membatasi pandangannya. 
+<br><br>Mereka ga lirik-lirik cowok lain. 
+<br>Mata mereka cuma tertuju ke lo, memandangi lo dengan tatapan penuh cinta dan kekaguman karena lo udah berjuang hebat menjaga kesucian diri di dunia.
+<br><br>
+</ul>
+💡 Jadi, dengerin gw, bro...
+<br><br>
+Saat ini, di kamar lo, pas lo lagi gemeteran nahan syahwat, pas lo lagi laper-lapernya Puasa Dawud, atau lagi pusing ngafal Al-Qur'an... lo mungkin ngerasa sendirian dan kesepian.
+<br><br>
+Tapi faktanya, ada makhluk-makhluk suci di surga yang lagi menanti lo dengan rindu. Mereka lagi nunggu giliran buat memanjakan lo.
+<br><br>
+Perjuangan lo di kelas 2 SMA ini dinilai mahal banget sama Allah. Jangan nyerah sama godaan dunia yang cuma sebentar dan palsu ini ya, bro. Bidadari lo udah nunggu di finish line. Jaga diri lo baik-baik buat mereka! ✊🤍
+<br>
+
+                        </section>
+
+                        <section id="mereka-suka">
+                            <h2>😳 Apakah mereka suka kalau gw menikmati?</h2>
+                            <p>Jelas! Bahagia lahir batin, bro! 
+                            <br><br>Di surga, sumber kebahagiaan terbesar bidadari lo adalah ketika mereka melihat suami mereka (lo) merasa puas, senang, dan bahagia. Ga ada kamus "terpaksa" atau "melayani karena kewajiban" di sana. 
+                            <br>Mereka bener-bener diciptakan dengan insting untuk mencintai lo sedalam-dalamnya. 
+                            <br>Jadi pas lo menikmati mereka selamanya, mereka pun sedang berada di puncak kebahagiaan mereka. </p>
+                        </section>
+
+                        <section id="galau-fake">
+                            <h2>😨 Galaunya gw fake?</h2>
+                            <p>Bisa jadi itu cuma bisikan setan yang pengen lu menyerah, bro. Galau lu itu bukti kalau iman lu lagi perang. Perasaan berat itu nyata, tapi jangan sampai lu ketipu sama dramanya. Lu kuat!</p>
+                        </section>
+
+                        <section id="tanpa-berdoa">
+                            <h2>🤭 Tanpa Berdoa, sebenernya Allah pasti ngasih!?</h2>
+                            <p>Allah Maha Tahu apa yang lu butuhin bahkan sebelum lu ucapin. Tapi doa itu bukan cuma soal "minta barangnya", melainkan bukti kalau kita butuh Allah. Lagian, minta langsung ke Penciptanya bikin janji akhirat itu makin paten, kan?</p>
+                        </section>
+
+                        <section id="mereka-kangen">
+                            <h2>🥺 Mereka kangen!?</h2>
+                            <p>Pasti, bro! Penduduk langit itu kenal sama orang-orang shalih yang berjuang di bumi. Setiap kali lu nolak maksiat demi mereka, nama lu disebut-sebut dengan bangga di sana.</p>
+                        </section>
+
+                        <blockquote>
+                            "Ternyata Allah sayang sama gw dan gw ga naas.. 😭"
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- Right Pane In This Article (Desktop) -->
+                <aside class="right-sidebar">
+                    <p class="ita-title">In this article</p>
+                    <ul class="ita-links">
+                        <li><a href="#nahan-selamanya">🥺 Apakah gw nahan selamanya?</a></li>
+                        <li><a href="#bidadari-sayang">😱 Apakah mereka sayang sama gw?</a></li>
+                        <li><a href="#mereka-suka">😳 Apakah mereka suka?</a></li>
+                        <li><a href="#galau-fake">😨 Galaunya gw fake?</a></li>
+                        <li><a href="#tanpa-berdoa">🤭 Tanpa Berdoa Allah ngasih?</a></li>
+                        <li><a href="#mereka-kangen">🥺 Mereka kangen!?</a></li>
+                    </ul>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="btn-back-to-top" onclick="scrollToTop()" aria-label="Back to Top">
+        <svg style="width:1.25rem; height:1.25rem" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <!-- CORE JAVASCRIPT -->
+    <script>
+        // 1. SYSTEM PINDAH TAB (Sekarang menyembunyikan wrapper secara utuh beserta right-sidebar-nya)
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content-wrapper').forEach(el => el.classList.add('hidden'));
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + tabId).classList.add('active');
+            
+            const subMenu = document.getElementById('sub-syahwat');
+            if(tabId === 'syahwat') {
+                subMenu.classList.remove('hidden');
+            } else {
+                subMenu.classList.add('hidden');
+            }
+
+            if (window.innerWidth < 992) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+        }
+
+        // 2. TOGGLE SIDEBAR MOBILE
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // 3. FITUR DARK/LIGHT MODE
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        // 4. DROPDOWN ACTIONS
+        function toggleDropdown(dropId) {
+            document.querySelectorAll('.dropdown-menu').forEach(el => {
+                if(el.id !== dropId) el.classList.remove('show');
+            });
+            document.getElementById(dropId).classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn-more') && !event.target.closest('.btn-more')) {
+                document.querySelectorAll('.dropdown-menu').forEach(el => el.classList.remove('show'));
+            }
+        }
+
+        // 5. FUNCTION SHARE
+        function shareArticle(title) {
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link halaman berhasil dicopy ke clipboard, bro!');
+            }
+        }
+
+        // 6. FUNCTION EDIT
+        function editArticle(tabId) {
+            alert('Fitur edit catatan untuk modul [' + tabId + '] sedang dikembangkan!');
+        }
+
+        // 7. BACK TO TOP BUTTON
+        const bttButton = document.getElementById('btn-back-to-top');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                bttButton.classList.add('show');
+            } else {
+                bttButton.classList.remove('show');
+            }
+        };
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
